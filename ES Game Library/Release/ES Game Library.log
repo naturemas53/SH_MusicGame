@@ -1,0 +1,96 @@
+﻿2018/06/05 15:18:29 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\fushianasan\Desktop\SH_MusicGame_ES\ES Game Library\ES Game Library.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _WIN32_WINNT=0x0600 /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameMain.cpp
+         GameMain.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\fushianasan\Desktop\SH_MusicGame_ES\Release\ES Game Library.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBCMT /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\fushianasan\Desktop\SH_MusicGame_ES\Release\ES Game Library.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"C:\Users\fushianasan\Desktop\SH_MusicGame_ES\Release\ES Game Library.lib" /MACHINE:X86 /SAFESEH:NO /ignore:4099 Release\Resource.res
+         Release\Animation.obj
+         Release\AnimationState.obj
+         Release\AnimationStateData.obj
+         Release\Array.obj
+         Release\Atlas.obj
+         Release\AtlasAttachmentLoader.obj
+         Release\Attachment.obj
+         Release\AttachmentLoader.obj
+         Release\Bone.obj
+         Release\BoneData.obj
+         Release\BoundingBoxAttachment.obj
+         Release\ClippingAttachment.obj
+         Release\Color.obj
+         Release\Event.obj
+         Release\EventData.obj
+         Release\extension.obj
+         Release\IkConstraint.obj
+         Release\IkConstraintData.obj
+         Release\Json.obj
+         Release\MeshAttachment.obj
+         Release\PathAttachment.obj
+         Release\PathConstraint.obj
+         Release\PathConstraintData.obj
+         Release\PointAttachment.obj
+         Release\RegionAttachment.obj
+         Release\Skeleton.obj
+         Release\SkeletonBinary.obj
+         Release\SkeletonBounds.obj
+         Release\SkeletonClipping.obj
+         Release\SkeletonData.obj
+         Release\SkeletonJson.obj
+         Release\Skin.obj
+         Release\Slot.obj
+         Release\SlotData.obj
+         Release\TransformConstraint.obj
+         Release\TransformConstraintData.obj
+         Release\Triangulator.obj
+         Release\VertexAttachment.obj
+         Release\VertexEffect.obj
+         Release\SPINE.obj
+         Release\SpineComponent.obj
+         Release\GameMain.obj
+         Release\SceneShared.obj
+         Release\StdAfx.obj
+         Release\WinMain.obj
+         Release\DXAudio8.obj
+         Release\MusicSegment.obj
+         Release\Sound3DBuffer.obj
+         Release\SoundBuffer.obj
+         Release\SoundListener.obj
+         Release\ComLibrary.obj
+         Release\AnimationModel.obj
+         Release\Camera.obj
+         Release\DXGFont.obj
+         Release\DXGraphics9.obj
+         Release\Effect.obj
+         Release\Model.obj
+         Release\RenderTarget.obj
+         Release\Sprite.obj
+         Release\Sprite3D.obj
+         Release\SpriteBatch.obj
+         Release\StateBlock.obj
+         Release\VertexBuffer.obj
+         Release\DInput8.obj
+         Release\InputDevice.obj
+         Release\InputEffect.obj
+         Release\DShow.obj
+         Release\Media.obj
+         Release\FixTimer.obj
+         Release\GameApp.obj
+         Release\GameFrameWindow.obj
+         Release\GameProc.obj
+         Release\Network.obj
+         Release\Random.obj
+         Release\SingleApp.obj
+         Release\Stream.obj
+         Release\Thread.obj
+     1>LINK : warning C4743: 'const IAnimationModel::`vftable'' は、'C:\Users\fushianasan\Desktop\SH_MusicGame_ES\ES Game Library\DirectX\Graphics\DXGraphics9.cpp' および 'C:\Users\fushianasan\Desktop\SH_MusicGame_ES\ES Game Library\DirectX\Graphics\AnimationModel.cpp' 内で異なるサイズを含んでいます: 248 および 240 バイト
+         コード生成しています。
+     1>c:\users\fushianasan\desktop\sh_musicgame_es\sdk\spine\spine\src\pathconstraint.c(210): warning C4723: 除算の 2 番目のオペランドは、コンパイル時に 0 と評価され、不定の結果を返します。
+     1>c:\users\fushianasan\desktop\sh_musicgame_es\sdk\spine\spine\src\pathconstraint.c(210): warning C4723: 除算の 2 番目のオペランドは、コンパイル時に 0 と評価され、不定の結果を返します。
+     1>c:\users\fushianasan\desktop\sh_musicgame_es\sdk\spine\spine\src\pathconstraint.c(210): warning C4723: 除算の 2 番目のオペランドは、コンパイル時に 0 と評価され、不定の結果を返します。
+         コード生成が終了しました。
+         ES Game Library.vcxproj -> C:\Users\fushianasan\Desktop\SH_MusicGame_ES\Release\ES Game Library.exe
+     1>プロジェクト "C:\Users\fushianasan\Desktop\SH_MusicGame_ES\ES Game Library\ES Game Library.vcxproj" (Build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:15.02

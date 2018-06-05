@@ -27,6 +27,11 @@ public:
 #ifdef _INC_DIRECT2D
 		Direct2D.ReleaseAllResources();
 #endif
+#ifdef _INC_SPINE
+		Spine.ReleaseAllSpines();
+		Spine.ReleaseAllSpineResouses();
+#endif
+
 		MediaManager.ReleaseAllMedia();
 
 		SoundDevice.ReleaseAllMusics();
@@ -56,7 +61,7 @@ private:
 
 private:
 	// •Ï”éŒ¾
-
+	SPINE boy;
 
 	// ŠÖ”éŒ¾
 

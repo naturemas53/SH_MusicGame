@@ -25,7 +25,7 @@
 //------------------------------------------------------------------------------
 //	インクルードファイル
 //------------------------------------------------------------------------------
-#include <SS5Player.h>
+// #include <SS5Player.h>
 // #include "DirectX\2D\Direct2D.hpp"
 // #include "Extension\Effekseer\Effekseer.hpp"
 // #include "Extension\Live2D\Live2D.hpp"
@@ -49,6 +49,8 @@
 
 #include <math.h>
 #include <tchar.h>
+
+#include "Extension\Spine\FujiClasses\SpineComponent.h"
 
 //------------------------------------------------------------------------------
 //	foreachマクロ
@@ -3776,6 +3778,10 @@ typedef IMedia           *MEDIA;
 typedef std::vector<SpriteElement> SpriteArray;
 typedef std::list  <SpriteElement> SpriteList;
 typedef std::set   <SpriteElement> SpriteSet;
+
+#ifdef _INC_SPINE
+typedef ISpine *SPINE;
+#endif
 
 typedef void (GameMain::*GameMainFuncPtr_void)();
 typedef int  (GameMain::*GameMainFuncPtr_int )();

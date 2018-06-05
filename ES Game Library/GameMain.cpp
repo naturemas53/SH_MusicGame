@@ -11,7 +11,10 @@ bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
-
+	boy = Spine.CreateSpineFromFile("spineboy/export","spineboy");
+	boy->FlipY();
+	boy->SetPosition(Vector2(500.0f,700.0f));
+	boy->SetAnimation(0,"walk",1);
 
 	return true;
 }
@@ -36,7 +39,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-
+	boy->Update();
 
 	return 0;
 }
@@ -56,6 +59,13 @@ void GameMain::Draw()
 
 
 	SpriteBatch.End();
+
+	GraphicsDevice.BeginAlphaBlend();
+
+	boy->Draw();
+
+	GraphicsDevice.EndAlphaBlend();
+
 
 	GraphicsDevice.EndScene();
 }
