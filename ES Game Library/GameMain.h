@@ -2,6 +2,7 @@
 
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
+#include <vector>
 
 class GameMain : public CGameScene {
 public:
@@ -61,7 +62,7 @@ private:
 
 private:
 	// •Ï”éŒ¾
-	SPINE boy;
+	std::vector<SPINE> boys;
 
 	// ŠÖ”éŒ¾
 

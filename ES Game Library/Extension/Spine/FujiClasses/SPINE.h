@@ -23,8 +23,6 @@ public:
 
 	virtual void SetTimeScale(float timescale) = 0;
 
-	virtual void SetScaleAllBone(float scale) = 0;
-
 };
 
 class CSpine : public ISpine{
@@ -51,7 +49,6 @@ public:
 
 	virtual void SetTimeScale(float timescale){ this->animasionstate_->timeScale = timescale; }
 
-	virtual void SetScaleAllBone(float scale);
 
 private:
 
@@ -82,7 +79,5 @@ public:
 	virtual void AddAnimation(int playtrack, const char* animename, float delay, int isloop, float mixDulation = 1.0f){};
 
 	virtual void SetTimeScale(float timescale){};
-
-	virtual void SetScaleAllBone(float scale){};
 
 };

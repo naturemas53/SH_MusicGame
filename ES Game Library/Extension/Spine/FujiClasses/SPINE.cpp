@@ -40,16 +40,16 @@ void CSpine::Draw(){
 		int blendmode = 0;
 		switch (slot->data->blendMode) {
 		case SP_BLEND_MODE_NORMAL:		//alpha blend : src.rgb * (src.a) + dest.rgb * (1.0-src.a)
-			blendmode = 0;
+			GraphicsDevice.SetBlendMode(DXGBLEND_NORMAL);
 			break;
 		case SP_BLEND_MODE_ADDITIVE:	//add : src.rgb * src.a + dest.rgb
-			blendmode = 1;
+			GraphicsDevice.SetBlendMode(DXGBLEND_ADD);
 			break;
 		case SP_BLEND_MODE_MULTIPLY:	//multiply/modulate : (src.rgb * src.a) * dest.rgb
-			blendmode = 2;
+
 			break;
 		case SP_BLEND_MODE_SCREEN:		//screen : (src.rgb * src.a + dest.rgb) - (src.rgb * src.a * dest.rgb) == ((src.rgb * src.a) * inv(dest.rgb)) + (1.0 * dest.rgb)
-			blendmode = 3;
+			
 			break;
 		}
 
@@ -126,8 +126,6 @@ void CSpine::RegionDraw(spSlot* slot, spAttachment* attachment, spColor* col, in
 	color.G(col->g);
 	color.B(col->b);
 	color.A(col->a);
-	float xx[3], yy[3];	//vertex
-	float uu[3], vv[3];	//uv
 	int triangleindex = 0;
 	float* sptr = (float*)worldvertex.data();
 	int n = 2;
@@ -194,18 +192,5 @@ void CSpine::AddAnimation(int playtrack, const char* animename, float delay, int
 void CSpine::SetEnptyAnimations(float mixDulation){
 
 	spAnimationState_setEmptyAnimations(this->animasionstate_, mixDulation);
-
-}
-
-void CSpine::SetScaleAllBone(float scale){
-
-	spBone** bones = this->skeleton_->bones;
-
-	for (int i = 0; i < this->skeleton_->bonesCount;i++){
-
-		bones[i]->scaleX = scale;
-		bones[i]->scaleY = scale;
-
-	}
 
 }

@@ -54,7 +54,7 @@ ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string 
 
 	ISpine* instance = this->CreateSpineToCharactorName(charactorname);
 
-	if (typeid(instance) == typeid(CSpine*)){ return instance; }
+	if (typeid(*instance) == typeid(CSpine)){ return instance; }
 
 	//ˆê‰ñì‚Á‚¿‚á‚Á‚Ä‚é‚ñ‚ÅÁ‚µ‚Ä‚©‚ç‚à‚Á‚©‚¢
 	this->ReleaseSpine(instance);
@@ -95,7 +95,7 @@ ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string 
 
 }
 
-ISpine* SpineComponent::CreateSpineToCharactorName(std::string charactorname,float scale){
+ISpine* SpineComponent::CreateSpineToCharactorName(std::string charactorname){
 
 	ISpine* instance;
 	auto itr = this->ressouses_.begin();
@@ -103,6 +103,7 @@ ISpine* SpineComponent::CreateSpineToCharactorName(std::string charactorname,flo
 	if ((itr = this->ressouses_.find(charactorname)) != this->ressouses_.end()){
 
 		SpineResouses resouses = (*itr).second;
+
 		instance = new CSpine(resouses.skeletonData, resouses.animationStateData);
 
 	}

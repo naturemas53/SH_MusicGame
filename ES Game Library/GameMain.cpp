@@ -11,10 +11,22 @@ bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
-	boy = Spine.CreateSpineFromFile("spineboy/export","spineboy");
-	boy->FlipY();
-	boy->SetPosition(Vector2(500.0f,700.0f));
-	boy->SetAnimation(0,"walk",1);
+
+	SPINE instance;
+	instance = Spine.CreateSpineFromFile("spineboy/export", "spineboy", 0.5f);
+	instance->FlipY();
+	instance->SetPosition(Vector2(500.0f, 700.0f));
+	instance->SetAnimation(0, "walk", 1);
+
+	this->boys.push_back(instance);
+
+	instance = Spine.CreateSpineFromFile("spineboy/export", "spineboy", 0.5f);
+	instance->FlipY();
+	instance->FlipX();
+	instance->SetPosition(Vector2(1000.0f, 700.0f));
+	instance->SetAnimation(0, "walk", 1);
+
+	this->boys.push_back(instance);
 
 	return true;
 }
@@ -26,7 +38,7 @@ bool GameMain::Initialize()
 void GameMain::Finalize()
 {
 	// TODO: Add your finalization logic here
-
+	for (auto data : this->boys) Spine.ReleaseSpine(data);
 }
 
 /// <summary>
@@ -39,7 +51,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	boy->Update();
+	for (auto data : this->boys) data->Update();
 
 	return 0;
 }
@@ -62,7 +74,7 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginAlphaBlend();
 
-	boy->Draw();
+	for (auto data : this->boys) data->Draw();
 
 	GraphicsDevice.EndAlphaBlend();
 
