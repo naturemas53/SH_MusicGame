@@ -50,7 +50,7 @@ SpineComponent::~SpineComponent(){
 
 }
 
-ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string charactorname,float scale){
+ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string charactorname, bool isprofessional, float scale){
 
 	ISpine* instance = this->CreateSpineToCharactorName(charactorname);
 
@@ -62,13 +62,15 @@ ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string 
 	try{
 
 		std::string basepath = folderpath + "/";
-		std::string atlaspath = basepath + charactorname + ".atlas";
+		std::string atlaspath = basepath + charactorname;
+		atlaspath += (isprofessional) ? "-pma.atlas" : ".atlas";
 		spAtlas* atlas = spAtlas_createFromFile(atlaspath.c_str(), 0);
 		if (atlas == NULL) throw("atlas load failed");
 
 		spSkeletonJson* json = spSkeletonJson_create(atlas);
 		json->scale = scale;
-		std::string jsonpath = basepath + charactorname + "-ess.json";
+		std::string jsonpath = basepath + charactorname;
+		jsonpath += (isprofessional) ? "-pro.json" : "-ess.json";
 		spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json,jsonpath.c_str());
 		spSkeletonJson_dispose(json);
 		if (skeletonData == NULL) throw("json load failed");

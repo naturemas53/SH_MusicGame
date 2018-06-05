@@ -25,7 +25,7 @@ public:
 
 	~SpineComponent();
 	
-	ISpine* CreateSpineFromFile(std::string folderpath,std::string charactorname,float scale = 1.0f);
+	ISpine* CreateSpineFromFile(std::string folderpath,std::string charactorname,bool isprofessional = false,float scale = 1.0f);
 	ISpine* CreateSpineToCharactorName(std::string charactorname);
 
 	void ReleaseSpine(ISpine* self);

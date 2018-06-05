@@ -79,8 +79,7 @@ void CSpine::Draw(){
 			this->RegionDraw(slot,attachment,&mulcol,0);
 		}
 		else if (attachment->type == SP_ATTACHMENT_MESH) {
-			//myCustomDraw_mesh(slot, attachment, &mulcol, blendmode);
-
+			this->MeshDraw(slot,attachment,&mulcol,0);
 		}
 		else {
 			//unsupport
@@ -158,6 +157,81 @@ void CSpine::RegionDraw(spSlot* slot, spAttachment* attachment, spColor* col, in
 
 	GraphicsDevice.SetTexture(0, *textureptr);
 	GraphicsDevice.DrawUserPrimitives(D3DPT_TRIANGLELIST, vertex, 2, DXGTLVERTEX::FVF());
+
+}
+
+void CSpine::MeshDraw(spSlot* slot, spAttachment* attachment, spColor* col, int blendmode){
+
+	// Cast to an spMeshAttachment so we can get the rendererObject
+	// and compute the world vertices
+	spMeshAttachment* mesh = (spMeshAttachment*)attachment;
+
+	// Check the number of vertices in the mesh attachment. If it is bigger
+	// than our scratch buffer, we don't render the mesh. We do this here
+	// for simplicity, in production you want to reallocate the scratch buffer
+	// to fit the mesh.
+	// if (mesh->super.worldVerticesLength > MAX_VERTICES_PER_ATTACHMENT) continue;
+	//worldVerticesLength が　スクリーン向けに頂点を変換する際に必要な数
+	std::vector<float> worldvertex = std::vector<float>(mesh->super.worldVerticesLength);
+
+	// Our engine specific Texture is stored in the spAtlasRegion which was
+	// assigned to the attachment on load. It represents the texture atlas
+	// page that contains the image the mesh attachment is mapped to
+	SPRITE textureptr = nullptr;
+	textureptr = (SPRITE)((spAtlasRegion*)mesh->rendererObject)->page->rendererObject;	//set user pointer in _spAtlasPage_createTexture
+
+	//親のVertexアタッチメントが必要なんですって
+	spVertexAttachment_computeWorldVertices(&mesh->super, slot, 0, mesh->super.worldVerticesLength, worldvertex.data(), 0, 2);	//probably stride value float x,y count 2. support 3D(x,y,z) feature?
+
+	// Mesh attachments use an array of vertices, and an array of indices to define which
+	// 3 vertices make up each triangle. We loop through all triangle indices
+	// and simply emit a vertex for each triangle's vertex.
+	//for (int i = 0; i < mesh->trianglesCount; ++i) {
+	//	int index = mesh->triangles[i] << 1;
+	//	addVertex(worldVerticesPositions[index], worldVerticesPositions[index + 1],
+	//		mesh->uvs[index], mesh->uvs[index + 1],
+	//		tintR, tintG, tintB, tintA, &vertexIndex);
+	//}
+
+	//描画に必要な分作成すること！
+	std::vector<DXGTLVERTEX>  vertexs(mesh->trianglesCount);
+	Color color = Color(1.0f, 1.0f, 1.0f);
+	color.R(col->r);
+	color.G(col->g);
+	color.B(col->b);
+	color.A(col->a);
+
+	float xx[3], yy[3];	//vertex
+	float uu[3], vv[3];	//uv
+	int triangleindex = 0;
+	float* sptr = worldvertex.data();
+	int n = mesh->trianglesCount / 3;
+	WORD*  tr = mesh->triangles;
+	for (int i = 0; i < n; i++) {
+		//triangle
+		for (int j = 0; j < 3; j++) {
+			//vertex
+			int idx = mesh->triangles[triangleindex] * 2;
+			triangleindex++;
+
+			vertexs[i * 3 + j].x = sptr[idx + 0];
+			vertexs[i * 3 + j].y = sptr[idx + 1];
+
+			vertexs[i * 3 + j].tu = mesh->uvs[idx + 0];
+			vertexs[i * 3 + j].tv = mesh->uvs[idx + 1];
+
+			vertexs[i * 3 + j].color = color;
+
+			//xx[j] = sptr[idx + 0];
+			//yy[j] = sptr[idx + 1];
+			//uu[j] = mesh->uvs[idx + 0];
+			//vv[j] = mesh->uvs[idx + 1];
+		}
+
+	}
+
+	GraphicsDevice.SetTexture(0, *textureptr);
+	GraphicsDevice.DrawUserPrimitives(D3DPT_TRIANGLELIST, vertexs.data(), n, DXGTLVERTEX::FVF());
 
 }
 
