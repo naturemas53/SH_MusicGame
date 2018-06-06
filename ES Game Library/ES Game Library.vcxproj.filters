@@ -112,6 +112,12 @@
     <Filter Include="変換用アセット">
       <UniqueIdentifier>{82621faf-8306-44c1-bdbf-bfdd763ca17c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\拡張\MultiDevice">
+      <UniqueIdentifier>{7ec5f779-164b-43c9-9b61-d3a441828394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\拡張\MultiDevice">
+      <UniqueIdentifier>{d6e2edee-9652-4e49-b0f9-87117a9772c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -255,6 +261,12 @@
     </ClCompile>
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\CreateDeviceScene.cpp">
+      <Filter>ソース ファイル\ゲームシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension\MultiDevice\RawInput.cpp">
+      <Filter>ソース ファイル\拡張\MultiDevice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +423,15 @@
     </ClInclude>
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp">
       <Filter>ヘッダー ファイル\拡張\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\CreateDeviceScene.hpp">
+      <Filter>ヘッダー ファイル\ゲームシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension\MultiDevice\RawInput.h">
+      <Filter>ヘッダー ファイル\拡張\MultiDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension\MultiDevice\RawInputListener.h">
+      <Filter>ヘッダー ファイル\拡張\MultiDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

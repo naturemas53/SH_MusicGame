@@ -2,6 +2,8 @@
 
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
+#include "Extension\MultiDevice\RawInput.h"
+#include "Extension\MultiDevice\RawInputListener.h"
 
 class GameMain : public CGameScene {
 public:
@@ -56,7 +58,20 @@ private:
 
 private:
 	// •Ï”éŒ¾
+	SPRITE chara1;
+	SPRITE chara2;
 
+	float chara1_x, chara1_y;
+	float chara2_x, chara2_y;
+
+	enum NUM_RI_DEVICES
+	{
+		device = 2
+	};
+
+	MouseStatus mouse_state[device];
+
+	
 
 	// ŠÖ”éŒ¾
 

@@ -141,6 +141,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Extension\MultiDevice\RawInput.cpp" />
     <ClCompile Include="Extension\OpenGL\OpenGL.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -154,6 +155,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameScene\CreateDeviceScene.cpp" />
     <ClCompile Include="GameScene\SceneShared.cpp" />
     <ClCompile Include="GameScene\TemplateScene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -210,10 +212,13 @@
     <ClInclude Include="Extension\Kinect\Kinect.hpp" />
     <ClInclude Include="Extension\Kinect\NUI.hpp" />
     <ClInclude Include="Extension\Live2D\Live2D.hpp" />
+    <ClInclude Include="Extension\MultiDevice\RawInput.h" />
+    <ClInclude Include="Extension\MultiDevice\RawInputListener.h" />
     <ClInclude Include="Extension\OpenGL\OpenGL.hpp" />
     <ClInclude Include="Extension\Squirrel\Script.hpp" />
     <ClInclude Include="Extension\Squirrel\Squirrel.hpp" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameScene\CreateDeviceScene.hpp" />
     <ClInclude Include="GameScene\SceneShared.hpp" />
     <ClInclude Include="GameScene\TemplateScene.hpp" />
     <ClInclude Include="StdAfx.h" />

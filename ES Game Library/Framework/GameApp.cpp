@@ -107,6 +107,8 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	if(m_GameFrameWindow.Create(hInstance, CGameApp::WndProc, width, height, m_Windowed) == false)
 		return false;
 
+	receive.Initialize();
+
 	// DirectX Graphics初期化
 	if(DXGraphics().Initialize(m_GameFrameWindow.GetHWnd  (),
 							   m_GameFrameWindow.GetWidth (),
@@ -133,8 +135,10 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	::SetCurrentDirectory(string_buffer);
 
 	// ゲームシーン設定
-	if(m_GameProc.CreateScene(new GameMain()) == false)
+	if(m_GameProc.CreateScene(new CreateDeviceScene()) == false)
 		return false;
+
+
 
 	return true;
 }
@@ -211,6 +215,7 @@ LRESULT CGameApp::WindowProc(const HWND hWnd, const UINT uMsg, const WPARAM wPar
 	  case WM_CREATE:			return OnCreate       (hWnd, wParam, lParam);
 	  case WM_CLOSE:			return OnClose        (hWnd, wParam, lParam);
 	  case WM_DESTROY:			return OnDestroy      (hWnd, wParam, lParam);
+	  case WM_INPUT:            return OnInput        (hWnd, wParam, lParam);
 //	  case WM_EXITSIZEMOVE:		return OnExitMouseMove(hWnd, wParam, lParam);
 //	  case WM_NCLBUTTONDOWN:	return OnNCLButtonDown(hWnd, wParam, lParam);
 //	  case WM_NCRBUTTONDOWN:	return OnNCRButtonDown(hWnd, wParam, lParam);
@@ -375,4 +380,18 @@ LRESULT CGameApp::OnNCLButtonDown(const HWND hWnd, const WPARAM wParam, const LP
 LRESULT CGameApp::OnNCRButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
 {
 	return 0;
+}
+
+//------------------------------------------------------------------------------
+//	Inputメッセージ処理
+//------------------------------------------------------------------------------
+LRESULT CGameApp::OnInput(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
+{
+	receive.OnRawInput(wParam, lParam);
+	return 0;
+}
+
+RawInputReceiver& CGameApp::GetReceiver()
+{
+	return receive;
 }

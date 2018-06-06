@@ -28,6 +28,7 @@
 #include "SingleApp.hpp"
 #include "GameFrameWindow.hpp"
 #include "GameProc.hpp"
+#include "../Extension/MultiDevice/RawInput.h"
 
 //------------------------------------------------------------------------------
 // ゲームアプリケーションクラス定義
@@ -51,6 +52,8 @@ public:
 		return theGameApp;
 	}
 
+	RawInputReceiver& GetReceiver();
+
 
 private:
 	CGameApp();
@@ -72,6 +75,7 @@ private:
 	LRESULT OnExitMouseMove(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnNCLButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnNCRButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
+	LRESULT OnInput        (const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 
 	// メンバ変数
 	static CGameApp*   m_pGameApp;			// 自身へのポインタ(ウィンドウプロシージャ用)
@@ -82,6 +86,7 @@ private:
 	CSingleApp         m_SingleApp;			// 多重起動検出
 	CGameFrameWindow   m_GameFrameWindow;	// ゲーム用フレームウィンドウ
 	CGameProc          m_GameProc;
+	RawInputReceiver   receive;
 
 	CGameApp(const CGameApp&);				// コピーコンストラクタを生成しない
 	CGameApp& operator=(const CGameApp&);	// 代入演算子を生成しない
