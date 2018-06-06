@@ -26,6 +26,7 @@
 #include "GameApp.hpp"
 #include "..\..\Resource\resource.h"
 
+
 //------------------------------------------------------------------------------
 //	クラス変数
 //------------------------------------------------------------------------------
@@ -133,8 +134,14 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	::SetCurrentDirectory(string_buffer);
 
 	// ゲームシーン設定
-	if(m_GameProc.CreateScene(new GameMain()) == false)
+	if(m_GameProc.CreateScene(new DeviceGetScene()) == false)
 		return false;
+
+	//マルチデバイス対応
+	m_Recv = RawInputReceiver();
+	m_Recv.initialize();
+	m_Recv.addMouseListener(RIDEV_DEFAULT,&m_MouseDetector);
+	m_listeningflag = false;
 
 	return true;
 }
@@ -211,6 +218,7 @@ LRESULT CGameApp::WindowProc(const HWND hWnd, const UINT uMsg, const WPARAM wPar
 	  case WM_CREATE:			return OnCreate       (hWnd, wParam, lParam);
 	  case WM_CLOSE:			return OnClose        (hWnd, wParam, lParam);
 	  case WM_DESTROY:			return OnDestroy      (hWnd, wParam, lParam);
+	  case WM_INPUT:			return OnInput		  (hWnd, wParam, lParam);
 //	  case WM_EXITSIZEMOVE:		return OnExitMouseMove(hWnd, wParam, lParam);
 //	  case WM_NCLBUTTONDOWN:	return OnNCLButtonDown(hWnd, wParam, lParam);
 //	  case WM_NCRBUTTONDOWN:	return OnNCRButtonDown(hWnd, wParam, lParam);
@@ -340,6 +348,18 @@ LRESULT CGameApp::OnDestroy(const HWND hWnd, const WPARAM wParam, const LPARAM l
 }
 
 //------------------------------------------------------------------------------
+//	WM_INPUTメッセージ処理
+//------------------------------------------------------------------------------
+LRESULT CGameApp::OnInput(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
+{
+	if (this->m_listeningflag){
+		for (int i = 0; i < 2; i++) this->m_MouseState[i].reset();
+	}
+	m_Recv.onRawInput(wParam, lParam);
+	return 0;
+}
+
+//------------------------------------------------------------------------------
 //	WM_EXITMOUSEMOVEメッセージ処理
 //------------------------------------------------------------------------------
 LRESULT CGameApp::OnExitMouseMove(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
@@ -375,4 +395,53 @@ LRESULT CGameApp::OnNCLButtonDown(const HWND hWnd, const WPARAM wParam, const LP
 LRESULT CGameApp::OnNCRButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
 {
 	return 0;
+}
+
+//------------------------------------------------------------------------------
+//	以降はテスト～
+//　マルチデバイス関連系
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//	デバイスの数を取得
+//------------------------------------------------------------------------------
+
+size_t CGameApp::GetDeviceCount(){ return this->m_MouseDetector.getDeviceCount(); }
+
+//------------------------------------------------------------------------------
+//	聞き始める
+//------------------------------------------------------------------------------
+
+void CGameApp::StartLisening(){
+	if (this->m_listeningflag) return;
+	this->m_listeningflag = true;
+
+	int count = this->GetDeviceCount();
+	this->m_Recv.initDeviceStatus();
+
+	for (int i = 0; i < count;i++){
+		this->m_Recv.addMouseListener(this->m_MouseDetector.getDeviceID(i),&this->m_MouseState[i]);
+	}
+}
+
+//------------------------------------------------------------------------------
+//	数値を取得
+//------------------------------------------------------------------------------
+
+int CGameApp::GetMouseValue(int devicenum, MOUSE_VALUES wantvalue){
+
+	if (!this->m_listeningflag) return -1;
+	if (devicenum >= this->GetDeviceCount()) return -1;
+
+	switch(wantvalue){
+	case X: return this->m_MouseState[devicenum].diffX();
+	case Y: return this->m_MouseState[devicenum].diffY();
+	case WHEEL: return this->m_MouseState[devicenum].diffW();
+	case BUTTON0: return (this->m_MouseState[devicenum].button(0)) ? 1 : 0;
+	case BUTTON1: return (this->m_MouseState[devicenum].button(1)) ? 1 : 0;
+
+	}
+
+	return -1;
+
 }
