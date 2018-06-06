@@ -49,7 +49,6 @@ public:
 
 	virtual void SetTimeScale(float timescale){ this->animasionstate_->timeScale = timescale; }
 
-
 private:
 
 	void RegionDraw(spSlot* slot, spAttachment* attachment, spColor* col, int blendmode);
@@ -57,6 +56,8 @@ private:
 
 	spSkeleton* skeleton_;
 	spAnimationState* animasionstate_;
+
+	spBone* bone;
 
 };
 
@@ -74,10 +75,10 @@ public:
 	virtual void FlipX(){};
 	virtual void FlipY(){};
 
-	virtual void SetAnimation(int playtrack, const char* animename, int isloop, float mixDulation = 1.0f){};
-	virtual void SetEnptyAnimations(float mixDulation = 1.0f){};
-	virtual void AddAnimation(int playtrack, const char* animename, float delay, int isloop, float mixDulation = 1.0f){};
+	virtual void SetAnimation(int playtrack, const char* animename, int isloop, float mixDulation = 1.0f){}
+	virtual void SetEnptyAnimations(float mixDulation = 1.0f){}
+	virtual void AddAnimation(int playtrack, const char* animename, float delay, int isloop, float mixDulation = 1.0f){}
 
-	virtual void SetTimeScale(float timescale){};
+	virtual void SetTimeScale(float timescale){}
 
 };

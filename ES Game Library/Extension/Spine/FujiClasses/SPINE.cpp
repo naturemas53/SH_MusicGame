@@ -6,6 +6,8 @@ CSpine::CSpine(spSkeletonData* skeletonData, spAnimationStateData* animationStat
 	this->skeleton_ = spSkeleton_create(skeletonData);
 	this->animasionstate_ = spAnimationState_create(animationStateData);
 
+	this->bone = NULL;
+
 }
 
 CSpine::~CSpine(){
