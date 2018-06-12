@@ -39,6 +39,9 @@
 #include "DirectX\Audio\DXAudio8.hpp"
 #include "DirectX\Show\DShow.hpp"
 
+//自作クラス（藤村）
+#include "MakeClasses\Fujimura\MultiMouseDevice.h"
+
 #include "Framework\FixTimer.hpp"
 #include "Framework\Random.hpp"
 #include "Framework\Stream.hpp"

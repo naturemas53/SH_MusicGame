@@ -10,10 +10,10 @@ UI::UI(){
 
 	ISRUN teams = [](int combo){ return combo % 50 == 0; };
 	NOTICE notice = [&](){ movie_->MovieChange(); };
-	this->combo_->AddRankUpMethod(teams,notice);
+	this->combo_->EntryRankUpMethod(teams,notice);
 
 	notice = [&](){ movie_->MovieReset(); };
-	this->combo_->AddComboBreakMethod(notice);
+	this->combo_->EntryComboBreakMethod(notice);
 
 }
 

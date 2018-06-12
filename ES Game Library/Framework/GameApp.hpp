@@ -53,20 +53,8 @@ public:
 		return theGameApp;
 	}
 
-	enum MOUSE_VALUES{
-
-		X,
-		Y,
-		WHEEL,
-		BUTTON0,
-		BUTTON1
-
-	};
-
-	//テストなう
-	size_t GetDeviceCount();
-	void StartLisening();
-	int GetMouseValue(int devicenum, MOUSE_VALUES wantvalue);
+	//マルチデバイスのそれ
+	RawInputReceiver& GetReceiver(){ return this->m_Recv; }
 
 private:
 	CGameApp();
@@ -105,9 +93,6 @@ private:
 
 	//マルチデバイス対応
 	RawInputReceiver m_Recv;
-	RiDetector<RiMouseListener> m_MouseDetector;
-	RiMouseState m_MouseState[2];
-	bool m_listeningflag;
 
 };
 

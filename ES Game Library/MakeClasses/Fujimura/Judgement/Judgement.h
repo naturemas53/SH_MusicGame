@@ -17,7 +17,7 @@ public:
 
 	};
 
-	virtual JUDGE Judge(Note* judgeNote) = 0;
+	virtual JUDGE Judge(Note* judgeNote,int nowTime) = 0;
 
 protected:
 

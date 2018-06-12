@@ -1,9 +1,22 @@
 #include "Lane.h"
 #include "../Note/Note/Note.h"
+#include "../DataSingleton.h"
+#include "../Judgement/JudgeContext.h"
 
-Lane::Lane(SPRITE sp,Vector3 inPos) : 
+Lane::Lane(Vector3 inPos,JudgeContext* inJudge) : 
 SIZE_(Vector2(512.0f,100.0f)),
 POS_(inPos){
+
+	this->judge_ = inJudge;
+	std::vector<Note*>& notes = this->notes_;
+	this->judge_->EntryJudgeMethod([&](JUDGE judge){ 
+	
+		auto itr = notes.begin();
+		if (itr == notes.end()) return;
+		delete (*itr);
+		notes.erase(itr);
+
+	});
 
 }
 
@@ -17,6 +30,7 @@ void Lane::Draw(DWORD nowTime){
 
 	//テストコードマーン
 	Rect userect = RectWH(0, 0, 512, 100);
+	SPRITE sp = Data;
 
 	SpriteBatch.Draw(*this->sp_,this->POS_);
 	for (auto note : this->notes_) note->Draw(this->sp_,Vector3_Zero);

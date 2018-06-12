@@ -25,6 +25,7 @@
 //------------------------------------------------------------------------------
 #include "GameApp.hpp"
 #include "..\..\Resource\resource.h"
+#include "../MakeClasses/Fujimura/MultiMouseDevice.h"
 
 
 //------------------------------------------------------------------------------
@@ -133,6 +134,9 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	// デフォルトフォルダ設定
 	::SetCurrentDirectory(string_buffer);
 
+	//ムービー有効化
+	DShow().Attach(DXGraphics());
+
 	// ゲームシーン設定
 	if(m_GameProc.CreateScene(new DeviceGetScene()) == false)
 		return false;
@@ -140,8 +144,7 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	//マルチデバイス対応
 	m_Recv = RawInputReceiver();
 	m_Recv.initialize();
-	m_Recv.addMouseListener(RIDEV_DEFAULT,&m_MouseDetector);
-	m_listeningflag = false;
+	m_Recv.addMouseListener(RIDEV_DEFAULT,&MultiMouse.GetDetector());
 
 	return true;
 }
@@ -352,9 +355,6 @@ LRESULT CGameApp::OnDestroy(const HWND hWnd, const WPARAM wParam, const LPARAM l
 //------------------------------------------------------------------------------
 LRESULT CGameApp::OnInput(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
 {
-	if (this->m_listeningflag){
-		for (int i = 0; i < 2; i++) this->m_MouseState[i].reset();
-	}
 	m_Recv.onRawInput(wParam, lParam);
 	return 0;
 }
@@ -395,53 +395,4 @@ LRESULT CGameApp::OnNCLButtonDown(const HWND hWnd, const WPARAM wParam, const LP
 LRESULT CGameApp::OnNCRButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
 {
 	return 0;
-}
-
-//------------------------------------------------------------------------------
-//	以降はテスト～
-//　マルチデバイス関連系
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-//	デバイスの数を取得
-//------------------------------------------------------------------------------
-
-size_t CGameApp::GetDeviceCount(){ return this->m_MouseDetector.getDeviceCount(); }
-
-//------------------------------------------------------------------------------
-//	聞き始める
-//------------------------------------------------------------------------------
-
-void CGameApp::StartLisening(){
-	if (this->m_listeningflag) return;
-	this->m_listeningflag = true;
-
-	int count = this->GetDeviceCount();
-	this->m_Recv.initDeviceStatus();
-
-	for (int i = 0; i < count;i++){
-		this->m_Recv.addMouseListener(this->m_MouseDetector.getDeviceID(i),&this->m_MouseState[i]);
-	}
-}
-
-//------------------------------------------------------------------------------
-//	数値を取得
-//------------------------------------------------------------------------------
-
-int CGameApp::GetMouseValue(int devicenum, MOUSE_VALUES wantvalue){
-
-	if (!this->m_listeningflag) return -1;
-	if (devicenum >= this->GetDeviceCount()) return -1;
-
-	switch(wantvalue){
-	case X: return this->m_MouseState[devicenum].diffX();
-	case Y: return this->m_MouseState[devicenum].diffY();
-	case WHEEL: return this->m_MouseState[devicenum].diffW();
-	case BUTTON0: return (this->m_MouseState[devicenum].button(0)) ? 1 : 0;
-	case BUTTON1: return (this->m_MouseState[devicenum].button(1)) ? 1 : 0;
-
-	}
-
-	return -1;
-
 }

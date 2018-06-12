@@ -337,6 +337,18 @@
     <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgeContext.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene\DeviceGetScene.cpp">
+      <Filter>ソース ファイル\ゲームシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\MultiMouseDevice.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\RawInputMouse.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -548,6 +560,15 @@
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\DeviceGetScene.hpp">
+      <Filter>ヘッダー ファイル\ゲームシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\MultiMouseDevice.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\RawInputMouse.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
   </ItemGroup>

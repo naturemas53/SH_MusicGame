@@ -58,7 +58,7 @@ public:
 	virtual void SetPan(LONG inPan) = 0;
 	virtual void SetFrequency(DWORD inFrequency) = 0;
 	virtual bool SetFX(const DWORD inFXFlags) = 0;
-	virtual void SetPlayPositionMilliSec( LONG inTime ) = 0;
+	virtual void SetPlayPositionMilliSec(DWORD inTime) = 0;
 
 	inline void SetVolume(const float inVolume)
 	{ SetVolume(DSBVOLUME_MAX - LONG( (DSBVOLUME_MAX - DSBVOLUME_MIN) * (1.0f - inVolume) )); }
@@ -133,7 +133,7 @@ public:
 	virtual void SetPan(LONG inPan) {}
 	virtual void SetFrequency(DWORD inFrequency) {}
 	virtual bool SetFX(const DWORD inFXFlags) { return false; }
-	virtual void SetPlayPositionMilliSec(LONG inTime){}
+	virtual void SetPlayPositionMilliSec(DWORD inTime){}
 
 	virtual LONG  GetVolume()    { return DSBVOLUME_MIN; }
 	virtual LONG  GetPan()       { return DSBPAN_CENTER; }

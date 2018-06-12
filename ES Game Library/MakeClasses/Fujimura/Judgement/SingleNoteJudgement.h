@@ -7,6 +7,6 @@ public:
 	SingleNoteJudgement();
 	virtual ~SingleNoteJudgement();
 
-	virtual JUDGE Judge(Note* judgeNote);
+	virtual JUDGE Judge(Note* judgeNote, int nowTime);
 
 };

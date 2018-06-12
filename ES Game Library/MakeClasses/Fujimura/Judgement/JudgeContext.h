@@ -15,7 +15,7 @@ public:
 	JudgeContext();
 	~JudgeContext();
 
-	void judgeNote(Note* note);
+	void judgeNote(Note* note,int nowtime);
 
 	void EntryJudgeMethod(JUDGENOTICE judgenotice);
 

@@ -1,7 +1,6 @@
 // #include "Extension\DirectX11\DXGraphics11.hpp"
 #include "StdAfx.h"
 #include "GameMain.h"
-#include "Framework\GameApp.hpp"
 
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
@@ -13,10 +12,6 @@ bool GameMain::Initialize()
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
 
-	mousepos[0] = Vector2_Zero;
-	mousepos[1] = Vector2_Zero;
-
-	GameApp().StartLisening();
 	return true;
 }
 
@@ -41,13 +36,6 @@ int GameMain::Update()
 {
 	// TODO: Add your update logic here
 
-	for (int i = 0; i < 2;i++){
-
-		mousepos[i].x += GameApp().GetMouseValue(i, GameApp().X) ;
-		mousepos[i].y += GameApp().GetMouseValue(i, GameApp().Y) ;
-
-	}
-
 	return 0;
 }
 
@@ -63,19 +51,6 @@ void GameMain::Draw()
 
 
 	SpriteBatch.Begin();
-
-	for (int i = 0; i < 2; i++){
-
-		SpriteBatch.DrawString(DefaultFont,mousepos[i],Color(255,255,255),_T("%dP"),i);
-
-		if (GameApp().GetMouseValue(i, GameApp().BUTTON0)){
-			SpriteBatch.DrawString(DefaultFont, Vector2(0.0f,100.0f * i), Color(0, 0, 0), _T("%dP LEFT PUSH"), i);
-		}
-		if (GameApp().GetMouseValue(i, GameApp().BUTTON1)){
-			SpriteBatch.DrawString(DefaultFont, Vector2(100.0f, 100.0f * i), Color(0, 0, 0), _T("%dP RIGHT PUSH"), i);
-		}
-
-	}
 
 	SpriteBatch.End();
 

@@ -36,4 +36,4 @@ private:
 
 };
 
-#define Data DataSingleton().GetInstance();
+#define Data DataSingleton::GetInstance();

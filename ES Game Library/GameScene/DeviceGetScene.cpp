@@ -1,6 +1,5 @@
 #include "../StdAfx.h"
 #include "DeviceGetScene.hpp"
-#include "../Framework/GameApp.hpp"
 #include <typeinfo>
 
 /// <summary>
@@ -37,8 +36,11 @@ void DeviceGetScene::Finalize()
 int DeviceGetScene::Update()
 {
     // TODO: Add your update logic here
-	if (GameApp().GetDeviceCount() >= 2){
+	if (MultiMouse.GetDeviceCount() >= 2){
+
+		MultiMouse.StartListening();
 		return GAME_SCENE(new GameMain());
+
 	}
 
 	return 0;
@@ -58,7 +60,7 @@ void DeviceGetScene::Draw()
 
 	FONT font = GraphicsDevice.CreateDefaultFont();
 
-	SpriteBatch.DrawString(font, Vector2_Zero, Color(255, 255, 255), _T("PLEASE MOUSE CLICK REMAIN %d"), 2 - GameApp().GetDeviceCount());
+	SpriteBatch.DrawString(font, Vector2_Zero, Color(255, 255, 255), _T("PLEASE MOUSE CLICK REMAIN %d"), 2 - MultiMouse.GetDeviceCount());
 
 	SpriteBatch.End();
 

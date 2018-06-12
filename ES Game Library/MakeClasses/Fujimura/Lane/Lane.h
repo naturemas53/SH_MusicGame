@@ -3,13 +3,14 @@
 #include <vector>
 
 class Note;
+class JudgeContext;
 
 //À¿ƒŒ[ƒ“‚²‚Æ‚ÌNoteManagerŒN
 class Lane{
 
 public:
 
-	Lane(SPRITE sp,Vector3 inPos);
+	Lane(Vector3 inPos,JudgeContext* inJudge);
 	~Lane();
 
 	void Draw(DWORD nowTime);
@@ -25,7 +26,7 @@ private:
 	const Vector2 SIZE_;
 	const Vector3 POS_;
 
-	SPRITE sp_;
 	std::vector<Note*> notes_;
+	JudgeContext* judge_;
 
 };

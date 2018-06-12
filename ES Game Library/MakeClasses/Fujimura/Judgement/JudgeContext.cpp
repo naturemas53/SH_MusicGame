@@ -14,10 +14,10 @@ JudgeContext::~JudgeContext(){
 	
 }
 
-void JudgeContext::judgeNote(Note* note){
+void JudgeContext::judgeNote(Note* note,int nowTime){
 
 	Note::NOTETYPE type = note->GetType();
-	JUDGE judge = this->judgements_[type]->Judge(note);
+	JUDGE judge = this->judgements_[type]->Judge(note,nowTime);
 	if (judge == NONE) return;
 
 	for (auto notice : this->EntryJudgeMethod) notice(judge);

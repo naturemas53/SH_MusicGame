@@ -395,8 +395,8 @@ DWORD CSoundBuffer::CalcSongLength(){
 	//‹È‚ÌƒTƒCƒYŽæ“¾
 	m_pDSBuffer->GetCaps(&cap);
 
-	double size = (double)cap.dwBufferBytes;
+	DWORD size = cap.dwBufferBytes;
 
-	return (DWORD)(size / bitrate * 1000.0f);
+	return (DWORD)((double)size / bitrate * 1000.0f);
 
 }
