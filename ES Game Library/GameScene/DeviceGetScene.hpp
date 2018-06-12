@@ -1,17 +1,19 @@
 #pragma once
 
-#include "ESGLib.h"
-#include "GameScene/GameScene.hpp"
+#include "GameScene.hpp"
+#include "../ESGLib.h"
 
-class GameMain : public CGameScene {
+class DeviceGetScene : public CGameScene {
 public:
-	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
+	DeviceGetScene()
 	{
 //		ContentRootDirectory(_T("Content"));
 	}
 
-	virtual ~GameMain()
+	virtual ~DeviceGetScene()
 	{
+		Finalize();
+
 #ifdef _INC_SQUIRREL
 		Squirrel.ReleaseAllScripts();
 #endif
@@ -34,17 +36,14 @@ public:
 
 		GraphicsDevice.ReleaseAllRenderTargets();
 		GraphicsDevice.ReleaseAllStateBlocks();
-		GraphicsDevice.ReleaseAllFonts();
+		//GraphicsDevice.ReleaseAllFonts();
 		GraphicsDevice.ReleaseAllSprites();
 		GraphicsDevice.ReleaseAllAnimationModels();
 		GraphicsDevice.ReleaseAllModels();
 		GraphicsDevice.ReleaseAllVertexBuffers();
 		GraphicsDevice.ReleaseAllEffects();
-
-		Finalize();
 	}
 
-public:
 	virtual bool Initialize();
 
 	virtual int  Update();
@@ -52,12 +51,11 @@ public:
 
 private:
 	void Finalize();
-	FONT DefaultFont;
 
 private:
 	// 変数宣言
-	Vector2 mousepos[2];
 
-	// 関数宣言
+
+	// 関数プロトタイプ
 
 };
