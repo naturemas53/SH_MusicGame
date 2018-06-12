@@ -6,19 +6,18 @@ class Lane{
 
 public:
 
-	Lane();
+	Lane(Vector3 inPos);
 	~Lane();
 
-	void Update();
 	void Draw();
 
 	Vector2 GetSize(){ return this->SIZE_; }
 
-	void AddNote(){};
-
 private:
 
 	const Vector2 SIZE_;
-	//vector
+	const Vector3 POS_;
+
+	SPRITE sp_;
 
 };

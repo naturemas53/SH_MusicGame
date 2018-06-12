@@ -160,6 +160,25 @@ bool CSoundBuffer::SetFX(const DWORD inFXFlags)
 }
 
 //------------------------------------------------------------------------------
+//	再生位置設定
+//------------------------------------------------------------------------------
+
+void CSoundBuffer::SetPlayPositionMilliSec(DWORD inTime){
+
+	double songlength = (double)this->CalcSongLength();
+	double playrate = (double)inTime / songlength;
+
+	DSBCAPS cap;
+	//使う前の準備
+	cap.dwSize = 0;
+	//曲のサイズ取得
+	m_pDSBuffer->GetCaps(&cap);
+
+	m_pDSBuffer->SetCurrentPosition((DWORD)((double)cap.dwBufferBytes * playrate));
+
+}
+
+//------------------------------------------------------------------------------
 //	ボリューム取得
 //------------------------------------------------------------------------------
 LONG CSoundBuffer::GetVolume()
@@ -213,6 +232,31 @@ DWORD CSoundBuffer::GetState()
 	}
 
 	return status;
+}
+
+//------------------------------------------------------------------------------
+//	現在時間取得
+//------------------------------------------------------------------------------
+
+DWORD CSoundBuffer::GetCurrentMilliSec(){
+
+	DSBCAPS cap;
+	//使う前の準備
+	cap.dwSize = 0;
+	//曲のサイズ取得
+	m_pDSBuffer->GetCaps(&cap);
+
+	double size = (double)cap.dwBufferBytes;
+
+	DWORD currentpos;
+	m_pDSBuffer->GetCurrentPosition(&currentpos,NULL);
+	
+	LONG songlength = this->CalcSongLength();
+
+	double playrate = (double)currentpos / size;
+
+	return (DWORD)((double)songlength / playrate);
+
 }
 
 //------------------------------------------------------------------------------
@@ -329,4 +373,30 @@ void CSoundBuffer::Restore()
 	delete[] pFormat;
 	if(hACMStream != NULL)	::acmStreamClose(hACMStream, 0);;
 	if(hFile      != NULL)	::mmioClose(hFile, 0);
+}
+
+//------------------------------------------------------------------------------
+//　曲の長さを計算
+//------------------------------------------------------------------------------
+DWORD CSoundBuffer::CalcSongLength(){
+
+	WAVEFORMATEX format;
+	DWORD size;
+	//受け取るデータのサイズ取得
+	m_pDSBuffer->GetFormat(NULL, NULL, &size);
+	//データ取得
+	m_pDSBuffer->GetFormat(&format, size, NULL);
+
+	double bitrate = (double)(format.nSamplesPerSec * format.wBitsPerSample * format.nChannels / 8.0f);
+
+	DSBCAPS cap;
+	//使う前の準備
+	cap.dwSize = 0;
+	//曲のサイズ取得
+	m_pDSBuffer->GetCaps(&cap);
+
+	double size = (double)cap.dwBufferBytes;
+
+	return (DWORD)(size / bitrate * 1000.0f);
+
 }
