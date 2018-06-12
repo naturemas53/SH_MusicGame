@@ -151,6 +151,18 @@
     <Filter Include="ソース ファイル\MakeClasses\Fujimura\Note\Factory">
       <UniqueIdentifier>{70b0d2de-2231-4da6-8349-94458cd01b62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\UI">
+      <UniqueIdentifier>{c5e11164-6153-4610-ba46-aa97e3e3d410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\UI">
+      <UniqueIdentifier>{2198179f-ad08-48f5-aa5f-af5c39816ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Lane">
+      <UniqueIdentifier>{577f5bc8-8ab5-46e0-9034-4954113add60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Lane">
+      <UniqueIdentifier>{0c0357bc-f5d0-468b-be4b-d5bf812ad8c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -295,20 +307,35 @@
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
     </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\Lane.cpp">
-      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
-    </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\MusicScoreIO.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
-    </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\Note\NoteManager.cpp">
-      <Filter>ソース ファイル\MakeClasses\Fujimura\Note</Filter>
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Note\Note\SingleNote.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\Judgement.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\Lane.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\LaneManager.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\BackMovie.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\UI.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\Combo.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgeContext.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,9 +496,6 @@
     <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\Lane.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
-    </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\MusicScoreIO.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
@@ -487,16 +511,10 @@
     <ClInclude Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\Note\NoteManager.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note</Filter>
-    </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeCounter.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\Judgement.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
-    </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\Judgement\PushedJudgement.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsib.h">
@@ -504,6 +522,33 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsibFactory.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement\JudgeResponsib</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\Lane.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\LaneManager.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\UI.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\BackMovie.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\Combo.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeEnum.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeContext.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,9 +10,9 @@ public:
 
 	JudgeResponsib* CreateJudgeResponsib(){
 
-		return (new JudgeResponsib(JudgeCounter::PERFECT))
-				->SetNext(new JudgeResponsib(JudgeCounter::GREAT))
-				->SetNext(new JudgeResponsib(JudgeCounter::MISS));
+		return (new JudgeResponsib(PERFECT))
+				->SetNext(new JudgeResponsib(GREAT))
+				->SetNext(new JudgeResponsib(MISS));
 
 	}
 

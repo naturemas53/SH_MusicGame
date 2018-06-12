@@ -15,12 +15,11 @@ MusicScoreIO::~MusicScoreIO(){
 
 }
 
-bool MusicScoreIO::ImportScore(std::vector<Note*>& writeData){
+bool MusicScoreIO::ImportScore(std::vector<std::function<void(Note*)> >& writeData){
 
 	FILE* musicScoreFile;
 	char readBufferData[256] = {};
 
-	//読み取り専用で読むだけ
 	musicScoreFile = fopen(this->PATH_.c_str(), "r");
 
 	if (musicScoreFile == NULL) return false;
@@ -53,13 +52,14 @@ bool MusicScoreIO::ImportScore(std::vector<Note*>& writeData){
 			//レーンが2つしかないので、それより多い数字なら次のノートへ
 			if (laneNumber > 1) continue;
 
-			note = this->noteFactorys_[type]->create(musicScoreFile, laneNumber, timing);
+			note = this->noteFactorys_[type]->Create(musicScoreFile, laneNumber, timing);
 			if (note == nullptr) {
 				fclose(musicScoreFile);
 				return false;
 			}
 
-			writeData.push_back(note);
+			//ノート追加
+			writeData[laneNumber](note);
 
 		}
 	}
@@ -67,4 +67,23 @@ bool MusicScoreIO::ImportScore(std::vector<Note*>& writeData){
 	fclose(musicScoreFile);
 	return true;
 
+}
+
+bool MusicScoreIO::ImportBPM(std::vector<BpmData>& writeData){
+
+	FILE* musicScoreFile;
+	char readBufferData[256] = {};
+
+	//読み取り専用で読むだけ
+	musicScoreFile = fopen(this->PATH_.c_str(), "r");
+
+	if (musicScoreFile == NULL) return false;
+
+	do{
+		if (fscanf(musicScoreFile, "%s", readBufferData) == EOF){
+			return false; 
+		}
+	} while (strncmp(readBufferData,"BPM",3) == 0);
+
+	return true;
 }

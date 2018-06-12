@@ -1,6 +1,6 @@
 #include "SingleNote.h"
 
-SingleNote::SingleNote(LONG inTiming) : Note(inTiming){
+SingleNote::SingleNote(LONG inTiming) : Note(inTiming,SINGLENOTE){
 
 
 

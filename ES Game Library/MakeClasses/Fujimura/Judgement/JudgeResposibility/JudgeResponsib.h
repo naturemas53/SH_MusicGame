@@ -5,7 +5,7 @@ class JudgeResponsib{
 
 public:
 
-	explicit JudgeResponsib(JudgeCounter::JUDGE haveJudge){
+	explicit JudgeResponsib(JUDGE haveJudge){
 
 		this->next_ = nullptr;
 		this->havejudge_ = haveJudge;
@@ -16,11 +16,11 @@ public:
 
 	}
 
-	JudgeCounter::JUDGE Judge(int absTime){
+	JUDGE Judge(int absTime){
 
 		if (absTime < this->havejudge_) return this->havejudge_;
 		if (this->next_ != nullptr) return this->next_->Judge(absTime);
-		return JudgeCounter::NONE;
+		return NONE;
 
 	};
 
@@ -34,7 +34,7 @@ public:
 	JudgeResponsib* GetHaveNext() { return this->next_; }
 
 	JudgeResponsib* next_;
-	JudgeCounter::JUDGE havejudge_;
+	JUDGE havejudge_;
 
 
 };

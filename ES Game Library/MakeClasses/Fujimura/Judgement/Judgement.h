@@ -1,5 +1,5 @@
 #pragma once
-#include "JudgeCounter.h"
+#include "JudgeEnum.h"
 #include "JudgeResposibility\JudgeResponsib.h"
 #include "JudgeResposibility\JudgeResponsibFactory.h"
 
@@ -17,7 +17,7 @@ public:
 
 	};
 
-	virtual JudgeCounter::JUDGE Judge(Note* judgeNote) = 0;
+	virtual JUDGE Judge(Note* judgeNote) = 0;
 
 protected:
 

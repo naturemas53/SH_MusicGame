@@ -1,4 +1,5 @@
 #pragma once
+#include "JudgeEnum.h"
 
 struct JudgeCounter{
 
@@ -6,15 +7,6 @@ struct JudgeCounter{
 	‚±‚±‚Å”»’è‚ÌŒµ‚µ‚³‚ğİ’è
 	”’l‚Íms
 	*/
-
-	enum JUDGE{
-
-		PERFECT = 100,
-		GREAT = 200,
-		MISS = 250,
-		NONE = 0
-
-	};
 
 	int perfect;
 	int great;
