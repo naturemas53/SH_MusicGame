@@ -112,6 +112,45 @@
     <Filter Include="変換用アセット">
       <UniqueIdentifier>{82621faf-8306-44c1-bdbf-bfdd763ca17c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses">
+      <UniqueIdentifier>{c909a721-b610-4dbf-8f32-4e0791444369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura">
+      <UniqueIdentifier>{6259d67b-3330-42ea-aaf3-80a50a524ddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Note">
+      <UniqueIdentifier>{69c9bb8b-1b45-43b1-b853-563de7264303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Judgement">
+      <UniqueIdentifier>{0e13b06e-d5e2-4c50-8604-b839f327fac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses">
+      <UniqueIdentifier>{7a7ee0f7-3084-4490-a506-c7d25dd43e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Note\Note">
+      <UniqueIdentifier>{19c6b302-f59c-4c22-8d8c-410d847db3c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory">
+      <UniqueIdentifier>{74c542fc-0fdc-4962-8195-4036d834db03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Judgement\JudgeResponsib">
+      <UniqueIdentifier>{4f8a0f02-fe26-4a85-876c-7e00138e9925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura">
+      <UniqueIdentifier>{35324685-6736-4620-906b-b2baa000dd92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Judgement">
+      <UniqueIdentifier>{0a568448-f93d-4316-8c6e-928ac6c149e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Note">
+      <UniqueIdentifier>{9a45f365-894a-4cd1-b933-f36de0aaa6ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Note\Note">
+      <UniqueIdentifier>{13b681bf-45f8-412e-b65d-eb88ae5ecc4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Note\Factory">
+      <UniqueIdentifier>{70b0d2de-2231-4da6-8349-94458cd01b62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -255,6 +294,21 @@
     </ClCompile>
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\MusicScoreIO.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\NoteManager.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Note\SingleNote.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +465,45 @@
     </ClInclude>
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp">
       <Filter>ヘッダー ファイル\拡張\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\MusicScoreIO.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\Note.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\SingleNote.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\NoteFactory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\NoteManager.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeCounter.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\Judgement.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\PushedJudgement.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsib.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement\JudgeResponsib</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsibFactory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement\JudgeResponsib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
