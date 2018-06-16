@@ -370,6 +370,12 @@
     <ClCompile Include="MakeClasses\Fujimura\Note\Note\LongNote.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Factory\LongNoteFactory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\LongNoteDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -606,6 +612,12 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Note\Note\LongNote.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\LongNoteFactory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\LongNoteDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

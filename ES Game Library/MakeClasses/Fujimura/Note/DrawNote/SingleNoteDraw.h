@@ -8,6 +8,6 @@ public:
 	SingleNoteDraw();
 	virtual ~SingleNoteDraw();
 
-	virtual void NoteDraw(Note* note, Lane* lane, float timeRate);
+	virtual void NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRangeTime);
 
 };

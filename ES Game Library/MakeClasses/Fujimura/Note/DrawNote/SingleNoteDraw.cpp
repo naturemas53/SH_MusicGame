@@ -13,10 +13,14 @@ SingleNoteDraw::~SingleNoteDraw(){
 
 }
 
-void SingleNoteDraw::NoteDraw(Note* note, Lane* lane, float timeRate){
+void SingleNoteDraw::NoteDraw(Note* note, Lane* lane,DWORD nowTime,DWORD drawRangeTime){
 
-	Vector3 startPos;
-	Vector3 hitPos;
+	long dirTime = note->GetTiming() - (long)nowTime;
+
+	long progressTime = (long)drawRangeTime - dirTime;
+	float timeRate = (float)progressTime / (float)drawRangeTime;
+
+	Vector3 startPos, hitPos;
 	lane->GetLaneVectol(startPos,hitPos);
 
 	Vector3 dir = hitPos - startPos;

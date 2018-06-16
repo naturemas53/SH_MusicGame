@@ -21,12 +21,9 @@ bool NoteDrawSingleton::Draw(Note* note, Lane* lane, DWORD nowTime){
 
 	long dirTime = note->GetTiming() - (long)nowTime;
 	if (dirTime > (long)this->drawRangeTime_ + 100) return false;
-	
-	long progressTime = (long)this->drawRangeTime_ - dirTime;
-	float timeRate = (float)progressTime / (float)this->drawRangeTime_;
 
 	Note::NOTETYPE type = note->GetType();
-	this->drawComponents_[type]->NoteDraw(note,lane,timeRate);
+	this->drawComponents_[type]->NoteDraw(note,lane,nowTime,this->drawRangeTime_);
 
 	return true;
 

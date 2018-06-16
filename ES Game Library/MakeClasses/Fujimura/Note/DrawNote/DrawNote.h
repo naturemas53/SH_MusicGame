@@ -11,6 +11,6 @@ public:
 	DrawNote(){};
 	virtual ~DrawNote(){};
 
-	virtual void NoteDraw(Note* note,Lane* lane,float timeRate) = 0;
+	virtual void NoteDraw(Note* note,Lane* lane,DWORD nowTime,DWORD drawRangeTime) = 0;
 
 };
