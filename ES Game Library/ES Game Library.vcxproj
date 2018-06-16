@@ -141,6 +141,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Extension\MultiDevice\RawInput.cpp" />
     <ClCompile Include="Extension\OpenGL\OpenGL.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -154,6 +155,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameScene\DeviceGetScene.cpp" />
     <ClCompile Include="GameScene\SceneShared.cpp" />
     <ClCompile Include="GameScene\TemplateScene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -163,6 +165,21 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgeContext.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\Judgement.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Lane\Lane.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\MultiMouseDevice.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\MusicScoreIO.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\NoteDrawSingleton.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\SingleNoteDraw.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Note\Note\LongNote.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Note\Note\SingleNote.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\RawInputMouse.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\UI\BackMovie.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\UI\Combo.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\UI\UI.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -210,12 +227,39 @@
     <ClInclude Include="Extension\Kinect\Kinect.hpp" />
     <ClInclude Include="Extension\Kinect\NUI.hpp" />
     <ClInclude Include="Extension\Live2D\Live2D.hpp" />
+    <ClInclude Include="Extension\MultiDevice\RawInput.h" />
+    <ClInclude Include="Extension\MultiDevice\RawInputListeners.h" />
     <ClInclude Include="Extension\OpenGL\OpenGL.hpp" />
     <ClInclude Include="Extension\Squirrel\Script.hpp" />
     <ClInclude Include="Extension\Squirrel\Squirrel.hpp" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameScene\DeviceGetScene.hpp" />
     <ClInclude Include="GameScene\SceneShared.hpp" />
     <ClInclude Include="GameScene\TemplateScene.hpp" />
+    <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h" />
+    <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeContext.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeCounter.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeEnum.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\Judgement.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsib.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsibFactory.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Lane\Lane.h" />
+    <ClInclude Include="MakeClasses\Fujimura\MultiMouseDevice.h" />
+    <ClInclude Include="MakeClasses\Fujimura\MusicScoreIO.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\NoteDrawSingleton.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\DrawNote.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\SingleNoteDraw.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\NoteFactory.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\LongNote.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\Note.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\SingleNote.h" />
+    <ClInclude Include="MakeClasses\Fujimura\RawInputMouse.h" />
+    <ClInclude Include="MakeClasses\Fujimura\UI\BackMovie.h" />
+    <ClInclude Include="MakeClasses\Fujimura\UI\Combo.h" />
+    <ClInclude Include="MakeClasses\Fujimura\UI\UI.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

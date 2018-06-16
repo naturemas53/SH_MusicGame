@@ -3,6 +3,9 @@
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
 
+class Lane;
+class JudgeContext;
+
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
@@ -55,8 +58,12 @@ private:
 	FONT DefaultFont;
 
 private:
+
 	// •Ï”éŒ¾
-	Vector2 mousepos[2];
+
+	std::vector<Lane*> lanes_;
+	JudgeContext* judgeContext_;
+	SOUND bgm_;
 
 	// ŠÖ”éŒ¾
 

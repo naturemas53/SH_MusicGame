@@ -17,7 +17,7 @@ public:
 		this->atlasSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
 	}
 
-	~DataSingleton();
+	~DataSingleton(){};
 
 	SPRITE atlasSp_;
 	const Vector2 NOTESIZE_ = Vector2(64.0f, 32.0f);
@@ -36,4 +36,4 @@ private:
 
 };
 
-#define Data DataSingleton::GetInstance();
+#define Data DataSingleton::GetInstance()

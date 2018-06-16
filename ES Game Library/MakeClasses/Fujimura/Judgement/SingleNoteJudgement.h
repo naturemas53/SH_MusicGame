@@ -4,9 +4,10 @@
 class SingleNoteJudgement : public Judgement{
 
 public:
-	SingleNoteJudgement();
-	virtual ~SingleNoteJudgement();
+	SingleNoteJudgement(){};
+	virtual ~SingleNoteJudgement(){};
 
-	virtual JUDGE Judge(Note* judgeNote, int nowTime);
+	virtual JUDGE Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse);
+
 
 };

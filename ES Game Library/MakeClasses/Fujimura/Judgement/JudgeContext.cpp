@@ -5,22 +5,24 @@
 JudgeContext::JudgeContext(){
 
 	this->judgements_[Note::SINGLENOTE] = new SingleNoteJudgement();
-	//this->judgements_[Note::LONGNOTE] = new SingleNoteJudgement();
-	//this->judgements_[Note::EVENTNOTE] = new SingleNoteJudgement();
+	//this->judgements_[Note::LONGNOTE] = SingleNoteJudgement();
+	//this->judgements_[Note::EVENTNOTE] = SingleNoteJudgement();
 
 }
 
 JudgeContext::~JudgeContext(){
 	
+	for (auto instance : this->judgements_) delete instance.second;
+
 }
 
-void JudgeContext::judgeNote(Note* note,int nowTime){
+void JudgeContext::judgeNote(Note* note,DWORD nowTime,RawInputMouse& mouse){
 
 	Note::NOTETYPE type = note->GetType();
-	JUDGE judge = this->judgements_[type]->Judge(note,nowTime);
+	JUDGE judge = this->judgements_[type]->Judge(note,nowTime,mouse);
 	if (judge == NONE) return;
 
-	for (auto notice : this->EntryJudgeMethod) notice(judge);
+	for (auto notice : this->judgeNoticeMethods_) notice(judge);
 
 }
 

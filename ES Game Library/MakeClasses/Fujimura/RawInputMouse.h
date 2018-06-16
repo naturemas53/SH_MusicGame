@@ -13,7 +13,7 @@ enum MOUSEBUTTON{
 class RawInputMouse{
 
 public:
-	explicit RawInputMouse(RawInputReceiver& reciver, int inNum);
+	explicit RawInputMouse(RawInputReceiver& reciver, HRIDEV inHundle);
 	~RawInputMouse();
 
 	void Update();

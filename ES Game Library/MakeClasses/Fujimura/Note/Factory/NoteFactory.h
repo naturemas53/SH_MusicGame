@@ -7,7 +7,7 @@ class NoteFactory{
 
 public:
 
-	virtual ~NoteFactory();
+	virtual ~NoteFactory(){};
 
 	virtual Note* Create(FILE* fp, int laneNumber, LONG timing) final{
 

@@ -170,7 +170,7 @@ void CSoundBuffer::SetPlayPositionMilliSec(DWORD inTime){
 
 	DSBCAPS cap;
 	//使う前の準備
-	cap.dwSize = 0;
+	cap.dwSize = sizeof(cap);
 	//曲のサイズ取得
 	m_pDSBuffer->GetCaps(&cap);
 
@@ -242,20 +242,20 @@ DWORD CSoundBuffer::GetCurrentMilliSec(){
 
 	DSBCAPS cap;
 	//使う前の準備
-	cap.dwSize = 0;
+	cap.dwSize = sizeof(cap);
 	//曲のサイズ取得
 	m_pDSBuffer->GetCaps(&cap);
-
 	double size = (double)cap.dwBufferBytes;
 
 	DWORD currentpos;
 	m_pDSBuffer->GetCurrentPosition(&currentpos,NULL);
-	
-	LONG songlength = this->CalcSongLength();
+	double currentPosDouble = (double)currentpos;
 
-	double playrate = (double)currentpos / size;
+	double playrate = currentPosDouble / size;
 
-	return (DWORD)((double)songlength / playrate);
+	double songlength = (double)this->CalcSongLength();
+
+	return (DWORD)(songlength * playrate);
 
 }
 
@@ -387,16 +387,16 @@ DWORD CSoundBuffer::CalcSongLength(){
 	//データ取得
 	m_pDSBuffer->GetFormat(&format, size, NULL);
 
-	double bitrate = (double)(format.nSamplesPerSec * format.wBitsPerSample * format.nChannels / 8.0f);
+	float bitrate = (float)(format.nSamplesPerSec * format.wBitsPerSample * format.nChannels / 8);
 
 	DSBCAPS cap;
 	//使う前の準備
-	cap.dwSize = 0;
+	cap.dwSize =sizeof(cap);
 	//曲のサイズ取得
 	m_pDSBuffer->GetCaps(&cap);
 
-	DWORD size = cap.dwBufferBytes;
+	size = cap.dwBufferBytes;
 
-	return (DWORD)((double)size / bitrate * 1000.0f);
+	return (DWORD)( ((float)size / bitrate) * 1000.0f);
 
 }

@@ -7,7 +7,7 @@ class MultiMouseDevice{
 
 public:
 
-	~MultiMouseDevice(){};
+	~MultiMouseDevice();
 
 	static MultiMouseDevice& GetInstance(){
 
@@ -25,14 +25,10 @@ public:
 
 private:
 
-	MultiMouseDevice(){
-	
-		this->listeningFlag_ = false;
-
-	};
+	MultiMouseDevice();
 	
 	bool listeningFlag_;
-	std::vector<RawInputMouse> mouses_;
+	std::vector<RawInputMouse*> mouses_;
 	RiDetector<RiMouseListener> mouseDetector_;
 
 };

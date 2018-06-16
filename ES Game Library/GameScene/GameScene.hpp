@@ -30,6 +30,7 @@
 #include "../DirectX/Audio/DXAudio8.hpp"
 #include "../DirectX/Show/DShow.hpp"
 #include "../Framework/FixTimer.hpp"
+#include "../MakeClasses/Fujimura/MultiMouseDevice.h"
 
 //------------------------------------------------------------------------------
 //	ゲームシーン生成マクロ
@@ -56,6 +57,7 @@ public:
 		Draw();
 		DXGraphics().UpdateFrame();
 		FixTimer().Wait();
+		MultiMouse.Update();
 		return Update(); 
 	}
 

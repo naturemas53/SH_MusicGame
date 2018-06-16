@@ -2,8 +2,8 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <functional>
 
+class Lane;
 class Note;
 class NoteFactory;
 struct BpmData;
@@ -15,9 +15,9 @@ public:
 	MusicScoreIO(std::string path);
 	~MusicScoreIO();
 
-	bool ImportScore(std::vector<std::function<void(Note*)> >& writeData);
+	bool ImportScore(std::vector<Lane*>& writeLane);
 
-	bool ImportBPM(std::vector<BpmData>& writeData);
+	bool ImportBPM(std::vector<BpmData>& writeArray);
 
 private:
 

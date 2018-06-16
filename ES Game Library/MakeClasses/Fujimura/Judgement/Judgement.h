@@ -2,6 +2,7 @@
 #include "JudgeEnum.h"
 #include "JudgeResposibility\JudgeResponsib.h"
 #include "JudgeResposibility\JudgeResponsibFactory.h"
+#include "../RawInputMouse.h"
 
 class Note;
 
@@ -17,7 +18,7 @@ public:
 
 	};
 
-	virtual JUDGE Judge(Note* judgeNote,int nowTime) = 0;
+	virtual JUDGE Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse) = 0;
 
 protected:
 

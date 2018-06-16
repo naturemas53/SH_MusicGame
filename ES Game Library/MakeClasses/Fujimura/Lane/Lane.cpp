@@ -2,8 +2,9 @@
 #include "../Note/Note/Note.h"
 #include "../DataSingleton.h"
 #include "../Judgement/JudgeContext.h"
+#include "../Note/DrawNote/NoteDrawSingleton.h"
 
-Lane::Lane(Vector3 inPos,JudgeContext* inJudge) : 
+Lane::Lane(Vector3 inPos, JudgeContext* inJudge, int mouseNum) :
 SIZE_(Vector2(512.0f,100.0f)),
 POS_(inPos){
 
@@ -18,6 +19,8 @@ POS_(inPos){
 
 	});
 
+	this->mouseNum_ = mouseNum;
+
 }
 
 Lane::~Lane(){
@@ -26,15 +29,26 @@ Lane::~Lane(){
 
 }
 
+void Lane::Update(DWORD nowTime){
+
+	auto itr = this->notes_.begin();
+	if (itr == this->notes_.end()) return;
+
+	this->judge_->judgeNote((*itr), nowTime,MultiMouse.GetInputData(this->mouseNum_));
+
+}
+
 void Lane::Draw(DWORD nowTime){
 
 	//テストコードマーン
-	Rect userect = RectWH(0, 0, 512, 100);
-	SPRITE sp = Data;
+	Rect userect = RectWH(0, 0, 512, 80);
+	SPRITE sp = Data.atlasSp_;
 
-	SpriteBatch.Draw(*this->sp_,this->POS_);
-	for (auto note : this->notes_) note->Draw(this->sp_,Vector3_Zero);
+	SpriteBatch.Draw(*sp, this->POS_,userect);
 
+	for (auto note : this->notes_){
+		if (!(NoteDrawComponent.Draw(note, this, nowTime)) )break;
+	}
 }
 
 void Lane::AddNote(Note* note){
@@ -73,5 +87,17 @@ void Lane::EraseNote(Note* deletenote){
 
 	delete deletenote;
 	this->notes_.erase(itr);
+
+}
+
+void Lane::GetLaneVectol(Vector3 &startPos, Vector3 &hitPos){
+
+	startPos = this->POS_;
+	startPos.x += this->SIZE_.x / 2.0f;
+	startPos.y = 0.0f;
+
+	hitPos = this->POS_;
+	hitPos.x += this->SIZE_.x / 2.0f;
+	hitPos.y += this->SIZE_.y / 2.0f;
 
 }

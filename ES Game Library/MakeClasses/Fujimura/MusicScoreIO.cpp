@@ -1,5 +1,6 @@
 #include "MusicScoreIO.h"
 #include "Note\Factory\SingleNoteFactory.h"
+#include "Lane\Lane.h"
 
 MusicScoreIO::MusicScoreIO(std::string path) : PATH_(path){
 
@@ -15,7 +16,7 @@ MusicScoreIO::~MusicScoreIO(){
 
 }
 
-bool MusicScoreIO::ImportScore(std::vector<std::function<void(Note*)> >& writeData){
+bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 
 	FILE* musicScoreFile;
 	char readBufferData[256] = {};
@@ -23,19 +24,13 @@ bool MusicScoreIO::ImportScore(std::vector<std::function<void(Note*)> >& writeDa
 	musicScoreFile = fopen(this->PATH_.c_str(), "r");
 
 	if (musicScoreFile == NULL) return false;
-	//こいつがBPM
-	//do{
-	//	if (fscanf(musicScoreFile, "%s", readBufferData) == EOF){
-	//		return false; 
-	//	}
-	//} while (strncmp(readBufferData,"BPM",3) == 0);
 
 	//でこいつがScore
 	do{
 		if (fscanf(musicScoreFile, "%s", readBufferData) == EOF){
 			return false;
 		}
-	} while (strncmp(readBufferData, "NOTES", 5) == 0);
+	} while (strncmp(readBufferData, "NOTES", 5) != 0);
 
 	//ここから読み取り
 	{
@@ -47,10 +42,12 @@ bool MusicScoreIO::ImportScore(std::vector<std::function<void(Note*)> >& writeDa
 		char type = 0;
 		Note* note = 0;
 
-		while (fscanf(musicScoreFile, "%d %ld %f %c", &laneNumber, &timing, &dammy, &type) != EOF){
-			//本当は直書きよくないんだけど　あれなので
-			//レーンが2つしかないので、それより多い数字なら次のノートへ
-			if (laneNumber > 1) continue;
+		while (fscanf(musicScoreFile, "%d %d %f %c", &laneNumber, &timing, &dammy, &type) != EOF){
+			
+			//番号が生成数より大きかったら次へ
+			if (laneNumber >= writeLane.size()) continue;
+			//テストなう
+			if (this->noteFactorys_.find(type) == this->noteFactorys_.end()) continue;
 
 			note = this->noteFactorys_[type]->Create(musicScoreFile, laneNumber, timing);
 			if (note == nullptr) {
@@ -59,7 +56,7 @@ bool MusicScoreIO::ImportScore(std::vector<std::function<void(Note*)> >& writeDa
 			}
 
 			//ノート追加
-			writeData[laneNumber](note);
+			writeLane[laneNumber]->AddNote(note);
 
 		}
 	}
