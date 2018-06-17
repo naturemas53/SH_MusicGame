@@ -5,6 +5,7 @@
 
 class Lane;
 class JudgeContext;
+class UI;
 
 class GameMain : public CGameScene {
 public:
@@ -60,10 +61,11 @@ private:
 private:
 
 	// •Ï”éŒ¾
+	typedef std::pair<Lane*, JudgeContext*> LANESET;
 
-	std::vector<Lane*> lanes_;
-	JudgeContext* judgeContext_;
+	std::vector<LANESET> lanes_;
 	SOUND bgm_;
+	UI* ui_;
 
 	// ŠÖ”éŒ¾
 

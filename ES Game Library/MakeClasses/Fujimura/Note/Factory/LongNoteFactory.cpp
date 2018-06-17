@@ -9,7 +9,6 @@ Note* LongNoteFactory::FactoryMethod(FILE* fp, int laneNumber, LONG timing){
 	//•ˆ–ÊŠ®¬‚Ü‚Å—]Œv‚É‚à‚Á“¾
 	float dammy = 0;
 	char type = 0;
-	Note* note = 0;
 	fscanf(fp, "%d %d %f %c", &laneNumber, &timing, &dammy, &type);
 
 	note->SetEndTiming(timing);

@@ -11,6 +11,6 @@ JUDGE SingleNoteJudgement::Judge(Note* note, DWORD nowTime, RawInputMouse& mouse
 
 	if (mouse.IsButtonUp(LEFTBUTTON) && mouse.IsButtonUp(RIGHTBUTTON)) return NONE;
 
-	return this->judgeResponsib_->Judge(labs(nowTime - note->GetTiming()));
+	return Judgement::judgeResponsib_->Judge(labs(nowTime - note->GetTiming()));
 
 }

@@ -7,7 +7,7 @@ BackMovie::BackMovie(){
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
 
-	(*this->nowmovie_)->Replay();
+//	(*this->nowmovie_)->Replay();
 
 }
 
@@ -35,11 +35,13 @@ void BackMovie::MovieChange(){
 		this->nowmovie_--;
 		return;
 	}
-	(*this->nowmovie_)->Replay();
+	//(*this->nowmovie_)->Replay();
 }
 
 void BackMovie::MovieReset(){ 
+	return;
+
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
-	(*this->nowmovie_)->Replay();
+	//(*this->nowmovie_)->Replay();
 }

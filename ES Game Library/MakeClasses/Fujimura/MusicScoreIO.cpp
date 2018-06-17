@@ -49,6 +49,12 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 			//ƒeƒXƒg‚È‚¤
 			if (this->noteFactorys_.find(type) == this->noteFactorys_.end()) continue;
 
+			if (timing == 47343){
+
+				int a = 1919191919419;
+
+			}
+
 			note = this->noteFactorys_[type]->Create(musicScoreFile, laneNumber, timing);
 			if (note == nullptr) {
 				fclose(musicScoreFile);

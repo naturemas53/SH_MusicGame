@@ -15,7 +15,7 @@ LongNoteDraw::~LongNoteDraw(){
 
 }
 
-void NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRangeTime){
+void LongNoteDraw::NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRangeTime){
 
 	if (note->GetType() != Note::LONGNOTE) return;
 	LongNote* longNote = (LongNote*)note;

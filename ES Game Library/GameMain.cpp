@@ -6,6 +6,7 @@
 #include "MakeClasses\Fujimura\Lane\Lane.h"
 #include "MakeClasses\Fujimura\Note\Note\Note.h"
 #include "MakeClasses\Fujimura\MusicScoreIO.h"
+#include "MakeClasses\Fujimura\UI\UI.h"
 #include <functional>
 
 /// <summary>
@@ -19,15 +20,28 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 	Data.LoadSprite(_T("kari_atlas.png"));
 
-	this->judgeContext_ = new JudgeContext();
-	Lane* lane = new Lane(Vector3(0.0f, 620.0f, 0.0f), this->judgeContext_, 0);
-	this->lanes_.push_back(lane);
+	this->ui_ = new UI();
+	JUDGENOTICE notice = [this](JUDGE judge){
+		ui_->NoticeJudge(judge);
+	};
 
-	lane = new Lane(Vector3(1280.0f - 512.0f, 620.0f, 0.0f), this->judgeContext_, 1);
-	this->lanes_.push_back(lane);
+	std::vector<Lane*> laneInstances;
+
+	LANESET laneset;
+	laneset.second = new JudgeContext();
+	laneset.second->EntryJudgeMethod(notice);
+	laneset.first = new Lane(Vector3(0.0f, 620.0f, 0.0f), laneset.second, 0);
+	laneInstances.push_back(laneset.first);
+	this->lanes_.push_back(laneset);
+
+	laneset.second = new JudgeContext();
+	laneset.second->EntryJudgeMethod(notice);
+	laneset.first = new Lane(Vector3(1280.0f - 512.0f, 620.0f, 0.0f), laneset.second, 1);
+	laneInstances.push_back(laneset.first);
+	this->lanes_.push_back(laneset);
 
 	MusicScoreIO scoreIo("musicscore.txt");
-	scoreIo.ImportScore(this->lanes_);
+	scoreIo.ImportScore(laneInstances);
 
 	this->bgm_ = SoundDevice.CreateSoundFromFile(_T("music.wav"));
 	this->bgm_->Play();
@@ -44,9 +58,12 @@ void GameMain::Finalize()
 {
 	// TODO: Add your finalization logic here
 
-	for (auto lane : this->lanes_){ delete lane; }
+	for (auto laneset : this->lanes_){ 
+		delete laneset.first;
+		delete laneset.second;
+	}
 
-	delete this->judgeContext_;
+	delete this->ui_;
 }
 
 /// <summary>
@@ -59,7 +76,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	for (auto lane : this->lanes_) lane->Update(this->bgm_->GetCurrentMilliSec());
+	for (auto laneset : this->lanes_) laneset.first->Update(this->bgm_->GetCurrentMilliSec());
 
 	return 0;
 }
@@ -76,7 +93,8 @@ void GameMain::Draw()
 
 	SpriteBatch.Begin();
 
-	for (auto lane : this->lanes_) lane->Draw(this->bgm_->GetCurrentMilliSec());
+	this->ui_->Draw(0);
+	for (auto laneset : this->lanes_) laneset.first->Draw(this->bgm_->GetCurrentMilliSec());
 
 	SpriteBatch.End();
 

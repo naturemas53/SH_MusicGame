@@ -10,9 +10,11 @@ public:
 
 	JudgeResponsib* CreateJudgeResponsib(){
 
-		return (new JudgeResponsib(PERFECT))
-				->SetNext(new JudgeResponsib(GREAT))
+		JudgeResponsib* responsib = new JudgeResponsib(PERFECT);
+		responsib->SetNext(new JudgeResponsib(GREAT))
 				->SetNext(new JudgeResponsib(MISS));
+
+		return responsib;
 
 	}
 
