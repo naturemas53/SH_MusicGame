@@ -13,7 +13,7 @@ SingleNote::~SingleNote(){
 
 void SingleNote::Draw(SPRITE sp,Vector3 pos){
 
-	Rect useRect = RectWH(0,80,64,64);
+	Rect useRect = RectWH(0,80,64,32);
 	SpriteBatch.Draw(*sp, pos, useRect);
 
 }

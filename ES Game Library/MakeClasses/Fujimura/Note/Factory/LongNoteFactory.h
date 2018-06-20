@@ -8,6 +8,6 @@ public:
 	LongNoteFactory();
 	~LongNoteFactory();
 
-	virtual Note* FactoryMethod(FILE* fp, int laneNumber, LONG timing) = 0;
+	virtual Note* FactoryMethod(FILE* fp, int laneNumber, LONG timing);
 
 };

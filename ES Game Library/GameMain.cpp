@@ -2,11 +2,12 @@
 #include "StdAfx.h"
 #include "GameMain.h"
 #include "MakeClasses\Fujimura\DataSingleton.h"
-#include "MakeClasses\Fujimura\Judgement\JudgeContext.h"
+#include "MakeClasses\Fujimura\Judgement\JudgementContext.h"
 #include "MakeClasses\Fujimura\Lane\Lane.h"
 #include "MakeClasses\Fujimura\Note\Note\Note.h"
 #include "MakeClasses\Fujimura\MusicScoreIO.h"
 #include "MakeClasses\Fujimura\UI\UI.h"
+#include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include <functional>
 
 /// <summary>
@@ -28,13 +29,13 @@ bool GameMain::Initialize()
 	std::vector<Lane*> laneInstances;
 
 	LANESET laneset;
-	laneset.second = new JudgeContext();
+	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
 	laneset.first = new Lane(Vector3(0.0f, 620.0f, 0.0f), laneset.second, 0);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
-	laneset.second = new JudgeContext();
+	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
 	laneset.first = new Lane(Vector3(1280.0f - 512.0f, 620.0f, 0.0f), laneset.second, 1);
 	laneInstances.push_back(laneset.first);
@@ -76,7 +77,10 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	for (auto laneset : this->lanes_) laneset.first->Update(this->bgm_->GetCurrentMilliSec());
+	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
+
+	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
+	this->ui_->Update(nowTime);
 
 	return 0;
 }

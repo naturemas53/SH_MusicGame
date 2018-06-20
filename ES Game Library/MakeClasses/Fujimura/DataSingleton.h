@@ -20,19 +20,20 @@ public:
 	~DataSingleton(){};
 
 	SPRITE atlasSp_;
-	const Vector2 NOTESIZE_ = Vector2(64.0f, 32.0f);
-	const Rect SINGLENOTERECT_ = RectWH(0, 100, 64, 32);
-	const Rect LONGNOTERECT_ = RectWH(0, 100, 64, 32);
-	const Rect EVENTNOTERECT_ = RectWH(0, 100, 64, 32);
-	const int NORMCOMBO_ = 50;
+	const Vector2 NOTESIZE_;
+	const Rect SINGLENOTERECT_;
+	const Rect LONGNOTERECT_;
+	const Rect EVENTNOTERECT_;
+
+	const int NORMCOMBO_;
+
+	const int LONG_OK_RELEASE_TIME_;
+
+	const int BOMB_MAX_PAL_VALUE_;
 
 private:
 
-	DataSingleton(){
-	
-		this->atlasSp_ = nullptr;
-
-	};
+	DataSingleton();
 
 };
 

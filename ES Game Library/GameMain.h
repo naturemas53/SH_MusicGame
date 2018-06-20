@@ -4,7 +4,7 @@
 #include "GameScene/GameScene.hpp"
 
 class Lane;
-class JudgeContext;
+class JudgementContext;
 class UI;
 
 class GameMain : public CGameScene {
@@ -61,7 +61,7 @@ private:
 private:
 
 	// •Ï”éŒ¾
-	typedef std::pair<Lane*, JudgeContext*> LANESET;
+	typedef std::pair<Lane*, JudgementContext*> LANESET;
 
 	std::vector<LANESET> lanes_;
 	SOUND bgm_;

@@ -2,15 +2,15 @@
 #include "../Note/Note/SingleNote.h"
 #include <math.h>
 
-JUDGE SingleNoteJudgement::Judge(Note* note, DWORD nowTime, RawInputMouse& mouse){
+JUDGE SingleNoteJudgement::Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse){
 
-	if (note->GetType() != Note::SINGLENOTE) return MISS;
+	if (judgeNote->GetType() != Note::SINGLENOTE) return MISS;
 
-	long dirTime = (long)nowTime - (long)note->GetTiming();
+	long dirTime = (long)nowTime - (long)judgeNote->GetTiming();
 	if (dirTime > (long)JUDGE::MISS) return MISS;
 
 	if (mouse.IsButtonUp(LEFTBUTTON) && mouse.IsButtonUp(RIGHTBUTTON)) return NONE;
 
-	return Judgement::judgeResponsib_->Judge(labs(nowTime - note->GetTiming()));
+	return Judgement::judgeResponsib_->Judge(labs(nowTime - judgeNote->GetTiming()));
 
 }

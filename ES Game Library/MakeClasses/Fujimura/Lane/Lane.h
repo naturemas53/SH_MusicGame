@@ -4,14 +4,15 @@
 #include "../../../ESGLib.h"
 
 class Note;
-class JudgeContext;
+class JudgeBomb;
+class JudgementContext;
 
 //À¿ƒŒ[ƒ“‚²‚Æ‚ÌNoteManagerŒN
 class Lane{
 
 public:
 
-	Lane(Vector3 inPos,JudgeContext* inJudge,int mouseNum);
+	Lane(Vector3 inPos, JudgementContext* inJudge, int mouseNum);
 	~Lane();
 
 	void Update(DWORD nowTime);
@@ -34,6 +35,7 @@ private:
 	int mouseNum_;
 
 	std::vector<Note*> notes_;
-	JudgeContext* judge_;
+	JudgementContext* judge_;
+	JudgeBomb* bomb_;
 
 };

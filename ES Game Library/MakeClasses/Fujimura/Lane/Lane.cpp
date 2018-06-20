@@ -1,11 +1,12 @@
 #include "Lane.h"
 #include "../Note/Note/Note.h"
 #include "../DataSingleton.h"
-#include "../Judgement/JudgeContext.h"
+#include "../Judgement/JudgementContext.h"
+#include "JudgeBomb.h"
 #include "../Note/DrawNote/NoteDrawSingleton.h"
 
-Lane::Lane(Vector3 inPos, JudgeContext* inJudge, int mouseNum) :
-SIZE_(Vector2(512.0f,100.0f)),
+Lane::Lane(Vector3 inPos, JudgementContext* inJudge, int mouseNum) :
+SIZE_(Vector2(512.0f,80.0f)),
 POS_(inPos){
 
 	this->judge_ = inJudge;
@@ -19,21 +20,34 @@ POS_(inPos){
 
 	});
 
+	Vector3 startPos, hitPos;
+	this->GetLaneVectol(startPos,hitPos);
+	hitPos.y += this->SIZE_.y / 2.0f;
+	this->bomb_ = new JudgeBomb(hitPos);
+
+	this->judge_->EntryJudgeMethod([&](JUDGE judge){
+		bomb_->NoticeJudge(judge);
+	});
+
 	this->mouseNum_ = mouseNum;
 
 }
 
 Lane::~Lane(){
 
+	delete this->bomb_;
 	for (auto note : this->notes_) delete note;
 
 }
 
 void Lane::Update(DWORD nowTime){
 
+	this->bomb_->Update();
+
 	auto itr = this->notes_.begin();
 	if (itr == this->notes_.end()) return;
 
+	(*itr)->Update();
 	this->judge_->judgeNote((*itr), nowTime,MultiMouse.GetInputData(this->mouseNum_));
 
 }
@@ -46,6 +60,7 @@ void Lane::Draw(DWORD nowTime){
 
 	SpriteBatch.Draw(*sp, this->POS_,userect);
 
+	this->bomb_->Draw();
 	for (auto note : this->notes_){
 		if (!(NoteDrawComponent.Draw(note, this, nowTime)) )break;
 	}

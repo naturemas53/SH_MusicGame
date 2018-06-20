@@ -1,11 +1,12 @@
 #include "MusicScoreIO.h"
 #include "Note\Factory\SingleNoteFactory.h"
+#include "Note\Factory\LongNoteFactory.h"
 #include "Lane\Lane.h"
 
 MusicScoreIO::MusicScoreIO(std::string path) : PATH_(path){
 
 	this->noteFactorys_['S'] = new SingleNoteFactory();
-	//this->noteFactorys_['L'] = new LongNoteFactory();
+	this->noteFactorys_['L'] = new LongNoteFactory();
 	//this->noteFactorys_['H'] = new HeartNoteFactory();
 
 }
@@ -48,12 +49,6 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 			if (laneNumber >= writeLane.size()) continue;
 			//ƒeƒXƒg‚È‚¤
 			if (this->noteFactorys_.find(type) == this->noteFactorys_.end()) continue;
-
-			if (timing == 47343){
-
-				int a = 1919191919419;
-
-			}
 
 			note = this->noteFactorys_[type]->Create(musicScoreFile, laneNumber, timing);
 			if (note == nullptr) {

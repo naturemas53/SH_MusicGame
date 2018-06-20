@@ -343,9 +343,6 @@
     <ClCompile Include="MakeClasses\Fujimura\RawInputMouse.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgeContext.cpp">
-      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
-    </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Judgement\Judgement.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClCompile>
@@ -375,6 +372,24 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\LongNoteDraw.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\LongNoteJudgement.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgementContext.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\JudgeBomb.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\LongBarDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Note\LongBar.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\DataSingleton.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -562,9 +577,6 @@
     <ClInclude Include="MakeClasses\Fujimura\Note\Factory\SingleNoteFactory.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeContext.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
-    </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeCounter.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
@@ -618,6 +630,21 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\LongNoteDraw.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\LongNoteJudgement.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgementContext.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\JudgeBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\LongBarDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\LongBar.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

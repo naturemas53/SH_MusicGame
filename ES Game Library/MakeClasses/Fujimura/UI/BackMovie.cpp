@@ -2,12 +2,14 @@
 
 BackMovie::BackMovie(){
 
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚P.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚Q.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚R.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚S.wmv")));
 
-//	(*this->nowmovie_)->Replay();
+	this->nowmovie_ = this->movies_.begin();
+
+	(*this->nowmovie_)->Replay();
 
 }
 
@@ -24,7 +26,13 @@ void BackMovie::Update(){
 
 void BackMovie::Draw(){
 
-	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero);
+	int width = (*this->nowmovie_)->GetWidth();
+	int height = (*this->nowmovie_)->GetHeight();
+
+	//—á‚É‚æ‚Á‚Ä•t‚¯Än
+	Vector2 scale = Vector2( 1280.0f / (float)width , 720.0f / (float)height);
+
+	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 
 }
 
@@ -35,13 +43,12 @@ void BackMovie::MovieChange(){
 		this->nowmovie_--;
 		return;
 	}
-	//(*this->nowmovie_)->Replay();
+	(*this->nowmovie_)->Replay();
 }
 
 void BackMovie::MovieReset(){ 
-	return;
 
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
-	//(*this->nowmovie_)->Replay();
+	(*this->nowmovie_)->Replay();
 }

@@ -1,5 +1,6 @@
 #include "LongNoteDraw.h"
 #include "SingleNoteDraw.h"
+#include "LongBarDraw.h"
 #include "../Note/LongNote.h"
 #include "../../Lane/Lane.h"
 #include "../../DataSingleton.h"
@@ -20,37 +21,40 @@ void LongNoteDraw::NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRan
 	if (note->GetType() != Note::LONGNOTE) return;
 	LongNote* longNote = (LongNote*)note;
 
-	Vector3 startPos,hitPos;
-	lane->GetLaneVectol(startPos,hitPos);
+	Vector3 startPos, hitPos;
+	lane->GetLaneVectol(startPos, hitPos);
 	Vector3 dir = hitPos - startPos;
 
 	Vector3 baseNotePoint = Vector3_Zero;
 	baseNotePoint.x -= note->GetSize().x / 2.0f;
-	//後ろの帯表示
-	
 	baseNotePoint.y -= note->GetSize().y / 2.0f;
-	Vector3 notePos;
+
+	Vector3 startNotePos,endNotePos;
 	SPRITE sp = Data.atlasSp_;
 
-	//ノートの下表示
+	//ノートの始点を計算
 	long dirTime = longNote->GetTiming() - (long)nowTime;
-	float timeRate = (float)dirTime / (float)drawRangeTime;
+	long progressTime = drawRangeTime - dirTime;
+	float timeRate = (float)progressTime / (float)drawRangeTime;
 
-	notePos = baseNotePoint + startPos + dir * timeRate;
+	startNotePos = baseNotePoint + startPos + dir * timeRate;
 
-	if (longNote->IsPushed()) notePos = baseNotePoint + hitPos;
+	if (longNote->IsPushed()){
+		startNotePos = baseNotePoint + hitPos;
+	}
 
-	note->Draw(sp,notePos);
 
-	//ノートの上を表示
+	//ノートの終点を計算
 	dirTime = longNote->GetEndTiming() - longNote->GetTiming();
 	if (longNote->IsPushed()){
 		dirTime = longNote->GetEndTiming() - nowTime;
 	}
 
 	timeRate = (float)dirTime / (float)drawRangeTime;
-	notePos = baseNotePoint + hitPos + dir * -timeRate;
+	endNotePos = startNotePos + (dir * -timeRate);
 
-	note->Draw(sp, notePos);
+	LongBarDraw().BarDraw(startNotePos,endNotePos,longNote);
+	note->Draw(sp, startNotePos);
+	note->Draw(sp, endNotePos);
 
 }

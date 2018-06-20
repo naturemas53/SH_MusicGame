@@ -57,8 +57,7 @@ public:
 		Draw();
 		DXGraphics().UpdateFrame();
 		FixTimer().Wait();
-		MultiMouse.Update();
-		return Update(); 
+		return AdvanceUpdate();
 	}
 
 	virtual int NonActiveProc() 
@@ -71,8 +70,17 @@ public:
 	virtual bool Initialize () { return true; }
 	virtual void LoadContent() {}
 
-	virtual int  Update() { return 0; }
+	virtual int AdvanceUpdate(){
+
+		int value = Update();
+		MultiMouse.Update();
+		return value;
+
+	}
 	virtual void Draw  () {}
+
+protected:
+	virtual int  Update() { return 0; }
 
 private:
 	CGameScene(const CGameScene&);

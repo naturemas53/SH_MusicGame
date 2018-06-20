@@ -1,12 +1,13 @@
 #include "NoteDrawSingleton.h"
 #include "SingleNoteDraw.h"
+#include "LongNoteDraw.h"
 
 NoteDrawSingleton::NoteDrawSingleton(){
 
 	this->drawRangeTime_ = 2000;
 
 	this->drawComponents_[Note::SINGLENOTE] = new SingleNoteDraw();
-	//this->drawComponents_[Note::LONGNOTE] = new SingleNoteDraw();
+	this->drawComponents_[Note::LONGNOTE] = new LongNoteDraw();
 	//this->drawComponents_[Note::EVENTNOTE] = new SingleNoteDraw();
 
 }

@@ -1,6 +1,9 @@
 #include "LongNoteFactory.h"
 #include "../Note/LongNote.h"
 
+LongNoteFactory::LongNoteFactory(){}
+LongNoteFactory::~LongNoteFactory(){}
+
 Note* LongNoteFactory::FactoryMethod(FILE* fp, int laneNumber, LONG timing){
 
 	LongNote* note = new LongNote(timing);
