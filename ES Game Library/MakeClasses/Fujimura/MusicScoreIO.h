@@ -4,6 +4,7 @@
 #include <string>
 
 class Lane;
+class EventLane;
 class Note;
 class NoteFactory;
 struct BpmData;
@@ -15,6 +16,7 @@ public:
 	MusicScoreIO(std::string path);
 	~MusicScoreIO();
 
+	//bool ImportScore(std::vector<Lane*>& writeLane,EventLane* eventLane );
 	bool ImportScore(std::vector<Lane*>& writeLane);
 
 	bool ImportBPM(std::vector<BpmData>& writeArray);

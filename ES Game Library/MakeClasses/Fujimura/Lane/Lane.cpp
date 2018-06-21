@@ -1,5 +1,4 @@
 #include "Lane.h"
-#include "../Note/Note/Note.h"
 #include "../DataSingleton.h"
 #include "../Judgement/JudgementContext.h"
 #include "JudgeBomb.h"
@@ -36,7 +35,6 @@ POS_(inPos){
 Lane::~Lane(){
 
 	delete this->bomb_;
-	for (auto note : this->notes_) delete note;
 
 }
 
@@ -54,7 +52,6 @@ void Lane::Update(DWORD nowTime){
 
 void Lane::Draw(DWORD nowTime){
 
-	//テストコードマーン
 	Rect userect = RectWH(0, 0, 512, 80);
 	SPRITE sp = Data.atlasSp_;
 
@@ -66,42 +63,9 @@ void Lane::Draw(DWORD nowTime){
 	}
 }
 
-void Lane::AddNote(Note* note){
-
-	//そもそも入ってないなら入れて終わり
-	if (this->notes_.size() == 0){
-		notes_.push_back(note);
-		return;
-	}
-
-	int insertTiming = note->GetTiming();
-	auto itr = this->notes_.begin();
-
-	while (itr != this->notes_.end()){
-
-		if (insertTiming < (*itr)->GetTiming()){
-
-			this->notes_.insert(itr, note);
-			return;
-
-		}
-
-		itr++;
-
-	}
-
-	//ここまで来たときは１番遅い
-	notes_.push_back(note);
-
-}
-
-void Lane::EraseNote(Note* deletenote){
-
-	auto itr = std::find(this->notes_.begin(), this->notes_.end(),deletenote);
-	if (itr == this->notes_.end()) return;
-
-	delete deletenote;
-	this->notes_.erase(itr);
+void Lane::Accept(VISITORMETHOD visit){
+	
+	visit(this);
 
 }
 

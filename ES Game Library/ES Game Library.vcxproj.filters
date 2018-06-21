@@ -175,6 +175,12 @@
     <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote">
       <UniqueIdentifier>{b649c81c-3c00-4e98-868c-d7fec3452a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\ArrayAlgorithm">
+      <UniqueIdentifier>{6844e6d5-f42b-4b75-90f4-701da46d9a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm">
+      <UniqueIdentifier>{b92e7f7e-9fda-4662-9ced-042c6ba6adcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -390,6 +396,24 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\DataSingleton.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Note\EventNote.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\Factory\EventNoteFactory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\EventLane.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,6 +669,30 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Note\Note\LongBar.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Note\EventNote.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\Factory\EventNoteFactory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\EventLane.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\ArrayAlgorithm.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\BaseLane.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

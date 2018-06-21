@@ -48,6 +48,8 @@ void BackMovie::MovieChange(){
 
 void BackMovie::MovieReset(){ 
 
+
+
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
 	(*this->nowmovie_)->Replay();

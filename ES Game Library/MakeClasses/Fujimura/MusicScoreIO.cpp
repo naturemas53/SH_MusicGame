@@ -1,13 +1,16 @@
 #include "MusicScoreIO.h"
 #include "Note\Factory\SingleNoteFactory.h"
 #include "Note\Factory\LongNoteFactory.h"
+#include "Note\Factory\EventNoteFactory.h"
 #include "Lane\Lane.h"
+#include "Lane\EventLane.h"
+#include "ArrayAlgorithm\AddNoteAlgorithm.h"
 
 MusicScoreIO::MusicScoreIO(std::string path) : PATH_(path){
 
 	this->noteFactorys_['S'] = new SingleNoteFactory();
 	this->noteFactorys_['L'] = new LongNoteFactory();
-	//this->noteFactorys_['H'] = new HeartNoteFactory();
+	this->noteFactorys_['H'] = new EventNoteFactory();
 
 }
 
@@ -26,7 +29,7 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 
 	if (musicScoreFile == NULL) return false;
 
-	//‚Å‚±‚¢‚Â‚ªScore
+	//‚±‚¢‚Â‚ªScore
 	do{
 		if (fscanf(musicScoreFile, "%s", readBufferData) == EOF){
 			return false;
@@ -43,6 +46,12 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 		char type = 0;
 		Note* note = 0;
 
+		BaseLane::VISITORMETHOD visitor = [&](BaseLane* lane){
+
+			AddNoteAlgorithm().Execution(lane->GetNoteList(),note);
+		
+		};
+
 		while (fscanf(musicScoreFile, "%d %d %f %c", &laneNumber, &timing, &dammy, &type) != EOF){
 			
 			//”Ô†‚ª¶¬”‚æ‚è‘å‚«‚©‚Á‚½‚çŸ‚Ö
@@ -56,8 +65,7 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 				return false;
 			}
 
-			//ƒm[ƒg’Ç‰Á
-			writeLane[laneNumber]->AddNote(note);
+			writeLane[laneNumber]->Accept(visitor);
 
 		}
 	}

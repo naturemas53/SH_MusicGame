@@ -2,27 +2,24 @@
 #include <d3dx9.h>
 #include <vector>
 #include "../../../ESGLib.h"
+#include "BaseLane.h"
 
-class Note;
 class JudgeBomb;
 class JudgementContext;
 
 //é¿éøÉåÅ[ÉìÇ≤Ç∆ÇÃNoteManageråN
-class Lane{
+class Lane : public BaseLane{
 
 public:
 
 	Lane(Vector3 inPos, JudgementContext* inJudge, int mouseNum);
 	~Lane();
 
-	void Update(DWORD nowTime);
-	void Draw(DWORD nowTime);
+	virtual void Update(DWORD nowTime);
+	virtual void Draw(DWORD nowTime);
 
-	// Ç¢Ç¬Ç©Accepter (std::function<void (std::vector<Note*>) >)Å@Ç…Ç»ÇÈó\íË
-	void AddNote(Note* note);
-	void EraseNote(Note* deleteitr);
+	virtual void Accept(VISITORMETHOD visitorMethod);
 
-	Note* GetTopNote(){ return (*this->notes_.begin()); }
 	Vector2 GetSize(){ return this->SIZE_; }
 	void GetLaneVectol(Vector3 &startPos, Vector3 &hitPos);
 
@@ -34,7 +31,6 @@ private:
 
 	int mouseNum_;
 
-	std::vector<Note*> notes_;
 	JudgementContext* judge_;
 	JudgeBomb* bomb_;
 
