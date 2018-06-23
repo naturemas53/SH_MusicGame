@@ -29,13 +29,19 @@ void LongBar::Draw(SPRITE sp, Vector3 drawPos, Vector2 noteSize, float angle, fl
 	int blue = (int)(255.0f * ((float)lightCount / (float)this->MAX_LIGHT_VALUE_));
 	Color color = Color(255, 255, blue, 255);
 
-	Rect useRect = RectWH(64, 80 + 32, 64, 32);
-	//‚í‚©‚ñ‚È‚¢‚Ì‚Å‰ž‹}ˆ’u
-	drawPos.y -= noteSize.y / 2.0f;
+	drawPos.y -= noteSize.y;
 
-	SpriteBatch.Draw(*sp, drawPos, useRect, color,
+	float spWidth = sp->GetWidth();
+	float spHeight = 73.0f;
+
+	Vector2 scale = Vector2_Zero;
+	scale.x = noteSize.x / spWidth;
+	scale.y = noteSize.y / spHeight;
+	scale.y *= hypotenuse / noteSize.y;
+
+	SpriteBatch.Draw(*sp, drawPos, color,
 		Vector3(0.0f, 0.0f, angle),
-		Vector3(noteSize.x / 2.0f, noteSize.y, 0.0f),
-		Vector2(1.0f, hypotenuse / noteSize.y));
+		Vector3(spWidth / 2.0f, spHeight, 0.0f),
+		scale);
 
 }

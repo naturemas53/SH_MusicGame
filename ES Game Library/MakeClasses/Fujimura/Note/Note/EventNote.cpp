@@ -11,4 +11,8 @@ EventNote::~EventNote(){
 
 void EventNote::Update(){}
 
-void EventNote::Draw(SPRITE sp,Vector3 pos){  }
+void EventNote::Draw(SPRITE sp,Vector3 pos){  
+
+	SpriteBatch.Draw(*sp,pos);
+
+}

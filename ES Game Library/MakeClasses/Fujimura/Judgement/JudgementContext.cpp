@@ -2,12 +2,13 @@
 #include "../Note/Note/Note.h"
 #include "SingleNoteJudgement.h"
 #include "LongNoteJudgement.h"
+#include "EventNoteJudgement.h"
 
 JudgementContext::JudgementContext(){
 
 	this->judgements_[Note::SINGLENOTE] = new SingleNoteJudgement();
 	this->judgements_[Note::LONGNOTE] = new LongNoteJudgement();
-	//this->judgements_[Note::EVENTNOTE] = SingleNoteJudgement();
+	this->judgements_[Note::EVENTNOTE] = new EventNoteJudgement();
 
 }
 

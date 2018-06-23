@@ -1,6 +1,7 @@
 #include "NoteDrawSingleton.h"
 #include "SingleNoteDraw.h"
 #include "LongNoteDraw.h"
+#include "EventNoteDraw.h"
 
 NoteDrawSingleton::NoteDrawSingleton(){
 
@@ -8,7 +9,7 @@ NoteDrawSingleton::NoteDrawSingleton(){
 
 	this->drawComponents_[Note::SINGLENOTE] = new SingleNoteDraw();
 	this->drawComponents_[Note::LONGNOTE] = new LongNoteDraw();
-	//this->drawComponents_[Note::EVENTNOTE] = new SingleNoteDraw();
+	this->drawComponents_[Note::EVENTNOTE] = new EventNoteDraw();
 
 }
 
@@ -18,7 +19,7 @@ NoteDrawSingleton::~NoteDrawSingleton(){
 
 }
 
-bool NoteDrawSingleton::Draw(Note* note, Lane* lane, DWORD nowTime){
+bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, DWORD nowTime){
 
 	long dirTime = note->GetTiming() - (long)nowTime;
 	if (dirTime > (long)this->drawRangeTime_ + 100) return false;

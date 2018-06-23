@@ -4,6 +4,7 @@
 #include "GameScene/GameScene.hpp"
 
 class Lane;
+class EventLane;
 class JudgementContext;
 class UI;
 
@@ -64,9 +65,12 @@ private:
 	typedef std::pair<Lane*, JudgementContext*> LANESET;
 
 	std::vector<LANESET> lanes_;
+	std::pair<EventLane*, JudgementContext*> eventLane_;
 	SOUND bgm_;
 	UI* ui_;
+	SPRITE backLane_;
 
 	// ŠÖ”éŒ¾
+	void SpriteLoad();
 
 };

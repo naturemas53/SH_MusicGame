@@ -4,6 +4,7 @@
 #include "../Note/LongNote.h"
 #include "../../Lane/Lane.h"
 #include "../../DataSingleton.h"
+#include <typeinfo>
 
 LongNoteDraw::LongNoteDraw(){
 
@@ -16,13 +17,17 @@ LongNoteDraw::~LongNoteDraw(){
 
 }
 
-void LongNoteDraw::NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRangeTime){
+void LongNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime){
+
+	if (typeid(*lane) != typeid(Lane)) return;
+
+	Lane* normalLane = (Lane*)lane;
 
 	if (note->GetType() != Note::LONGNOTE) return;
 	LongNote* longNote = (LongNote*)note;
 
 	Vector3 startPos, hitPos;
-	lane->GetLaneVectol(startPos, hitPos);
+	normalLane->GetLaneVectol(startPos, hitPos);
 	Vector3 dir = hitPos - startPos;
 
 	Vector3 baseNotePoint = Vector3_Zero;
@@ -30,7 +35,7 @@ void LongNoteDraw::NoteDraw(Note* note, Lane* lane, DWORD nowTime, DWORD drawRan
 	baseNotePoint.y -= note->GetSize().y / 2.0f;
 
 	Vector3 startNotePos,endNotePos;
-	SPRITE sp = Data.atlasSp_;
+	SPRITE sp = Data.longNoteSp_;
 
 	//ノートの始点を計算
 	long dirTime = longNote->GetTiming() - (long)nowTime;

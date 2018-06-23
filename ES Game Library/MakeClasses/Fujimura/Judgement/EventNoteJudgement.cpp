@@ -1,10 +1,14 @@
 #include "EventNoteJudgement.h"
 #include "../Note/Note/EventNote.h"
+#include "../MultiMouseDevice.h"
 
 EventNoteJudgement::EventNoteJudgement(){
 
-	this->totalMoveValue_ = 0;
-	this->moveState_ = NONE;
+	this->mouseDetections_.push_back(MouseMotionDetection());
+	this->mouseDetections_.push_back(MouseMotionDetection());
+
+	this->DetectionInitialize();
+
 	this->remainMoveLimit_ = -2000;
 
 }
@@ -21,46 +25,43 @@ JUDGE EventNoteJudgement::Judge(Note* note, DWORD nowTime, RawInputMouse& mouse)
 
 	long dirTime = note->GetTiming() - nowTime;
 	if (this->remainMoveLimit_ > dirTime){
-		this->totalMoveValue_ = 0;
-		this->moveState_ = MOVESTATE::NONE;
+		this->DetectionInitialize();
 		return MISS;
 	}
 
-	if (this->moveState_ == MOVESTATE::NONE) this->moveState_ = MOVE_UP;
+	RawInputMouse& leftMouse = MultiMouse.GetInputData(0);
+	RawInputMouse& rightMouse = MultiMouse.GetInputData(1);
 
-	switch (this->moveState_){
+	if (this->MoveCheck(this->mouseDetections_[0], leftMouse) && this->MoveCheck(this->mouseDetections_[1], rightMouse) ){
 
-	case MOVE_UP:
-	{
-
-		int value = mouse.GetAxisY();
-		if (value > 0) this->totalMoveValue_ += value;
-		if (this->totalMoveValue_ > 100){
-			this->totalMoveValue_ = 0;
-			this->moveState_ = MOVE_DOWN;
-		}
+		this->DetectionInitialize();
+		return JUDGE::PERFECT;
 
 	}
-	break;
 
-	case MOVE_DOWN:
-	{
-
-		int value = mouse.GetAxisY();
-		if (value < 0) this->totalMoveValue_ += value;
-		if (this->totalMoveValue_ < -20){
-			this->totalMoveValue_ = 0;
-			this->moveState_ = MOVESTATE::NONE;
-			return PERFECT;
-		}
-
-	}break;
-
-	default:
-		break;
-
-	}
 
 	return JUDGE::NONE;
+
+}
+
+void EventNoteJudgement::DetectionInitialize(){
+
+	this->mouseDetections_[0].SetState(MouseMotionDetection::MOVE_UP, 30);
+	this->mouseDetections_[1].SetState(MouseMotionDetection::MOVE_UP, 30);
+
+}
+
+bool EventNoteJudgement::MoveCheck(MouseMotionDetection& detection, RawInputMouse& mouse){
+
+	bool completedFlag = detection.Update(mouse);
+
+	if (!completedFlag) return false;
+	
+	if (detection.GetState() == MouseMotionDetection::MOVE_UP){
+		detection.SetState(MouseMotionDetection::MOVE_DOWN,5);
+		return false;
+	}
+
+	return true;
 
 }

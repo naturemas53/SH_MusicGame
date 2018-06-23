@@ -1,12 +1,12 @@
 #pragma once
 #include "DrawNote.h"
 
-class LongNoteDraw : public DrawNote{
+class EventNoteDraw : public DrawNote{
 
 public:
 
-	LongNoteDraw();
-	~LongNoteDraw();
+	EventNoteDraw();
+	~EventNoteDraw();
 
 	virtual void NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime);
 

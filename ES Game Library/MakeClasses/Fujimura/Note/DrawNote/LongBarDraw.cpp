@@ -25,7 +25,7 @@ void LongBarDraw::BarDraw(Vector3 startPos, Vector3 endPos, LongNote* note){
 	float hypotenuse = barDir.x + barDir.y;
 	hypotenuse = sqrtf(hypotenuse);
 
-	SPRITE sp = Data.atlasSp_;
+	SPRITE sp = Data.longSquareSp_;
 
 	note->DrawBar(sp,startPos,angle,hypotenuse);
 

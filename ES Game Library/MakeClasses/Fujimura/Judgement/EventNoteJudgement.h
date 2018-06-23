@@ -1,5 +1,7 @@
 #pragma once
 #include "Judgement.h"
+#include "MouseMotionDetection.h"
+#include <vector>
 
 class EventNoteJudgement : public Judgement{
 
@@ -11,16 +13,11 @@ public:
 	virtual JUDGE Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse);
 
 private:
+	
+	void DetectionInitialize();
+	bool MoveCheck(MouseMotionDetection& detection,RawInputMouse& mouse);
 
-	enum MOVESTATE{
-
-		NONE,
-		MOVE_UP,
-		MOVE_DOWN
-
-	}moveState_;
-
-	int totalMoveValue_;
+	std::vector<MouseMotionDetection> mouseDetections_;
 	long remainMoveLimit_;
 
 };

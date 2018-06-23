@@ -400,9 +400,6 @@
     <ClCompile Include="MakeClasses\Fujimura\Note\Note\EventNote.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Note</Filter>
     </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
-    </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Note\Factory\EventNoteFactory.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Note\Factory</Filter>
     </ClCompile>
@@ -414,6 +411,15 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\EventNoteDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\EventBomb.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -693,6 +699,15 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ArrayAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\EventNoteDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\EventBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\MouseMotionDetection.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

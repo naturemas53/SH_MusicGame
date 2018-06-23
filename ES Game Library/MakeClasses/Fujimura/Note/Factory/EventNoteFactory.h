@@ -10,6 +10,4 @@ public:
 
 	virtual Note* FactoryMethod(FILE* fp, int laneNumber, LONG timing);
 
-private:
-
 };

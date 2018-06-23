@@ -20,7 +20,7 @@ MusicScoreIO::~MusicScoreIO(){
 
 }
 
-bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
+bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane,EventLane* eventLane){
 
 	FILE* musicScoreFile;
 	char readBufferData[256] = {};
@@ -65,7 +65,16 @@ bool MusicScoreIO::ImportScore(std::vector<Lane*>& writeLane){
 				return false;
 			}
 
-			writeLane[laneNumber]->Accept(visitor);
+			switch (type){
+
+			case 'H':
+				eventLane->Accept(visitor);
+				break;
+
+			default:
+				writeLane[laneNumber]->Accept(visitor);
+				break;
+			}
 
 		}
 	}

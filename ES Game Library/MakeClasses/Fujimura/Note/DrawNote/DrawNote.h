@@ -1,7 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 
-class Lane;
+class BaseLane;
 class Note;
 
 class DrawNote{
@@ -11,6 +11,6 @@ public:
 	DrawNote(){};
 	virtual ~DrawNote(){};
 
-	virtual void NoteDraw(Note* note,Lane* lane,DWORD nowTime,DWORD drawRangeTime) = 0;
+	virtual void NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime) = 0;
 
 };

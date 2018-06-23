@@ -5,7 +5,7 @@
 #include "../Note/DrawNote/NoteDrawSingleton.h"
 
 Lane::Lane(Vector3 inPos, JudgementContext* inJudge, int mouseNum) :
-SIZE_(Vector2(512.0f,80.0f)),
+SIZE_(Vector2(0.0f,0.0f)),
 POS_(inPos){
 
 	this->judge_ = inJudge;
@@ -52,10 +52,10 @@ void Lane::Update(DWORD nowTime){
 
 void Lane::Draw(DWORD nowTime){
 
-	Rect userect = RectWH(0, 0, 512, 80);
-	SPRITE sp = Data.atlasSp_;
+	//Rect userect = RectWH(0, 0, 512, 80);
+	//SPRITE sp = Data.atlasSp_;
 
-	SpriteBatch.Draw(*sp, this->POS_,userect);
+	//SpriteBatch.Draw(*sp, this->POS_,userect);
 
 	this->bomb_->Draw();
 	for (auto note : this->notes_){

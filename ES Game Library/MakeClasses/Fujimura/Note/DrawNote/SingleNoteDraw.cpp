@@ -2,6 +2,7 @@
 #include "../Note/Note.h"
 #include "../../Lane/Lane.h"
 #include "../../DataSingleton.h"
+#include <typeinfo>
 
 SingleNoteDraw::SingleNoteDraw(){
 
@@ -13,7 +14,13 @@ SingleNoteDraw::~SingleNoteDraw(){
 
 }
 
-void SingleNoteDraw::NoteDraw(Note* note, Lane* lane,DWORD nowTime,DWORD drawRangeTime){
+void SingleNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime){
+
+	if (typeid(*lane) != typeid(Lane)) return;
+
+	Lane* normalLane = (Lane*)lane;
+
+	if (note->GetType() != Note::SINGLENOTE) return;
 
 	long dirTime = note->GetTiming() - (long)nowTime;
 
@@ -21,7 +28,7 @@ void SingleNoteDraw::NoteDraw(Note* note, Lane* lane,DWORD nowTime,DWORD drawRan
 	float timeRate = (float)progressTime / (float)drawRangeTime;
 
 	Vector3 startPos, hitPos;
-	lane->GetLaneVectol(startPos,hitPos);
+	normalLane->GetLaneVectol(startPos, hitPos);
 
 	Vector3 dir = hitPos - startPos;
 	Vector3 drawPos = startPos + dir * timeRate;
@@ -30,7 +37,7 @@ void SingleNoteDraw::NoteDraw(Note* note, Lane* lane,DWORD nowTime,DWORD drawRan
 	drawPos.x -= noteSize.x / 2.0f;
 	drawPos.y -= noteSize.y / 2.0f;
 
-	SPRITE sp = Data.atlasSp_;
+	SPRITE sp = Data.normalNoteSp_;
 
 	note->Draw(sp,drawPos);
 

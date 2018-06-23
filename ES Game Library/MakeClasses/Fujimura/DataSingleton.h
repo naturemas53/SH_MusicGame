@@ -13,13 +13,33 @@ public:
 
 	}
 
-	void LoadSprite(std::wstring path){
+	void LoadAtlasSprite(std::wstring path){
 		this->atlasSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
+	void LoadNormalNoteSprite(std::wstring path){
+		this->normalNoteSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
+	void LoadLongNoteSprite(std::wstring path){
+		this->longNoteSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
+	void LoadLongSquareSprite(std::wstring path){
+		this->longSquareSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str(),Color(255,255,254));
+	}
+
+	void LoadHeartSprite(std::wstring path){
+		this->heartSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
 	}
 
 	~DataSingleton(){};
 
 	SPRITE atlasSp_;
+	SPRITE normalNoteSp_;
+	SPRITE longNoteSp_;
+	SPRITE longSquareSp_;
+	SPRITE heartSp_;
 	const Vector2 NOTESIZE_;
 	const Rect SINGLENOTERECT_;
 	const Rect LONGNOTERECT_;

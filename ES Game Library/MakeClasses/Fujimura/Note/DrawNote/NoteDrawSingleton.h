@@ -3,7 +3,7 @@
 #include "../Note/Note.h"
 
 class DrawNote;
-class Lane;
+class BaseLane;
 
 class NoteDrawSingleton{
 
@@ -18,7 +18,7 @@ public:
 
 	~NoteDrawSingleton();
 
-	bool Draw(Note* note, Lane* lane,DWORD nowTime);
+	bool Draw(Note* note, BaseLane* lane, DWORD nowTime);
 	void SetDrawRangeTime(DWORD inTime);
 
 private:
