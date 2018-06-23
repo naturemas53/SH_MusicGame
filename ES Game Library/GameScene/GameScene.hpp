@@ -30,6 +30,7 @@
 #include "../DirectX/Audio/DXAudio8.hpp"
 #include "../DirectX/Show/DShow.hpp"
 #include "../Framework/FixTimer.hpp"
+#include "../MakeClasses/Fujimura/MultiMouseDevice.h"
 
 //------------------------------------------------------------------------------
 //	ゲームシーン生成マクロ
@@ -56,7 +57,7 @@ public:
 		Draw();
 		DXGraphics().UpdateFrame();
 		FixTimer().Wait();
-		return Update(); 
+		return AdvanceUpdate();
 	}
 
 	virtual int NonActiveProc() 
@@ -69,8 +70,17 @@ public:
 	virtual bool Initialize () { return true; }
 	virtual void LoadContent() {}
 
-	virtual int  Update() { return 0; }
+	virtual int AdvanceUpdate(){
+
+		int value = Update();
+		MultiMouse.Update();
+		return value;
+
+	}
 	virtual void Draw  () {}
+
+protected:
+	virtual int  Update() { return 0; }
 
 private:
 	CGameScene(const CGameScene&);
@@ -81,3 +91,4 @@ private:
 //	ゲームシーンインクルードファイル
 //------------------------------------------------------------------------------
 #include "../GameMain.h"
+#include "DeviceGetScene.hpp"

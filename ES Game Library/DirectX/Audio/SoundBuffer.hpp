@@ -58,6 +58,7 @@ public:
 	virtual void SetPan(LONG inPan) = 0;
 	virtual void SetFrequency(DWORD inFrequency) = 0;
 	virtual bool SetFX(const DWORD inFXFlags) = 0;
+	virtual void SetPlayPositionMilliSec(DWORD inTime) = 0;
 
 	inline void SetVolume(const float inVolume)
 	{ SetVolume(DSBVOLUME_MAX - LONG( (DSBVOLUME_MAX - DSBVOLUME_MIN) * (1.0f - inVolume) )); }
@@ -69,6 +70,7 @@ public:
 	virtual LONG  GetPan() = 0;
 	virtual DWORD GetFrequency() = 0;
 	virtual DWORD GetState() = 0;
+	virtual DWORD GetCurrentMilliSec() = 0;
 
 	virtual bool IsPlaying() = 0;
 	virtual bool IsLooping() = 0;
@@ -92,11 +94,13 @@ public:
 	virtual void SetPan      (LONG  inPan)       { m_pDSBuffer->SetPan(inPan); }
 	virtual void SetFrequency(DWORD inFrequency) { m_pDSBuffer->SetFrequency(inFrequency); }
 	virtual bool SetFX       (const DWORD inFXFlags);
+	virtual void SetPlayPositionMilliSec(DWORD inTime);
 
 	virtual LONG  GetVolume();
 	virtual LONG  GetPan();
 	virtual DWORD GetFrequency();
 	virtual DWORD GetState();
+	virtual DWORD GetCurrentMilliSec();
 
 	virtual bool IsPlaying() { return (GetState() & DSBSTATUS_PLAYING) != 0; }
 	virtual bool IsLooping() { return (GetState() & DSBSTATUS_LOOPING) != 0; }
@@ -104,7 +108,8 @@ public:
 	virtual ISound3DBuffer* GetSound3D() { return m_p3DBuffer; }
 
 private:
-	void Restore();
+	void  Restore();
+	DWORD CalcSongLength();
 
 	IDirectSoundBuffer8*   m_pDSBuffer;
 	ISound3DBuffer*        m_p3DBuffer;
@@ -128,11 +133,13 @@ public:
 	virtual void SetPan(LONG inPan) {}
 	virtual void SetFrequency(DWORD inFrequency) {}
 	virtual bool SetFX(const DWORD inFXFlags) { return false; }
+	virtual void SetPlayPositionMilliSec(DWORD inTime){}
 
 	virtual LONG  GetVolume()    { return DSBVOLUME_MIN; }
 	virtual LONG  GetPan()       { return DSBPAN_CENTER; }
 	virtual DWORD GetFrequency() { return 0; }
 	virtual DWORD GetState()     { return 0; }
+	virtual DWORD GetCurrentMilliSec(){ return 0; }
 
 	virtual bool IsPlaying() { return false; }
 	virtual bool IsLooping() { return false; }

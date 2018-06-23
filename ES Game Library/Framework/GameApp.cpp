@@ -25,6 +25,8 @@
 //------------------------------------------------------------------------------
 #include "GameApp.hpp"
 #include "..\..\Resource\resource.h"
+#include "../MakeClasses/Fujimura/MultiMouseDevice.h"
+
 
 //------------------------------------------------------------------------------
 //	クラス変数
@@ -132,9 +134,17 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	// デフォルトフォルダ設定
 	::SetCurrentDirectory(string_buffer);
 
+	//ムービー有効化
+	DShow().Attach(DXGraphics());
+
 	// ゲームシーン設定
-	if(m_GameProc.CreateScene(new GameMain()) == false)
+	if(m_GameProc.CreateScene(new DeviceGetScene()) == false)
 		return false;
+
+	//マルチデバイス対応
+	m_Recv = RawInputReceiver();
+	m_Recv.initialize();
+	m_Recv.addMouseListener(RIDEV_DEFAULT,&MultiMouse.GetDetector());
 
 	return true;
 }
@@ -211,6 +221,7 @@ LRESULT CGameApp::WindowProc(const HWND hWnd, const UINT uMsg, const WPARAM wPar
 	  case WM_CREATE:			return OnCreate       (hWnd, wParam, lParam);
 	  case WM_CLOSE:			return OnClose        (hWnd, wParam, lParam);
 	  case WM_DESTROY:			return OnDestroy      (hWnd, wParam, lParam);
+	  case WM_INPUT:			return OnInput		  (hWnd, wParam, lParam);
 //	  case WM_EXITSIZEMOVE:		return OnExitMouseMove(hWnd, wParam, lParam);
 //	  case WM_NCLBUTTONDOWN:	return OnNCLButtonDown(hWnd, wParam, lParam);
 //	  case WM_NCRBUTTONDOWN:	return OnNCRButtonDown(hWnd, wParam, lParam);
@@ -336,6 +347,15 @@ LRESULT CGameApp::OnClose(const HWND hWnd, const WPARAM wParam, const LPARAM lPa
 LRESULT CGameApp::OnDestroy(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
 {
 	::PostQuitMessage(0);
+	return 0;
+}
+
+//------------------------------------------------------------------------------
+//	WM_INPUTメッセージ処理
+//------------------------------------------------------------------------------
+LRESULT CGameApp::OnInput(const HWND hWnd, const WPARAM wParam, const LPARAM lParam)
+{
+	m_Recv.onRawInput(wParam, lParam);
 	return 0;
 }
 

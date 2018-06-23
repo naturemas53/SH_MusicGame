@@ -28,6 +28,8 @@
 #include "SingleApp.hpp"
 #include "GameFrameWindow.hpp"
 #include "GameProc.hpp"
+#include "..\Extension\MultiDevice\RawInput.h"
+#include "..\Extension\MultiDevice\RawInputListeners.h"
 
 //------------------------------------------------------------------------------
 // ゲームアプリケーションクラス定義
@@ -51,6 +53,8 @@ public:
 		return theGameApp;
 	}
 
+	//マルチデバイスのそれ
+	RawInputReceiver& GetReceiver(){ return this->m_Recv; }
 
 private:
 	CGameApp();
@@ -69,6 +73,7 @@ private:
 	LRESULT OnCreate       (const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnClose        (const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnDestroy      (const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
+	LRESULT OnInput		   (const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnExitMouseMove(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnNCLButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
 	LRESULT OnNCRButtonDown(const HWND hWnd, const WPARAM wParam, const LPARAM lParam);
@@ -85,6 +90,10 @@ private:
 
 	CGameApp(const CGameApp&);				// コピーコンストラクタを生成しない
 	CGameApp& operator=(const CGameApp&);	// 代入演算子を生成しない
+
+	//マルチデバイス対応
+	RawInputReceiver m_Recv;
+
 };
 
 //------------------------------------------------------------------------------
