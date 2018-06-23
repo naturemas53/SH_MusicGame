@@ -69,6 +69,7 @@ private:
 	SOUND bgm_;
 	UI* ui_;
 	SPRITE backLane_;
+	int a;
 
 	// ŠÖ”éŒ¾
 	void SpriteLoad();
