@@ -168,6 +168,7 @@
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\DataSingleton.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgementContext.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\Judgement.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h" />
     <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgementContext.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeCounter.h" />
@@ -264,6 +266,7 @@
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsib.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgeResposibility\JudgeResponsibFactory.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\LongNoteJudgement.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\MouseMotionDetection.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\BaseLane.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\EventBomb.h" />

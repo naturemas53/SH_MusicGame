@@ -1,7 +1,8 @@
 #pragma once
 #include "Judgement.h"
-#include "MouseMotionDetection.h"
+#include "DetectMultiMotion.h"
 #include <vector>
+#include <map>
 
 class EventNoteJudgement : public Judgement{
 
@@ -15,9 +16,9 @@ public:
 private:
 	
 	void DetectionInitialize();
-	bool MoveCheck(MouseMotionDetection& detection,RawInputMouse& mouse);
+	bool MoveCheck(int mousenum);
 
-	std::vector<MouseMotionDetection> mouseDetections_;
+	std::vector<DetectMultiMotion> mouseDetections_;
 	long remainMoveLimit_;
 
 };

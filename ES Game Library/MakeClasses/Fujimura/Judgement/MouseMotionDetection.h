@@ -1,5 +1,6 @@
 #pragma once
 #include "../RawInputMouse.h"
+#include "../../../ESGLib.h"
 
 class MouseMotionDetection{
 

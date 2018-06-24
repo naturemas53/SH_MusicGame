@@ -421,6 +421,9 @@
     <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -707,6 +710,9 @@
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\MouseMotionDetection.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
     </ClInclude>
   </ItemGroup>

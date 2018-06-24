@@ -22,7 +22,7 @@ NoteDrawSingleton::~NoteDrawSingleton(){
 bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, DWORD nowTime){
 
 	long dirTime = note->GetTiming() - (long)nowTime;
-	if (dirTime > (long)this->drawRangeTime_ + 100) return false;
+	if (dirTime > (long)this->drawRangeTime_ ) return false;
 
 	Note::NOTETYPE type = note->GetType();
 	this->drawComponents_[type]->NoteDraw(note,lane,nowTime,this->drawRangeTime_);
