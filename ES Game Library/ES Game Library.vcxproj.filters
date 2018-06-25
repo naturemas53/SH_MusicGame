@@ -181,11 +181,14 @@
     <Filter Include="ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm">
       <UniqueIdentifier>{b92e7f7e-9fda-4662-9ced-042c6ba6adcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\拡張\Spine">
+      <UniqueIdentifier>{517c8415-976b-4fd7-8936-a621c07b5ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\拡張\Spine">
+      <UniqueIdentifier>{a1cc00ff-eba6-45fa-ba4c-417b497928fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameMain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -196,9 +199,6 @@
       <Filter>ソース ファイル\DirectX\Audio</Filter>
     </ClCompile>
     <ClCompile Include="DirectX\Audio\Sound3DBuffer.cpp">
-      <Filter>ソース ファイル\DirectX\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX\Audio\SoundBuffer.cpp">
       <Filter>ソース ファイル\DirectX\Audio</Filter>
     </ClCompile>
     <ClCompile Include="DirectX\Audio\SoundListener.cpp">
@@ -423,6 +423,135 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Animation.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\AnimationState.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\AnimationStateData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Array.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Atlas.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\AtlasAttachmentLoader.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Attachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\AttachmentLoader.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Bone.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\BoneData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\BoundingBoxAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\ClippingAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Color.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Event.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\EventData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\extension.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\IkConstraint.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\IkConstraintData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Json.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\MeshAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathConstraint.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathConstraintData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\PointAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\RegionAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Skeleton.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonBinary.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonBounds.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonClipping.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonJson.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Skin.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Slot.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\SlotData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension\Spine\FujiClasses\SPINE.cpp">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension\Spine\FujiClasses\SpineComponent.cpp">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\TransformConstraint.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\TransformConstraintData.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Triangulator.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\VertexAttachment.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\Spine\Spine\src\VertexEffect.c">
+      <Filter>ソース ファイル\拡張\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\Audio\SoundBuffer.cpp">
+      <Filter>ソース ファイル\DirectX\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -714,6 +843,12 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension\Spine\FujiClasses\SPINE.h">
+      <Filter>ヘッダー ファイル\拡張\Spine</Filter>
+    </ClInclude>
+    <ClInclude Include="Extension\Spine\FujiClasses\SpineComponent.h">
+      <Filter>ヘッダー ファイル\拡張\Spine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

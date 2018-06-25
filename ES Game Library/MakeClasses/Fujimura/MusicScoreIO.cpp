@@ -6,7 +6,7 @@
 #include "Lane\EventLane.h"
 #include "ArrayAlgorithm\AddNoteAlgorithm.h"
 
-MusicScoreIO::MusicScoreIO(std::string path) : PATH_(path){
+MusicScoreIO::MusicScoreIO(std::string path) : PATH_(path.c_str()){
 
 	this->noteFactorys_['S'] = new SingleNoteFactory();
 	this->noteFactorys_['L'] = new LongNoteFactory();

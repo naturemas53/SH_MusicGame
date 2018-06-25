@@ -33,13 +33,13 @@ bool GameMain::Initialize()
 	LANESET laneset;
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
-	laneset.first = new Lane(Vector3(320.0f, 720.0f - 168.0f, 0.0f), laneset.second, 0);
+	laneset.first = new Lane(Vector3(320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 0);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
-	laneset.first = new Lane(Vector3(1280.0f - 320.0f, 720.0f - 168.0f, 0.0f), laneset.second, 1);
+	laneset.first = new Lane(Vector3(1280.0f - 320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 1);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
@@ -48,12 +48,12 @@ bool GameMain::Initialize()
 	this->eventLane_.first = new EventLane(this->eventLane_.second);
 
 	MusicScoreIO scoreIo("musicscore.txt");
-	scoreIo.ImportScore(laneInstances,this->eventLane_.first);
+	scoreIo.ImportScore( laneInstances, this->eventLane_.first);
 
 	this->bgm_ = SoundDevice.CreateSoundFromFile(_T("music.wav"));
 	this->bgm_->Play();
 
-	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("back_ground_sample.png"));
+	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 
 	return true;
 }
@@ -106,12 +106,12 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	SpriteBatch.Begin();
 
 	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
 
 	this->ui_->Draw(nowTime);
-	SpriteBatch.Draw(*this->backLane_,Vector3_Zero,0.5f,Vector3_Zero,Vector3_Zero,Vector2(1280.0f/1920.0f,720.0f/1080.0f));
+	SpriteBatch.Begin();
+	SpriteBatch.Draw(*this->backLane_, Vector3_Zero, 1.0f);
 	for (auto laneset : this->lanes_) laneset.first->Draw(nowTime);
 	this->eventLane_.first->Draw(nowTime);
 
@@ -122,6 +122,7 @@ void GameMain::Draw()
 
 void GameMain::SpriteLoad(){
 
+	Data.LoadAtlasSprite(_T("kari_atlas.png"));
 	Data.LoadNormalNoteSprite(_T("Notes\\normal_notes.png"));
 	Data.LoadLongNoteSprite(_T("Notes\\long_notes.png"));
 	Data.LoadLongSquareSprite(_T("Notes\\long_notes_bar.png"));

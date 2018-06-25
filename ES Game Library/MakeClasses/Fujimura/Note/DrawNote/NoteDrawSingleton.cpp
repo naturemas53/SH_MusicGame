@@ -21,6 +21,12 @@ NoteDrawSingleton::~NoteDrawSingleton(){
 
 bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, DWORD nowTime){
 
+	if (nowTime > 1500){
+
+		int a = 19419;
+
+	}
+
 	long dirTime = note->GetTiming() - (long)nowTime;
 	if (dirTime > (long)this->drawRangeTime_ ) return false;
 

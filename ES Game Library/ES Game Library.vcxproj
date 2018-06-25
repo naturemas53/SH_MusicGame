@@ -148,6 +148,7 @@
     <ClCompile Include="..\SDK\Spine\Spine\src\Triangulator.c" />
     <ClCompile Include="..\SDK\Spine\Spine\src\VertexAttachment.c" />
     <ClCompile Include="..\SDK\Spine\Spine\src\VertexEffect.c" />
+    <ClCompile Include="DirectX\Audio\SoundBuffer.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -245,7 +246,6 @@
     <ClCompile Include="DirectX\Audio\DXAudio8.cpp" />
     <ClCompile Include="DirectX\Audio\MusicSegment.cpp" />
     <ClCompile Include="DirectX\Audio\Sound3DBuffer.cpp" />
-    <ClCompile Include="DirectX\Audio\SoundBuffer.cpp" />
     <ClCompile Include="DirectX\Audio\SoundListener.cpp" />
     <ClCompile Include="DirectX\Common\ComLibrary.cpp" />
     <ClCompile Include="DirectX\Graphics\AnimationModel.cpp" />
@@ -276,8 +276,6 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SDK\Spine\Spine\src\Json.h" />
-    <ClInclude Include="..\SDK\Spine\Spine\src\kvec.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />

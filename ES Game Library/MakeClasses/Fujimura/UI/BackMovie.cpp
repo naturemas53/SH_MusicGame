@@ -7,6 +7,13 @@ BackMovie::BackMovie(){
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚R.wmv")));
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚S.wmv")));
 
+	for (auto movie : this->movies_){
+
+		movie->Replay();
+		movie->Stop();
+
+	}
+
 	this->nowmovie_ = this->movies_.begin();
 
 	(*this->nowmovie_)->Replay();
