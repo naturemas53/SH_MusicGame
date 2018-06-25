@@ -1,0 +1,173 @@
+ES Game Library/Content/music.wav
+ES Game Library/Content/kari_atlas.png
+ES Game Library.sdf
+Debug/ES Game Library.pdb
+Debug/ES Game Library.ilk
+Debug/ES Game Library.exe
+$ git
+ES Game Library/Debug/Sound3DBuffer.obj
+ES Game Library/Debug/SingleNoteJudgement.obj
+ES Game Library/Debug/SingleNoteFactory.obj
+ES Game Library/Debug/SingleNoteDraw.obj
+ES Game Library/Debug/SingleNote.obj
+ES Game Library/Debug/SingleApp.obj
+ES Game Library/Debug/SceneShared.obj
+ES Game Library/Debug/Resource.res
+ES Game Library/Debug/RenderTarget.obj
+ES Game Library/Debug/RawInputMouse.obj
+ES Game Library/Debug/RawInput.obj
+ES Game Library/Debug/Random.obj
+ES Game Library/Debug/NoteDrawSingleton.obj
+ES Game Library/Debug/Network.obj
+ES Game Library/Debug/MusicSegment.obj
+ES Game Library/Debug/MusicScoreIO.obj
+ES Game Library/Debug/MultiMouseSingleton.obj
+ES Game Library/Debug/MultiMouseDevice.obj
+ES Game Library/Debug/Model.obj
+ES Game Library/Debug/Media.obj
+ES Game Library/Debug/Lane.obj
+ES Game Library/Debug/Judgement.obj
+ES Game Library/Debug/JudgeContext.obj
+ES Game Library/Debug/InputEffect.obj
+ES Game Library/Debug/InputDevice.obj
+ES Game Library/Debug/GameProc.obj
+ES Game Library/Debug/GameMain.obj
+ES Game Library/Debug/GameFrameWindow.obj
+ES Game Library/Debug/GameApp.obj
+ES Game Library/Debug/FixTimer.obj
+ES Game Library/Debug/Effect.obj
+ES Game Library/Debug/ES Game Library.tlog/rc.write.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/rc.read.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/rc.command.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/link.write.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/link.read.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/link.command.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/cl.command.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/ES Game Library.lastbuildstate
+ES Game Library/Debug/ES Game Library.tlog/CL.write.1.tlog
+ES Game Library/Debug/ES Game Library.tlog/CL.read.1.tlog
+ES Game Library/Debug/ES Game Library.pch
+ES Game Library/Debug/ES Game Library.log
+ES Game Library/Debug/DeviceGetScene.obj
+ES Game Library/Debug/DXGraphics9.obj
+ES Game Library/Debug/DXGFont.obj
+ES Game Library/Debug/DXAudio8.obj
+ES Game Library/Debug/DShow.obj
+ES Game Library/Debug/DInput8.obj
+ES Game Library/Debug/Combo.obj
+ES Game Library/Debug/ComLibrary.obj
+ES Game Library/Debug/Camera.obj
+ES Game Library/Debug/BackMovie.obj
+ES Game Library/Debug/AnimationModel.obj
+ES Game Library/Content/musicscore.txt
+ES Game Library/Release/DXGraphics9.obj
+ES Game Library/Release/DXGFont.obj
+ES Game Library/Release/DXAudio8.obj
+ES Game Library/Release/DShow.obj
+ES Game Library/Release/DInput8.obj
+ES Game Library/Release/Combo.obj
+ES Game Library/Release/vc120.pdb
+ES Game Library/Release/VertexBuffer.obj
+ES Game Library/Release/ComLibrary.obj
+ES Game Library/Release/Camera.obj
+ES Game Library/Release/AnimationModel.obj
+ES Game Library/Debug/vc120.pdb
+ES Game Library/Debug/vc120.idb
+ES Game Library/Debug/WinMain.obj
+ES Game Library/Debug/VertexBuffer.obj
+ES Game Library/Debug/UI.obj
+ES Game Library/Debug/Thread.obj
+ES Game Library/Debug/Stream.obj
+ES Game Library/Debug/StdAfx.obj
+ES Game Library/Debug/StateBlock.obj
+ES Game Library/Debug/SpriteBatch.obj
+ES Game Library/Debug/Sprite3D.obj
+ES Game Library/Debug/Sprite.obj
+ES Game Library/Debug/SoundListener.obj
+ES Game Library/Release/Thread.obj
+ES Game Library/Release/Stream.obj
+ES Game Library/Release/StdAfx.obj
+ES Game Library/Release/StateBlock.obj
+ES Game Library/Release/SpriteBatch.obj
+ES Game Library/Release/Sprite3D.obj
+ES Game Library/Release/Sprite.obj
+ES Game Library/Release/SoundListener.obj
+ES Game Library/Release/SoundBuffer.obj
+ES Game Library/Release/Sound3DBuffer.obj
+ES Game Library/Release/SingleApp.obj
+ES Game Library/Release/SceneShared.obj
+ES Game Library/Release/Resource.res
+ES Game Library/Release/RenderTarget.obj
+ES Game Library/Release/RawInput.obj
+ES Game Library/Release/Random.obj
+ES Game Library/Release/Network.obj
+ES Game Library/Release/MusicSegment.obj
+ES Game Library/Release/Model.obj
+ES Game Library/Release/Media.obj
+ES Game Library/Release/Judgement.obj
+ES Game Library/Release/InputEffect.obj
+ES Game Library/Release/InputDevice.obj
+ES Game Library/Release/GameFrameWindow.obj
+ES Game Library/Release/FixTimer.obj
+ES Game Library/Release/Effect.obj
+ES Game Library/Release/ES Game Library.tlog/unsuccessfulbuild
+ES Game Library/Release/ES Game Library.tlog/rc.write.1.tlog
+ES Game Library/Release/ES Game Library.tlog/rc.read.1.tlog
+ES Game Library/Release/ES Game Library.tlog/rc.command.1.tlog
+ES Game Library/Release/ES Game Library.tlog/link.write.1.tlog
+ES Game Library/Release/ES Game Library.tlog/link.read.1.tlog
+ES Game Library/Release/ES Game Library.tlog/link.command.1.tlog
+ES Game Library/Release/ES Game Library.tlog/cl.command.1.tlog
+ES Game Library/Release/ES Game Library.tlog/ES Game Library.lastbuildstate
+ES Game Library/Release/ES Game Library.tlog/CL.write.1.tlog
+ES Game Library/Release/ES Game Library.tlog/CL.read.1.tlog
+ES Game Library/Release/ES Game Library.pch
+ES Game Library/Release/ES Game Library.log
+ES Game Library/Debug/SoundBuffer.obj
+ES Game Library/Debug/extension.obj
+ES Game Library/Debug/VertexEffect.obj
+ES Game Library/Debug/VertexAttachment.obj
+ES Game Library/Debug/Triangulator.obj
+ES Game Library/Debug/TransformConstraintData.obj
+ES Game Library/Debug/TransformConstraint.obj
+ES Game Library/Debug/SpineComponent.obj
+ES Game Library/Debug/SlotData.obj
+ES Game Library/Debug/Slot.obj
+ES Game Library/Debug/Skin.obj
+ES Game Library/Debug/SkeletonJson.obj
+ES Game Library/Debug/SkeletonData.obj
+ES Game Library/Debug/SkeletonClipping.obj
+ES Game Library/Debug/SkeletonBounds.obj
+ES Game Library/Debug/SkeletonBinary.obj
+ES Game Library/Debug/Skeleton.obj
+ES Game Library/Debug/RegionAttachment.obj
+ES Game Library/Debug/PointAttachment.obj
+ES Game Library/Debug/PathConstraintData.obj
+ES Game Library/Debug/PathConstraint.obj
+ES Game Library/Debug/PathAttachment.obj
+ES Game Library/Debug/MeshAttachment.obj
+ES Game Library/Debug/Json.obj
+ES Game Library/Debug/IkConstraintData.obj
+ES Game Library/Debug/IkConstraint.obj
+ES Game Library/Debug/EventData.obj
+ES Game Library/Debug/Event.obj
+ES Game Library/Debug/Color.obj
+ES Game Library/Debug/ClippingAttachment.obj
+ES Game Library/Debug/BoundingBoxAttachment.obj
+ES Game Library/Debug/BoneData.obj
+ES Game Library/Debug/Bone.obj
+ES Game Library/Debug/AttachmentLoader.obj
+ES Game Library/Debug/Attachment.obj
+ES Game Library/Debug/AtlasAttachmentLoader.obj
+ES Game Library/Debug/Atlas.obj
+ES Game Library/Debug/Array.obj
+ES Game Library/Debug/AnimationStateData.obj
+ES Game Library/Debug/AnimationState.obj
+ES Game Library/Debug/Animation.obj
+ES Game Library/Content/spineboy/export/spineboy.png
+.gitignore
+ES Game Library.v12.suo
+ES Game Library/ES Game Library.vcxproj
+Debug/Content/spineboy/export/spineboy.png
+Debug/Content/Script/Template Script.nut
+*.obj
