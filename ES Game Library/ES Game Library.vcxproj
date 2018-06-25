@@ -48,9 +48,9 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)SDK\DirectX\Include;$(SolutionDir)SDK\DirectX\dmusic\Include;$(SolutionDir)SDK\DirectX\dshow\Include;$(SolutionDir)SDK\DirectX\DirectXTK\Inc;$(SolutionDir)SDK\Physics\Box2D\include;$(SolutionDir)SDK\Physics\Bullet\include;$(SolutionDir)SDK\SpriteStudio\Include;$(SolutionDir)SDK\Effekseer\include;$(SolutionDir)SDK\Live2D\include;$(SolutionDir)SDK\Squirrel\include;$(SolutionDir)SDK\Kinect\inc;$(SolutionDir)SDK\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)SDK\DirectX\Include;$(SolutionDir)SDK\DirectX\dmusic\Include;$(SolutionDir)SDK\DirectX\dshow\Include;$(SolutionDir)SDK\DirectX\DirectXTK\Inc;$(SolutionDir)SDK\Physics\Box2D\include;$(SolutionDir)SDK\Physics\Bullet\include;$(SolutionDir)SDK\SpriteStudio\Include;$(SolutionDir)SDK\Effekseer\include;$(SolutionDir)SDK\Live2D\include;$(SolutionDir)SDK\Squirrel\include;$(SolutionDir)SDK\Kinect\inc;$(SolutionDir)SDK\OpenGL\Include;$(SolutionDir)SDK\Spine;$(IncludePath)</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)SDK\DirectX\dmusic\Lib\x86;$(SolutionDir)SDK\DirectX\Lib\x86;$(SolutionDir)SDK\DirectX\dshow\Lib\x86;$(SolutionDir)SDK\DirectX\DirectXTK\Lib\x86;$(SolutionDir)SDK\Physics\Box2D\lib\x86;$(SolutionDir)SDK\Physics\Bullet\lib\x86;$(SolutionDir)SDK\SpriteStudio\Lib\x86;$(SolutionDir)SDK\Effekseer\lib;$(SolutionDir)SDK\Live2D\lib;$(SolutionDir)SDK\Squirrel\lib;$(SolutionDir)SDK\Kinect\lib;$(SolutionDir)SDK\OpenGL\Lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)SDK\DirectX\Include;$(SolutionDir)SDK\DirectX\dmusic\Include;$(SolutionDir)SDK\DirectX\dshow\Include;$(SolutionDir)SDK\DirectX\DirectXTK\Inc;$(SolutionDir)SDK\Physics\Box2D\include;$(SolutionDir)SDK\Physics\Bullet\include;$(SolutionDir)SDK\SpriteStudio\Include;$(SolutionDir)SDK\Effekseer\include;$(SolutionDir)SDK\Live2D\include;$(SolutionDir)SDK\Squirrel\include;$(SolutionDir)SDK\Kinect\inc;$(SolutionDir)SDK\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)SDK\DirectX\Include;$(SolutionDir)SDK\DirectX\dmusic\Include;$(SolutionDir)SDK\DirectX\dshow\Include;$(SolutionDir)SDK\DirectX\DirectXTK\Inc;$(SolutionDir)SDK\Physics\Box2D\include;$(SolutionDir)SDK\Physics\Bullet\include;$(SolutionDir)SDK\SpriteStudio\Include;$(SolutionDir)SDK\Effekseer\include;$(SolutionDir)SDK\Live2D\include;$(SolutionDir)SDK\Squirrel\include;$(SolutionDir)SDK\Kinect\inc;$(SolutionDir)SDK\OpenGL\Include;$(SolutionDir)SDK\Spine;$(IncludePath)</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)SDK\DirectX\dmusic\Lib\x86;$(SolutionDir)SDK\DirectX\Lib\x86;$(SolutionDir)SDK\DirectX\dshow\Lib\x86;$(SolutionDir)SDK\DirectX\DirectXTK\Lib\x86;$(SolutionDir)SDK\Box2D\lib\x86;$(SolutionDir)SDK\Bullet\lib\x86;$(SolutionDir)SDK\SpriteStudio\Lib\x86;$(SolutionDir)SDK\Effekseer\lib;$(SolutionDir)SDK\Live2D\lib;$(SolutionDir)SDK\Squirrel\lib;$(SolutionDir)SDK\Kinect\lib;$(SolutionDir)SDK\OpenGL\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -109,6 +109,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\SDK\Spine\Spine\src\Animation.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\AnimationState.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\AnimationStateData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Array.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Atlas.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\AtlasAttachmentLoader.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Attachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\AttachmentLoader.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Bone.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\BoneData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\BoundingBoxAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\ClippingAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Color.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Event.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\EventData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\extension.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\IkConstraint.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\IkConstraintData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Json.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\MeshAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathConstraint.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\PathConstraintData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\PointAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\RegionAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Skeleton.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonBinary.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonBounds.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonClipping.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SkeletonJson.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Skin.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Slot.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\SlotData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\TransformConstraint.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\TransformConstraintData.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\Triangulator.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\VertexAttachment.c" />
+    <ClCompile Include="..\SDK\Spine\Spine\src\VertexEffect.c" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -146,6 +185,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Extension\Spine\FujiClasses\SPINE.cpp" />
+    <ClCompile Include="Extension\Spine\FujiClasses\SpineComponent.cpp" />
     <ClCompile Include="Extension\Squirrel\Script.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -235,6 +276,8 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\SDK\Spine\Spine\src\Json.h" />
+    <ClInclude Include="..\SDK\Spine\Spine\src\kvec.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />
@@ -246,6 +289,8 @@
     <ClInclude Include="Extension\MultiDevice\RawInput.h" />
     <ClInclude Include="Extension\MultiDevice\RawInputListeners.h" />
     <ClInclude Include="Extension\OpenGL\OpenGL.hpp" />
+    <ClInclude Include="Extension\Spine\FujiClasses\SPINE.h" />
+    <ClInclude Include="Extension\Spine\FujiClasses\SpineComponent.h" />
     <ClInclude Include="Extension\Squirrel\Script.hpp" />
     <ClInclude Include="Extension\Squirrel\Squirrel.hpp" />
     <ClInclude Include="GameMain.h" />
