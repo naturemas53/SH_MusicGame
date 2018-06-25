@@ -2604,7 +2604,7 @@ void CDXGraphics9::RenderTargetToBackBuffer(const RECT* pDestRect,
 											const D3DTEXTUREFILTERTYPE inFilter)
 {
 	SetDefaultRenderTarget();
-	StretchRect(*pSrcTarget, pSrcRect, m_pBackBufferSurface, pDestRect, inFilter);
+	StretchRect(m_pBackBufferSurface, pDestRect, *pSrcTarget, pSrcRect, inFilter);
 /*
 #ifdef _DEBUG
 	if(m_pD3DDevice == NULL) {

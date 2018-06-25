@@ -106,11 +106,12 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	SpriteBatch.Begin();
+	
 
 	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
 
 	this->ui_->Draw(nowTime);
+	SpriteBatch.Begin();
 	SpriteBatch.Draw(*this->backLane_,Vector3_Zero,0.5f,Vector3_Zero,Vector3_Zero,Vector2(1280.0f/1920.0f,720.0f/1080.0f));
 	for (auto laneset : this->lanes_) laneset.first->Draw(nowTime);
 	this->eventLane_.first->Draw(nowTime);

@@ -181,6 +181,24 @@
     <Filter Include="ソース ファイル\MakeClasses\Fujimura\ArrayAlgorithm">
       <UniqueIdentifier>{b92e7f7e-9fda-4662-9ced-042c6ba6adcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Yoshi">
+      <UniqueIdentifier>{27d16bfe-24a7-43fd-9bbf-73de40af0b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Yoshi\Effect">
+      <UniqueIdentifier>{7b85107c-0f8c-47a7-9ac5-7255417b163e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi">
+      <UniqueIdentifier>{e7d8f9b2-4001-4bc8-9478-a70f811c67b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi\Effect">
+      <UniqueIdentifier>{c4fba73c-9247-44fa-8ca5-b13703f074fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Yoshi\Factory">
+      <UniqueIdentifier>{8a3566a6-d0e7-461b-94f6-1d9c058ea037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi\Factory">
+      <UniqueIdentifier>{480152f6-36d7-47f0-a15c-5d35eb9b6934}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -420,6 +438,42 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Noise.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Scan_Line.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Manager.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Shader.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Rester.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Bloom.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Singleton.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Bloom_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Noise_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Rester_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Scan_Line_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Shader_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -706,8 +760,41 @@
     <ClInclude Include="MakeClasses\Fujimura\Lane\EventBomb.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\Judgement\MouseMotionDetection.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Judgement</Filter>
+    <ClInclude Include="MakeClasses\yoshi\effect\Noise.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Scan_Line.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Manager.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Shader.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Rester.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Bloom.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Singleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Bloom_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Noise_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Rester_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Scan_Line_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

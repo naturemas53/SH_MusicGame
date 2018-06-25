@@ -32,8 +32,9 @@ void UI::Update(DWORD nowTime){
 void UI::Draw(DWORD nowTime){
 
 	this->movie_->Draw();
+	SpriteBatch.Begin();
 	this->combo_->Draw();
-
+	SpriteBatch.End();
 }
 
 void UI::NoticeJudge(JUDGE judge){
