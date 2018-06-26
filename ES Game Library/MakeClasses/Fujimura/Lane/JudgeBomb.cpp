@@ -1,11 +1,10 @@
 #include "JudgeBomb.h"
 #include "../DataSingleton.h"
 
-JudgeBomb::JudgeBomb(Vector3 drawPos) :
+JudgeBomb::JudgeBomb() :
 MAX_PAL_VALUE_(Data.BOMB_MAX_PAL_VALUE_){
 
 	this->palValue_ = 0;
-	this->drawPos_ = drawPos;
 
 	this->font_ = GraphicsDevice.CreateDefaultFont();
 	this->color_ = Color(255, 255, 255);
@@ -24,13 +23,13 @@ void JudgeBomb::Update(){
 
 }
 
-void JudgeBomb::Draw(){
+void JudgeBomb::Draw(Vector3 drawPos){
 
 	if (this->palValue_ <= 0) return;
 
 	Vector2 pos = Vector2_Zero;
-	pos.x = this->drawPos_.x;
-	pos.y = this->drawPos_.y;
+	pos.x = drawPos.x;
+	pos.y = drawPos.y;
 
 	this->color_.A((float)this->palValue_ / (float)this->MAX_PAL_VALUE_);
 

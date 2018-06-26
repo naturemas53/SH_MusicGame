@@ -21,6 +21,12 @@ void EventNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD dr
 	if (note->GetType() != Note::EVENTNOTE) return;
 	SPRITE sp = Data.heartSp_;
 
-	note->Draw(sp, Vector3_Zero);
+	float width = 867.0f;
+	float height = 753.0f;
+
+	width = 1280.0f - width;
+	height = 720.0f - height;
+
+	note->Draw(sp, Vector3(width / 2.0f,height / 2.0f,0.0f));
 
 }

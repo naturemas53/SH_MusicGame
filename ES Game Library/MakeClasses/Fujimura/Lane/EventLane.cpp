@@ -1,11 +1,15 @@
 #include "EventLane.h"
+#include "Lane.h"
 #include "../Judgement/JudgementContext.h"
 #include "../ArrayAlgorithm/DeleteNoteAlgorithm.h"
 #include "../MultiMouseDevice.h"
 #include "../Note/DrawNote/NoteDrawSingleton.h"
 #include "../Lane/JudgeBomb.h"
+#include <typeinfo>
 
 EventLane::EventLane(JudgementContext* judgement){
+
+	this->postMethod_ = nullptr;
 
 	this->judgement_ = judgement;
 	JUDGENOTICE notice = [this](JUDGE judge){
@@ -20,7 +24,7 @@ EventLane::EventLane(JudgementContext* judgement){
 
 	};
 	this->judgement_->EntryJudgeMethod(notice);
-	this->bomb_ = new JudgeBomb(Vector3(1280.0f / 2.0f,700.0f,0.0f));
+	this->bomb_ = new JudgeBomb();
 	this->judgement_->EntryJudgeMethod([&](JUDGE judge){
 
 		bomb_->NoticeJudge(judge);
@@ -36,6 +40,8 @@ EventLane::~EventLane(){
 
 void EventLane::Update(DWORD nowTime){
 
+	this->bomb_->Update();
+
 	auto itr = this->notes_.begin();
 	if (itr == this->notes_.end()) return;
 
@@ -46,7 +52,18 @@ void EventLane::Update(DWORD nowTime){
 
 void EventLane::Draw(DWORD nowTime){
 
-	this->bomb_->Draw();
+	VISITORMETHOD method = [this](BaseLane* baselane){
+		if (typeid(*baselane) != typeid(Lane)) return;
+
+		Lane* lane = (Lane*)baselane;
+
+		Vector3 startPos, hitPos;
+		lane->GetLaneVectol(startPos,hitPos);
+		this->bomb_->Draw(startPos);
+
+	};
+
+	if (this->postMethod_ != nullptr) this->postMethod_(method);
 
 	auto itr = this->notes_.begin();
 	if (itr == this->notes_.end()) return;
@@ -55,8 +72,6 @@ void EventLane::Draw(DWORD nowTime){
 
 }
 
-void EventLane::Accept(VISITORMETHOD visit){
+void EventLane::Accept(VISITORMETHOD visit){visit(this);}
 
-	visit(this);
-
-}
+void EventLane::EntryPostMethod(std::function<void(VISITORMETHOD)> postMethod){this->postMethod_ = postMethod;}

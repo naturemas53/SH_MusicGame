@@ -7,21 +7,18 @@ class JudgeBomb{
 
 public:
 
-	JudgeBomb(Vector3 drawPos);
+	JudgeBomb();
 	~JudgeBomb();
 
 	void Update();
-	void Draw();
+	void Draw(Vector3 pos);
 	void NoticeJudge(JUDGE judge);
 
 private:
 
 	const int MAX_PAL_VALUE_;
 
-	Vector3 drawPos_;
 	int palValue_;
-
-	//Rect useRect_;
 
 	//test
 	FONT font_;

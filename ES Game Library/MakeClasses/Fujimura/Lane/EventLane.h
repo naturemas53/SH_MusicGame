@@ -11,7 +11,6 @@ class EventLane : public BaseLane{
 
 public:
 
-
 	EventLane(JudgementContext* judgment);
 	~EventLane();
 
@@ -19,10 +18,11 @@ public:
 	void Draw(DWORD nowTime);
 
 	void Accept(VISITORMETHOD visitorMethod);
-	//void EntryPostMethod();
+	void EntryPostMethod(std::function<void(VISITORMETHOD)> postMethod);
 
 private:
 
+	std::function<void(VISITORMETHOD)> postMethod_;
 	JudgementContext* judgement_;
 	JudgeBomb* bomb_;
 

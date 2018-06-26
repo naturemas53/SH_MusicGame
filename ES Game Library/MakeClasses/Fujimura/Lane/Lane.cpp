@@ -9,20 +9,19 @@ SIZE_(Vector2(0.0f,0.0f)),
 POS_(inPos){
 
 	this->judge_ = inJudge;
-	std::vector<Note*>& notes = this->notes_;
-	this->judge_->EntryJudgeMethod([&](JUDGE judge){ 
+	this->judge_->EntryJudgeMethod([this](JUDGE judge){ 
 	
-		auto itr = notes.begin();
-		if (itr == notes.end()) return;
+		auto itr = this->notes_.begin();
+		if (itr == this->notes_.end()) return;
 		delete (*itr);
-		notes.erase(itr);
+		this->notes_.erase(itr);
 
 	});
 
 	Vector3 startPos, hitPos;
 	this->GetLaneVectol(startPos,hitPos);
 	hitPos.y += this->SIZE_.y / 2.0f;
-	this->bomb_ = new JudgeBomb(hitPos);
+	this->bomb_ = new JudgeBomb();
 
 	this->judge_->EntryJudgeMethod([&](JUDGE judge){
 		bomb_->NoticeJudge(judge);
@@ -57,17 +56,13 @@ void Lane::Draw(DWORD nowTime){
 
 	//SpriteBatch.Draw(*sp, this->POS_,userect);
 
-	this->bomb_->Draw();
+	this->bomb_->Draw(this->POS_);
 	for (auto note : this->notes_){
 		if (!(NoteDrawComponent.Draw(note, this, nowTime)) )break;
 	}
 }
 
-void Lane::Accept(VISITORMETHOD visit){
-	
-	visit(this);
-
-}
+void Lane::Accept(VISITORMETHOD visit){visit(this);}
 
 void Lane::GetLaneVectol(Vector3 &startPos, Vector3 &hitPos){
 
