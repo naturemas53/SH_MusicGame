@@ -8,7 +8,7 @@ UI::UI(){
 	this->combo_ = new Combo();
 	this->movie_ = new BackMovie();
 
-	ISRUN teams = [](int combo){ return combo % 50 == 0; };
+	ISRUN teams = [](int combo){ return combo % 10 == 0; };
 	NOTICE notice = [&](){ movie_->MovieChange(); };
 	this->combo_->EntryComboUpMethod(teams,notice);
 

@@ -9,6 +9,7 @@
 #include "MakeClasses\Fujimura\MusicScoreIO.h"
 #include "MakeClasses\Fujimura\UI\UI.h"
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
+#include "MakeClasses\Fujimura\Dancer.h"
 #include <functional>
 
 /// <summary>
@@ -53,6 +54,8 @@ bool GameMain::Initialize()
 	this->bgm_ = SoundDevice.CreateSoundFromFile(_T("music.wav"));
 	this->bgm_->Play();
 
+	this->dancer_ = new Dancer();
+
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 
 	return true;
@@ -75,6 +78,8 @@ void GameMain::Finalize()
 	delete this->eventLane_.second;
 
 	delete this->ui_;
+
+	delete this->dancer_;
 }
 
 /// <summary>
@@ -93,6 +98,8 @@ int GameMain::Update()
 	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
 	this->ui_->Update(nowTime);
 
+	this->dancer_->Update(0);
+
 	return 0;
 }
 
@@ -110,6 +117,9 @@ void GameMain::Draw()
 	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
 
 	this->ui_->Draw(nowTime);
+	GraphicsDevice.BeginAlphaBlend();
+	this->dancer_->Draw(0);
+	GraphicsDevice.EndAlphaBlend();
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*this->backLane_, Vector3_Zero, 1.0f);
 	for (auto laneset : this->lanes_) laneset.first->Draw(nowTime);

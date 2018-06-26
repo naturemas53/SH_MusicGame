@@ -7,6 +7,7 @@ class Lane;
 class EventLane;
 class JudgementContext;
 class UI;
+class Dancer;
 
 class GameMain : public CGameScene {
 public:
@@ -69,6 +70,7 @@ private:
 	SOUND bgm_;
 	UI* ui_;
 	SPRITE backLane_;
+	Dancer* dancer_;
 
 	// ŠÖ”éŒ¾
 	void SpriteLoad();

@@ -27,9 +27,9 @@ void LongBar::Draw(SPRITE sp, Vector3 drawPos, Vector2 noteSize, float angle, fl
 	}
 
 	int blue = (int)(255.0f * ((float)lightCount / (float)this->MAX_LIGHT_VALUE_));
-	Color color = Color(255, 255, blue, 255);
+	Color color = Color(255, 255, blue, 128);
 
-	drawPos.y -= noteSize.y;
+	drawPos.y -= noteSize.y + 5.0f;
 
 	float spWidth = sp->GetWidth();
 	float spHeight = 73.0f;

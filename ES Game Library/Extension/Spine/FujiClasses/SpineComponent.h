@@ -50,4 +50,4 @@ private:
 
 };
 
-#define Spine SpineComponent::GetInstance()
+#define SpineSingleton SpineComponent::GetInstance()

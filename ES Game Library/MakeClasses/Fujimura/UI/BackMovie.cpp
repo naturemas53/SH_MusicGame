@@ -10,8 +10,11 @@ BackMovie::BackMovie(){
 	for (auto movie : this->movies_){
 
 		movie->Replay();
+		SpriteBatch.Begin();
+		SpriteBatch.Draw(*movie, Vector3_Zero, 1.0f);
+		SpriteBatch.End();
 		movie->Stop();
-
+		
 	}
 
 	this->nowmovie_ = this->movies_.begin();
@@ -54,8 +57,6 @@ void BackMovie::MovieChange(){
 }
 
 void BackMovie::MovieReset(){ 
-
-
 
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();

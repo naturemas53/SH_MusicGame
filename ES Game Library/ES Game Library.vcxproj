@@ -209,6 +209,7 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\DataSingleton.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp" />
@@ -299,6 +300,7 @@
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\ArrayAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Dancer.h" />
     <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.h" />

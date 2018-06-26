@@ -187,6 +187,9 @@
     <Filter Include="ヘッダー ファイル\拡張\Spine">
       <UniqueIdentifier>{a1cc00ff-eba6-45fa-ba4c-417b497928fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\拡張\Spine\Make_Fujimura">
+      <UniqueIdentifier>{f7a24396-f8cb-48fa-9e82-ba5db7fb6fcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -526,12 +529,6 @@
     <ClCompile Include="..\SDK\Spine\Spine\src\SlotData.c">
       <Filter>ソース ファイル\拡張\Spine</Filter>
     </ClCompile>
-    <ClCompile Include="Extension\Spine\FujiClasses\SPINE.cpp">
-      <Filter>ソース ファイル\拡張\Spine</Filter>
-    </ClCompile>
-    <ClCompile Include="Extension\Spine\FujiClasses\SpineComponent.cpp">
-      <Filter>ソース ファイル\拡張\Spine</Filter>
-    </ClCompile>
     <ClCompile Include="..\SDK\Spine\Spine\src\TransformConstraint.c">
       <Filter>ソース ファイル\拡張\Spine</Filter>
     </ClCompile>
@@ -552,6 +549,15 @@
     </ClCompile>
     <ClCompile Include="DirectX\Audio\SoundBuffer.cpp">
       <Filter>ソース ファイル\DirectX\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension\Spine\FujiClasses\SPINE.cpp">
+      <Filter>ソース ファイル\拡張\Spine\Make_Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="Extension\Spine\FujiClasses\SpineComponent.cpp">
+      <Filter>ソース ファイル\拡張\Spine\Make_Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -849,6 +855,9 @@
     </ClInclude>
     <ClInclude Include="Extension\Spine\FujiClasses\SpineComponent.h">
       <Filter>ヘッダー ファイル\拡張\Spine</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Dancer.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

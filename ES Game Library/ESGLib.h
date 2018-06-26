@@ -40,6 +40,7 @@
 #include "DirectX\Show\DShow.hpp"
 
 //自作クラス（藤村）
+#include "Extension\Spine\FujiClasses\SpineComponent.h"
 #include "MakeClasses\Fujimura\MultiMouseDevice.h"
 
 #include "Framework\FixTimer.hpp"
