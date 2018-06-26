@@ -31,6 +31,7 @@
 #include "../DirectX/Show/DShow.hpp"
 #include "../Framework/FixTimer.hpp"
 #include "../MakeClasses/Fujimura/MultiMouseDevice.h"
+#include "../MakeClasses/yoshi/effect/Effect_Singleton.h"
 
 //------------------------------------------------------------------------------
 //	ゲームシーン生成マクロ
@@ -72,6 +73,7 @@ public:
 
 	virtual int AdvanceUpdate(){
 
+		Effect_Singleton::GetInstance().Update();
 		int value = Update();
 		MultiMouse.Update();
 		return value;

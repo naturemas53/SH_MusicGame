@@ -8,7 +8,8 @@
 //----------------------------------------------------------------------------
 sampler tex0 : register(s0);
 
-float Time = 0.5;
+float Time = 1.0;
+float scan_parameter = 1;
  
 
 //----------------------------------------------------------------------------
@@ -22,7 +23,7 @@ float4 PS_P0_Main(float2 UV : TEXCOORD0) : COLOR0
 	color += abs(sin(UV.y * 100.0 + Time * 5.0)) * 0.08;
 	color += abs(sin(UV.y * 300.0 - Time * 10.0)) * 0.05;
 
-	color.r *= 1.25f;
+	color.r *= 1.0f;
 
 	return float4(color, 1.0);
 

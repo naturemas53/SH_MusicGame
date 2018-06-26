@@ -1,5 +1,5 @@
 #include "BackMovie.h"
-
+#include "../../yoshi/effect/Effect_Singleton.h"
 
 BackMovie::BackMovie(){
 
@@ -15,7 +15,7 @@ BackMovie::BackMovie(){
 	(*this->nowmovie_)->Replay();
 
 	effect_noise = Noise();
-	effect_scan_line = Scan_Line();
+
 
 	noise_time = 0;
 
@@ -29,11 +29,12 @@ BackMovie::~BackMovie(){
 void BackMovie::Update(){
 
 	if ((*this->nowmovie_)->IsComplete()) (*this->nowmovie_)->Replay();
-
-	effect_noise.Update();
 	
 
-	if (noise_time > 0) noise_time--;
+	if (noise_time > 0)
+	{
+		noise_time--;
+	}
 
 		
 }
@@ -44,9 +45,6 @@ void BackMovie::Draw(){
 	GraphicsDevice.SetRenderTarget(offscreen[0]);
 	GraphicsDevice.Clear(Color_Black);
 
-	/*RENDERTARGET unko2 = effect_scan_line.Go_Shader(offscreen[1]);*/
-
-
 	int width = (*this->nowmovie_)->GetWidth();
 	int height = (*this->nowmovie_)->GetHeight();
 
@@ -56,10 +54,23 @@ void BackMovie::Draw(){
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 	SpriteBatch.End();
 
-	RENDERTARGET unko = effect_noise.Go_Shader(offscreen[0]);
-	if (noise_time <= 0) unko = offscreen[0];
+	std::vector<Effect_Singleton::SHADER_NAME> comands_;
+	comands_.push_back(Effect_Singleton::noise);
+	comands_.push_back(Effect_Singleton::scan_line);
+	comands_.push_back(Effect_Singleton::blur);
+
+
+	RENDERTARGET unko = Effect_Singleton::GetInstance().Image_On_Effect(comands_,offscreen[0]);
+	
+
+	if (noise_time <= 0)
+	{
+		unko = offscreen[0];
+	}
 
 	GraphicsDevice.SetDefaultRenderTarget();
+	
+
 	GraphicsDevice.RenderTargetToBackBuffer(nullptr, unko, nullptr);
 	
 
@@ -94,7 +105,7 @@ void BackMovie::MovieChange(){
 void BackMovie::MovieReset(){ 
 
 	noise_time = 30;
-	RENDERTARGET unko = effect_noise.Go_Shader(offscreen[0]);
+
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
 	(*this->nowmovie_)->Replay();

@@ -4,30 +4,30 @@
 Scan_Line::Scan_Line()
 {
 	////ëñç∏ê¸èâä˙âª
-	scan_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Scan_line.Fx"));
 	//scan_parameter = 1000;
-	offscreen = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-	scan_parameter = 1;
+	offscreen_scan = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+	scan_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Scan_line.Fx"));
+	Time = 500;
 
 	
 }
-
-
 Scan_Line::~Scan_Line()
 {
 }
+
 bool Scan_Line::Initialize()
 {
 	return true;
 }
 void Scan_Line::Update()
 {
-	scan_parameter += 1;
-	scan_effect->SetParameter("Time", scan_parameter);
+	Time += 100;
+	scan_effect->SetParameter("Time",Time);
+
 }
 RENDERTARGET Scan_Line::Go_Shader(RENDERTARGET srcRT)
 {
-	GraphicsDevice.SetRenderTarget(offscreen);
+	GraphicsDevice.SetRenderTarget(offscreen_scan);
 	GraphicsDevice.Clear(Color_Black);
 
 	//GraphicsDevice.RenderTargetToBackBuffer(nullptr, offscreen[0], nullptr);
@@ -40,8 +40,8 @@ RENDERTARGET Scan_Line::Go_Shader(RENDERTARGET srcRT)
 	////SpriteBatch_TopMostÇ∆ÇÕï`âÊëSñ ç≈óDêÊÇ…Ç∑ÇÈ
 	//SpriteBatch.DrawSimple(*offscreen[1], Vector3(0.0f, 0.0f, SpriteBatch_TopMost), 0.5f);
 
-	GraphicsDevice.RenderTargetToRenderTarget(offscreen, srcRT, scan_effect);
-	return offscreen;
+	GraphicsDevice.RenderTargetToRenderTarget(offscreen_scan, srcRT, scan_effect);
+	return offscreen_scan;
 
 
 

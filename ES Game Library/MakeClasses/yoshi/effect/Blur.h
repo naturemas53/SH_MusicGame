@@ -2,11 +2,11 @@
 #include "../../../ESGLib.h"
 #include "Shader.h"
 
-class Scan_Line : public Shader
+class Blur : public Shader
 {
 public:
-	Scan_Line();
-	~Scan_Line();
+	Blur();
+	~Blur();
 
 	virtual bool Initialize();
 	virtual void Update();
@@ -15,11 +15,11 @@ public:
 
 private:
 
-	EFFECT scan_effect;
-	RENDERTARGET offscreen_scan;
-	float Time;
+	EFFECT blur_effect;
+	RENDERTARGET offscreen;
 	
-
-
 };
+
+
+
 

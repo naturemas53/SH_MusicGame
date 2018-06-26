@@ -1,6 +1,8 @@
 #include "Effect_Singleton.h"
 #include "Shader.h"
 #include "../factory/Noise_Factory.h"
+#include "../factory/Scan_Line_Factory.h"
+#include "../factory/Blur_Factory.h"
 
 Effect_Singleton::Effect_Singleton()
 {
@@ -9,6 +11,7 @@ Effect_Singleton::Effect_Singleton()
 	this->shader_aggregation[rester] = nullptr;
 	this->shader_aggregation[scan_line] = nullptr;
 	this->shader_aggregation[bloom] = nullptr;
+
 }
 
 
@@ -23,6 +26,7 @@ Effect_Singleton::~Effect_Singleton()
 
 void Effect_Singleton::Update()
 {
+	//シェーダーアップデート呼び出す
 	for (auto shader : this->shader_aggregation)
 	{
 
@@ -31,16 +35,18 @@ void Effect_Singleton::Update()
 
 	}
 }
-void Effect_Singleton::SetParameter()
+void Effect_Singleton::SetParameter(SHADER_NAME shaderName, std::string parameterName, float value)
 {
+	auto itr = this->shader_aggregation.find(shaderName);
+	if (itr == this->shader_aggregation.end()) return;
+
+	(*itr).second->SetParameter(parameterName,value);
 
 }
 
 
 RENDERTARGET Effect_Singleton::Image_On_Effect(std::vector<SHADER_NAME>&Command_q, RENDERTARGET original_image)
 {
-
-	RENDERTARGET render;
 
 	for (auto name : Command_q)
 	{
@@ -53,18 +59,23 @@ RENDERTARGET Effect_Singleton::Image_On_Effect(std::vector<SHADER_NAME>&Command_
 			this->shader_aggregation[name] = shader;
 		}
 
-		render = shader->Go_Shader(render);
+		original_image = shader->Go_Shader(original_image);
 	}
 
-	return 0;
+	return original_image;
 }
 
 Shader* Effect_Singleton::create_shader(SHADER_NAME name)
 {
 	Shader* shader = nullptr;
 	
-	switch (name){
-	case noise: shader = Noise_Factory().create();
+	switch (name)
+	{
+
+		case noise: shader = Noise_Factory().create(); break;
+		case scan_line: shader = Scan_Line_Factory().create(); break;
+		case blur: shader = Blur_Factory().create(); break;
+
 	}
 
 	return shader;

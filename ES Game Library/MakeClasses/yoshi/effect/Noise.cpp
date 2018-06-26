@@ -5,9 +5,8 @@ Noise::Noise()
 {
 	//ÉmÉCÉYèâä˙âª
 	offscreen = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-	noise_intensity = 0.4f;
+	noise_intensity = 0.7f;
 	noise_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Noise.fx"));
-	noise_time = 1000;
 
 }
 
@@ -28,7 +27,7 @@ void Noise::Update()
 	if (noise_time <= 900)
 	{*/
 
-		noise_intensity += 0.01f;
+		noise_intensity = 0.7f;
 		noise_effect->SetParameter("noise_intensity", noise_intensity);
 		noise_effect->SetParameter("Time", Math_Random());
 	//}

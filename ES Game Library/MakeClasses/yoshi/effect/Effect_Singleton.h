@@ -26,7 +26,7 @@ public:
 	}
 	void Update();
 	RENDERTARGET Image_On_Effect(std::vector<SHADER_NAME>&, RENDERTARGET);
-	void SetParameter();
+	void SetParameter(SHADER_NAME shaderName,std::string parameterName,float value);
 	
 	~Effect_Singleton();
 private:
@@ -34,7 +34,6 @@ private:
 	Shader* create_shader(SHADER_NAME);
 	//shader_aggregation=シェーダー集合体
 	std::map<SHADER_NAME, Shader*>shader_aggregation;
-
 
 };
 

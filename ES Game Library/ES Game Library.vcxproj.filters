@@ -475,6 +475,12 @@
     <ClCompile Include="MakeClasses\yoshi\factory\Shader_Factory.cpp">
       <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Blur.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Blur_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -794,6 +800,12 @@
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClInclude>
     <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Blur.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Blur_Factory.h">
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClInclude>
   </ItemGroup>

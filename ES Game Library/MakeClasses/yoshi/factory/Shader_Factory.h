@@ -22,20 +22,3 @@ protected:
 
 
 };
-//class Noise_Factory : Shader_Factory
-//{
-//	virtual void method1() = 0;
-//	virtual void method2() = 0;
-//};
-//class Rester_Factory : Shader_Factory
-//{
-//
-//};
-//class Bloom_Factory : Shader_Factory
-//{
-//	
-//};
-//class Scan_LIne_Factory : Shader_Factory
-//{
-//	
-//};

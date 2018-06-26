@@ -196,6 +196,7 @@
     <ClCompile Include="MakeClasses\Fujimura\UI\Combo.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\UI\UI.cpp" />
     <ClCompile Include="MakeClasses\yoshi\effect\Bloom.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Blur.cpp" />
     <ClCompile Include="MakeClasses\yoshi\effect\Effect_Manager.cpp" />
     <ClCompile Include="MakeClasses\yoshi\effect\Effect_Singleton.cpp" />
     <ClCompile Include="MakeClasses\yoshi\effect\Noise.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="MakeClasses\yoshi\effect\Scan_Line.cpp" />
     <ClCompile Include="MakeClasses\yoshi\effect\Shader.cpp" />
     <ClCompile Include="MakeClasses\yoshi\factory\Bloom_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Blur_Factory.cpp" />
     <ClCompile Include="MakeClasses\yoshi\factory\Noise_Factory.cpp" />
     <ClCompile Include="MakeClasses\yoshi\factory\Rester_Factory.cpp" />
     <ClCompile Include="MakeClasses\yoshi\factory\Scan_Line_Factory.cpp" />
@@ -304,6 +306,7 @@
     <ClInclude Include="MakeClasses\Fujimura\UI\Combo.h" />
     <ClInclude Include="MakeClasses\Fujimura\UI\UI.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Bloom.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Blur.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Effect_Manager.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Effect_Singleton.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Noise.h" />
@@ -311,6 +314,7 @@
     <ClInclude Include="MakeClasses\yoshi\effect\Scan_Line.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Shader.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Bloom_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Blur_Factory.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Noise_Factory.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Rester_Factory.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Scan_Line_Factory.h" />
