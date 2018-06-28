@@ -3,6 +3,8 @@
 #include "../factory/Noise_Factory.h"
 #include "../factory/Scan_Line_Factory.h"
 #include "../factory/Blur_Factory.h"
+#include "../factory/Rester_Factory.h"
+#include "../factory/Bloom_Factory.h"
 
 Effect_Singleton::Effect_Singleton()
 {
@@ -75,6 +77,8 @@ Shader* Effect_Singleton::create_shader(SHADER_NAME name)
 		case noise: shader = Noise_Factory().create(); break;
 		case scan_line: shader = Scan_Line_Factory().create(); break;
 		case blur: shader = Blur_Factory().create(); break;
+		case rester: shader = Rester_Factory().create(); break;
+		case bloom: shader = Bloom_Factory().create(); break;
 
 	}
 

@@ -1,5 +1,8 @@
 #pragma once
 #include "../../../ESGLib.h"
+#include "../../yoshi/effect/Noise.h"
+#include "../../yoshi/effect/Scan_Line.h"
+
 
 class  BackMovie
 {
@@ -19,6 +22,14 @@ private:
 	typedef std::vector<MEDIA>::iterator MovieItr;
 	MovieItr nowmovie_;
 
-	RENDERTARGET offscreen_;
+
+	int noise_time;
+	
+	RENDERTARGET offscreen[2];
+
+	Noise effect_noise;
+	Scan_Line effect_scan_line;
+	
+
 
 };

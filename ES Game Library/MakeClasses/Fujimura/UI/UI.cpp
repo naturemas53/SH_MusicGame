@@ -31,8 +31,11 @@ void UI::Update(DWORD nowTime){
 
 void UI::Draw(DWORD nowTime){
 
+
 	this->movie_->Draw();
+
 	this->combo_->Draw();
+
 
 }
 

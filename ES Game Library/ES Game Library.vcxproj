@@ -369,6 +369,13 @@
     <ClInclude Include="MakeClasses\yoshi\effect\Rester.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Scan_Line.h" />
     <ClInclude Include="MakeClasses\yoshi\effect\Shader.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Bloom_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Blur_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Noise_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Rester_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Scan_Line_Factory.h" />
+    <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h" />
+
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

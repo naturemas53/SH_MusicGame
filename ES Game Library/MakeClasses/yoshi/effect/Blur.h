@@ -17,6 +17,9 @@ private:
 
 	EFFECT blur_effect;
 	RENDERTARGET offscreen;
+	float AddU;
+	float AddV;
+	int blur_state;
 	
 };
 
