@@ -11,10 +11,7 @@ class Dancer;
 
 class GameMain : public CGameScene {
 public:
-	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
-	{
-//		ContentRootDirectory(_T("Content"));
-	}
+	GameMain();
 
 	virtual ~GameMain()
 	{
@@ -67,7 +64,6 @@ private:
 
 	std::vector<LANESET> lanes_;
 	std::pair<EventLane*, JudgementContext*> eventLane_;
-	SOUND bgm_;
 	UI* ui_;
 	SPRITE backLane_;
 	Dancer* dancer_;

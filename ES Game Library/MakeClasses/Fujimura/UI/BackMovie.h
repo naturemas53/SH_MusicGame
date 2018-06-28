@@ -19,4 +19,6 @@ private:
 	typedef std::vector<MEDIA>::iterator MovieItr;
 	MovieItr nowmovie_;
 
+	RENDERTARGET offscreen_;
+
 };

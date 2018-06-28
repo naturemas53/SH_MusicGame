@@ -8,7 +8,7 @@ UI::UI(){
 	this->combo_ = new Combo();
 	this->movie_ = new BackMovie();
 
-	ISRUN teams = [](int combo){ return combo % 10 == 0; };
+	ISRUN teams = [](int combo){ return combo % 5 == 0; };
 	NOTICE notice = [&](){ movie_->MovieChange(); };
 	this->combo_->EntryComboUpMethod(teams,notice);
 
@@ -31,12 +31,8 @@ void UI::Update(DWORD nowTime){
 
 void UI::Draw(DWORD nowTime){
 
-	SpriteBatch.Begin();
-
 	this->movie_->Draw();
 	this->combo_->Draw();
-
-	SpriteBatch.End();
 
 }
 

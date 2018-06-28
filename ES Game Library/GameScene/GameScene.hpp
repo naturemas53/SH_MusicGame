@@ -92,3 +92,6 @@ private:
 //------------------------------------------------------------------------------
 #include "../GameMain.h"
 #include "DeviceGetScene.hpp"
+#include "TitleScene.hpp"
+#include "LoadingScene.hpp"
+#include "ResultScene.hpp"

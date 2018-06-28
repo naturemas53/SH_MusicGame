@@ -149,6 +149,7 @@
     <ClCompile Include="..\SDK\Spine\Spine\src\VertexAttachment.c" />
     <ClCompile Include="..\SDK\Spine\Spine\src\VertexEffect.c" />
     <ClCompile Include="DirectX\Audio\SoundBuffer.cpp" />
+    <ClCompile Include="DirectX\Graphics\DXGraphics9.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -198,6 +199,8 @@
     </ClCompile>
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameScene\DeviceGetScene.cpp" />
+    <ClCompile Include="GameScene\LoadingScene.cpp" />
+    <ClCompile Include="GameScene\ResultScene.cpp" />
     <ClCompile Include="GameScene\SceneShared.cpp" />
     <ClCompile Include="GameScene\TemplateScene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -207,6 +210,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GameScene\TitleScene.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp" />
@@ -217,6 +221,7 @@
     <ClCompile Include="MakeClasses\Fujimura\Judgement\Judgement.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\LongNoteJudgement.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\JukeBox.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\EventLane.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\JudgeBomb.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\Lane.cpp" />
@@ -237,7 +242,22 @@
     <ClCompile Include="MakeClasses\Fujimura\RawInputMouse.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\UI\BackMovie.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\UI\Combo.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\UI\Score.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\UI\UI.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Bloom.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Blur.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Manager.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Singleton.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Noise.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Rester.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Scan_Line.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\effect\Shader.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Bloom_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Blur_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Noise_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Rester_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Scan_Line_Factory.cpp" />
+    <ClCompile Include="MakeClasses\yoshi\factory\Shader_Factory.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -251,7 +271,6 @@
     <ClCompile Include="DirectX\Graphics\AnimationModel.cpp" />
     <ClCompile Include="DirectX\Graphics\Camera.cpp" />
     <ClCompile Include="DirectX\Graphics\DXGFont.cpp" />
-    <ClCompile Include="DirectX\Graphics\DXGraphics9.cpp" />
     <ClCompile Include="DirectX\Graphics\Effect.cpp" />
     <ClCompile Include="DirectX\Graphics\Model.cpp" />
     <ClCompile Include="DirectX\Graphics\RenderTarget.cpp" />
@@ -293,8 +312,11 @@
     <ClInclude Include="Extension\Squirrel\Squirrel.hpp" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameScene\DeviceGetScene.hpp" />
+    <ClInclude Include="GameScene\LoadingScene.hpp" />
+    <ClInclude Include="GameScene\ResultScene.hpp" />
     <ClInclude Include="GameScene\SceneShared.hpp" />
     <ClInclude Include="GameScene\TemplateScene.hpp" />
+    <ClInclude Include="GameScene\TitleScene.hpp" />
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\AddNoteAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\ArrayAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h" />
@@ -312,6 +334,7 @@
     <ClInclude Include="MakeClasses\Fujimura\Judgement\LongNoteJudgement.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\MouseMotionDetection.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.h" />
+    <ClInclude Include="MakeClasses\Fujimura\JukeBox.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\BaseLane.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\EventLane.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\JudgeBomb.h" />
@@ -336,7 +359,16 @@
     <ClInclude Include="MakeClasses\Fujimura\RawInputMouse.h" />
     <ClInclude Include="MakeClasses\Fujimura\UI\BackMovie.h" />
     <ClInclude Include="MakeClasses\Fujimura\UI\Combo.h" />
+    <ClInclude Include="MakeClasses\Fujimura\UI\Score.h" />
     <ClInclude Include="MakeClasses\Fujimura\UI\UI.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Bloom.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Blur.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Manager.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Singleton.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Noise.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Rester.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Scan_Line.h" />
+    <ClInclude Include="MakeClasses\yoshi\effect\Shader.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

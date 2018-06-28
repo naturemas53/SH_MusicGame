@@ -24,11 +24,7 @@ void Blur::Update()
 RENDERTARGET Blur::Go_Shader(RENDERTARGET srcRT)
 {
 	GraphicsDevice.SetRenderTarget(offscreen);
-	GraphicsDevice.Clear(Color_Black);
-
-	
-
-
+	GraphicsDevice.Clear(Color(0,0,0,0));
 
 	GraphicsDevice.RenderTargetToRenderTarget(offscreen, srcRT, blur_effect);
 

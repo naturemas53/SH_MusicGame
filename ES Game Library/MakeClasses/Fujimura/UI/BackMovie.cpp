@@ -1,6 +1,9 @@
 #include "BackMovie.h"
+#include "../../yoshi/effect/Effect_Singleton.h"
 
 BackMovie::BackMovie(){
+
+	this->offscreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚P.wmv")));
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚Q.wmv")));
@@ -42,7 +45,26 @@ void BackMovie::Draw(){
 	//—á‚É‚æ‚Á‚Ä•t‚¯Än
 	Vector2 scale = Vector2( 1280.0f / (float)width , 720.0f / (float)height);
 
+	RENDERTARGET onShaderScreen = this->offscreen_;
+
+	GraphicsDevice.SetRenderTarget(this->offscreen_);
+	GraphicsDevice.Clear(0,0,0,0);
+
+	SpriteBatch.Begin();
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
+	SpriteBatch.End();
+
+	std::vector<Effect_Singleton::SHADER_NAME> commands_;
+	commands_.push_back(Effect_Singleton::blur);
+
+	//RENDERTARGET onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(commands_,this->offscreen_);
+
+	GraphicsDevice.SetDefaultRenderTarget();
+
+	SpriteBatch.Begin();
+	SpriteBatch.InitTransform();
+	SpriteBatch.DrawSimple(*onShaderScreen,Vector3_Zero);
+	SpriteBatch.End();
 
 }
 

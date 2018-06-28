@@ -190,6 +190,12 @@
     <Filter Include="ソース ファイル\拡張\Spine\Make_Fujimura">
       <UniqueIdentifier>{f7a24396-f8cb-48fa-9e82-ba5db7fb6fcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Yoshi">
+      <UniqueIdentifier>{ea133a93-808f-46d8-839f-df62073998e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi">
+      <UniqueIdentifier>{f40a29c6-86b4-438c-baeb-f47785baec48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -217,9 +223,6 @@
       <Filter>ソース ファイル\DirectX\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="DirectX\Graphics\DXGFont.cpp">
-      <Filter>ソース ファイル\DirectX\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX\Graphics\DXGraphics9.cpp">
       <Filter>ソース ファイル\DirectX\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="DirectX\Graphics\Effect.cpp">
@@ -556,6 +559,66 @@
     <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\JukeBox.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Bloom.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Blur.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Manager.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Effect_Singleton.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Noise.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Rester.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Scan_Line.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\effect\Shader.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Bloom_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Blur_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Noise_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Rester_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Scan_Line_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\factory\Shader_Factory.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\Graphics\DXGraphics9.cpp">
+      <Filter>ソース ファイル\DirectX\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\LoadingScene.cpp">
+      <Filter>ソース ファイル\ゲームシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\ResultScene.cpp">
+      <Filter>ソース ファイル\ゲームシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\TitleScene.cpp">
+      <Filter>ソース ファイル\ゲームシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\Score.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -852,6 +915,45 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Dancer.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\JukeBox.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Bloom.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Blur.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Manager.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Effect_Singleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Noise.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Rester.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Scan_Line.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\effect\Shader.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\LoadingScene.hpp">
+      <Filter>ヘッダー ファイル\ゲームシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\ResultScene.hpp">
+      <Filter>ヘッダー ファイル\ゲームシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\TitleScene.hpp">
+      <Filter>ヘッダー ファイル\ゲームシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\Score.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

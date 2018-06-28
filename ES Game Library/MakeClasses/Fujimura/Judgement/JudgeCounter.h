@@ -3,11 +3,6 @@
 
 struct JudgeCounter{
 
-	/*
-	‚±‚±‚Å”»’è‚ÌŒµ‚µ‚³‚ğİ’è
-	”’l‚Íms
-	*/
-
 	int perfect;
 	int great;
 	int miss;
@@ -17,6 +12,15 @@ struct JudgeCounter{
 		this->perfect = 0;
 		this->great = 0;
 		this->miss = 0;
+
+	}
+
+	int GetScoreValue(){
+
+		int value = this->perfect * 100;
+		value += this->great * 50;
+
+		return value;
 
 	}
 
