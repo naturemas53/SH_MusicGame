@@ -31,12 +31,11 @@ void UI::Update(DWORD nowTime){
 
 void UI::Draw(DWORD nowTime){
 
-	SpriteBatch.Begin();
+	
 
 	this->movie_->Draw();
-	this->combo_->Draw();
 
-	SpriteBatch.End();
+	this->combo_->Draw();
 
 }
 

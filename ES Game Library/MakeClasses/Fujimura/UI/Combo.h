@@ -30,5 +30,7 @@ private:
 
 	//‚Å‚Î‚Î‚Î
 	FONT font_;
+	SPRITE combo_image;
+	RENDERTARGET offscreen[2];
 
 };

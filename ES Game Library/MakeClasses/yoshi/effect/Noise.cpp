@@ -43,7 +43,8 @@ RENDERTARGET Noise::Go_Shader(RENDERTARGET srcRT)
 	
 		//GraphicsDevice.RenderTargetToBackBuffer(nullptr, offscreen[0], nullptr);
 		//GraphicsDevice.RenderTargetToRenderTarget(offscreen[1], offscreen[0], noise_effect);
-	/*GraphicsDevice.SetDefaultRenderTarget();*/
+	/*GraphicsDevice.
+	();*/
 
 		//•`‰æó‘Ô‚ğ‰Šúó‘Ô‚É‚·‚é
 		//SpriteBatch.InitTransform();
