@@ -39,7 +39,7 @@ int DeviceGetScene::Update()
 	if (MultiMouse.GetDeviceCount() >= 2){
 
 		MultiMouse.StartListening();
-		return GAME_SCENE(new GameMain());
+		return GAME_SCENE(new TitleScene());
 
 	}
 

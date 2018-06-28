@@ -5,6 +5,7 @@
 #include "../MultiMouseDevice.h"
 #include "../Note/DrawNote/NoteDrawSingleton.h"
 #include "../Lane/JudgeBomb.h"
+#include "../../yoshi/effect/Effect_Singleton.h"
 #include <typeinfo>
 
 EventLane::EventLane(JudgementContext* judgement){
@@ -25,11 +26,20 @@ EventLane::EventLane(JudgementContext* judgement){
 	};
 	this->judgement_->EntryJudgeMethod(notice);
 	this->bomb_ = new JudgeBomb();
-	this->judgement_->EntryJudgeMethod([&](JUDGE judge){
-
-		bomb_->NoticeJudge(judge);
-
+	this->judgement_->EntryJudgeMethod([this](JUDGE judge){
+		this->bomb_->NoticeJudge(judge);
 	});
+
+	this->drawJudgeVisitor_ = [this](BaseLane* baselane){
+		if (typeid(*baselane) != typeid(Lane)) return;
+
+		Lane* lane = (Lane*)baselane;
+
+		Vector3 startPos, hitPos;
+		lane->GetLaneVectol(startPos, hitPos);
+		this->bomb_->Draw(hitPos);
+
+	};
 
 }
 
@@ -52,23 +62,17 @@ void EventLane::Update(DWORD nowTime){
 
 void EventLane::Draw(DWORD nowTime){
 
-	VISITORMETHOD method = [this](BaseLane* baselane){
-		if (typeid(*baselane) != typeid(Lane)) return;
-
-		Lane* lane = (Lane*)baselane;
-
-		Vector3 startPos, hitPos;
-		lane->GetLaneVectol(startPos,hitPos);
-		this->bomb_->Draw(startPos);
-
-	};
-
-	if (this->postMethod_ != nullptr) this->postMethod_(method);
+	SpriteBatch.Begin();
+	if (this->postMethod_ != nullptr) this->postMethod_(this->drawJudgeVisitor_);
+	SpriteBatch.End();
 
 	auto itr = this->notes_.begin();
 	if (itr == this->notes_.end()) return;
 
+	SpriteBatch.Begin();
 	NoteDrawComponent.Draw((*itr),this,nowTime);
+	SpriteBatch.End();
+
 
 }
 

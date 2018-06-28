@@ -10,6 +10,7 @@
 #include "MakeClasses\Fujimura\UI\UI.h"
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include "MakeClasses\Fujimura\Dancer.h"
+#include "MakeClasses\Fujimura\JukeBox.h"
 #include <functional>
 
 /// <summary>
@@ -17,11 +18,9 @@
 /// This is where it can query for any required services and load all of your content.
 /// Initialize will enumerate through any components and initialize them as well.
 /// </summary>
-bool GameMain::Initialize()
-{
-	// TODO: Add your initialization logic here
-	WindowTitle(_T("ES Game Library"));
 
+GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
+{
 	this->SpriteLoad();
 
 	this->ui_ = new UI();
@@ -47,16 +46,29 @@ bool GameMain::Initialize()
 	this->eventLane_.second = new JudgementContext();
 	this->eventLane_.second->EntryJudgeMethod(notice);
 	this->eventLane_.first = new EventLane(this->eventLane_.second);
+	auto laneNotice = [this](BaseLane::VISITORMETHOD visitor){
+		for (auto lane : this->lanes_){
+			lane.first->Accept(visitor);
+		}
+	};
+	this->eventLane_.first->EntryPostMethod(laneNotice);
 
 	MusicScoreIO scoreIo("musicscore.txt");
-	scoreIo.ImportScore( laneInstances, this->eventLane_.first);
-
-	this->bgm_ = SoundDevice.CreateSoundFromFile(_T("music.wav"));
-	this->bgm_->Play();
+	scoreIo.ImportScore(laneInstances, this->eventLane_.first);
 
 	this->dancer_ = new Dancer();
 
+	BgmComponent.LoadMusic(_T("music.wav"));
+	BgmComponent.SetBPM(128);
+	BgmComponent.Play();
+
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
+}
+
+bool GameMain::Initialize()
+{
+	// TODO: Add your initialization logic here
+	WindowTitle(_T("ES Game Library"));
 
 	return true;
 }
@@ -92,7 +104,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
+	DWORD nowTime = nowTime = BgmComponent.GetNowTime();
 
 	this->eventLane_.first->Update(nowTime);
 	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
@@ -113,19 +125,19 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-
-	DWORD nowTime = this->bgm_->GetCurrentMilliSec();
+	DWORD nowTime = BgmComponent.GetNowTime();
 
 	this->ui_->Draw(nowTime);
 	GraphicsDevice.BeginAlphaBlend();
 	this->dancer_->Draw(0);
 	GraphicsDevice.EndAlphaBlend();
+
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*this->backLane_, Vector3_Zero, 1.0f);
 	for (auto laneset : this->lanes_) laneset.first->Draw(nowTime);
-	this->eventLane_.first->Draw(nowTime);
-
 	SpriteBatch.End();
+
+	this->eventLane_.first->Draw(nowTime);
 
 	GraphicsDevice.EndScene();
 }

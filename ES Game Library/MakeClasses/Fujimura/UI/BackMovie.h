@@ -22,6 +22,7 @@ private:
 	typedef std::vector<MEDIA>::iterator MovieItr;
 	MovieItr nowmovie_;
 
+
 	int noise_time;
 	
 	RENDERTARGET offscreen[2];
@@ -29,5 +30,6 @@ private:
 	Noise effect_noise;
 	Scan_Line effect_scan_line;
 	
+
 
 };

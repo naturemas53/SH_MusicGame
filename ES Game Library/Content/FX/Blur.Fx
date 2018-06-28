@@ -8,8 +8,9 @@
 //-----------------------------------------------------------------------------
 sampler tex0 : register(s0);
 
-float AddU = 1.0f / 1280.0f*1;
-float AddV = 1.0f / 720.0f*1;
+
+float AddU = 2.0f / 1280.0f;
+float AddV = 2.0f / 720.0f;
 
 
 //-----------------------------------------------------------------------------
@@ -17,42 +18,42 @@ float AddV = 1.0f / 720.0f*1;
 //-----------------------------------------------------------------------------
 float4 PS_P0_Main(float2 UV : TEXCOORD0) : COLOR0
 {
-	//ADDU@—×‚ÌƒsƒNƒZƒ‹‚ğQÆ
-	//ADDV  ‰º‚ÌƒsƒNƒZƒ‹‚ğQÆ
-	//FLOAT‚Q‘æˆêˆø”‚ÌADDUƒvƒ‰ƒX‚Í^‚ñ’†‚©‚ç‰E‚ÌƒsƒNƒZƒ‹-‚Í^‚ñ’†‚Ì¶ƒsƒNƒZƒ‹‚ğQÆ‚·‚é@
-	//‘æ“ñˆø”‚ÌADDV‚Íc‚ÌƒsƒNƒZƒ‹‚ğQÆ@{‚È‚ç‰ºA]‚È‚çã‚ğQÆ‚·‚é
+	//ADDUã€€éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’å‚ç…§
+	//ADDV  ä¸‹ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’å‚ç…§
+	//FLOATï¼’ç¬¬ä¸€å¼•æ•°ã®ADDUãƒ—ãƒ©ã‚¹ã¯çœŸã‚“ä¸­ã‹ã‚‰å³ã®ãƒ”ã‚¯ã‚»ãƒ«-ã¯çœŸã‚“ä¸­ã®å·¦ãƒ”ã‚¯ã‚»ãƒ«ã‚’å‚ç…§ã™ã‚‹ã€€
+	//ç¬¬äºŒå¼•æ•°ã®ADDVã¯ç¸¦ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’å‚ç…§ã€€ï¼‹ãªã‚‰ä¸‹ã€â€ãªã‚‰ä¸Šã‚’å‚ç…§ã™ã‚‹
 
-	//¡‰ñ‚Í‚T~‚T‚Ì‹­—Í‚È‚Ú‚©‚µ‚ğ‚©‚¯‚é
+	//ä»Šå›ã¯ï¼•Ã—ï¼•ã®å¼·åŠ›ãªã¼ã‹ã—ã‚’ã‹ã‘ã‚‹
 	float4 color = tex2D(tex0, UV + float2(0.0f, 0.0f)) / 25.0f;
 
-	color += tex2D(tex0, UV + float2(-AddU * 2.0f, -AddV * 2.0f))   / 25.0f;   //¶ã’[
-	color += tex2D(tex0, UV + float2(-AddU,        -AddV * 2.0f))   / 25.0f;  //¶ã’[‚Ì¶‚©‚ç“ñ”Ô–Ú
-	color += tex2D(tex0, UV + float2(0.0f, -AddV * 2.0f))           / 25.0f;          //^‚ñ’†‚Ìˆê”Ôã
-	color += tex2D(tex0, UV + float2(+AddU,        -AddV * 2.0f))   / 25.0f;   //^‚ñ’†‚Ìˆê‚Â‰E‚Ìˆê”Ôã
-	color += tex2D(tex0, UV + float2(+AddU * 2.0f, -AddV * 2.0f))   / 25.0f;  //‰Eã’[
+	color += tex2D(tex0, UV + float2(-AddU * 2.0f, -AddV * 2.0f))   / 25.0f;   //å·¦ä¸Šç«¯
+	color += tex2D(tex0, UV + float2(-AddU,        -AddV * 2.0f))   / 25.0f;  //å·¦ä¸Šç«¯ã®å·¦ã‹ã‚‰äºŒç•ªç›®
+	color += tex2D(tex0, UV + float2(0.0f, -AddV * 2.0f))           / 25.0f;          //çœŸã‚“ä¸­ã®ä¸€ç•ªä¸Š
+	color += tex2D(tex0, UV + float2(+AddU,        -AddV * 2.0f))   / 25.0f;   //çœŸã‚“ä¸­ã®ä¸€ã¤å³ã®ä¸€ç•ªä¸Š
+	color += tex2D(tex0, UV + float2(+AddU * 2.0f, -AddV * 2.0f))   / 25.0f;  //å³ä¸Šç«¯
 
-	color += tex2D(tex0, UV + float2(-AddU * 2.0f, -AddV))          / 25.0f;         //^‚ñ’†‚Ì¶’[‚Ìˆê‚Âã
-	color += tex2D(tex0, UV + float2(-AddU,        -AddV))          / 25.0f;         //^‚ñ’†‚Ìˆê‚Âã‚Ì¶
-	color += tex2D(tex0, UV + float2(0.0f, -AddV))				    / 25.0f;                 //^‚ñ’†‚Ìˆê‚Âã
-	color += tex2D(tex0, UV + float2(+AddU,        -AddV))          / 25.0f;         //^‚ñ’†‚Ì‰E‚Ìã
-	color += tex2D(tex0, UV + float2(+AddU * 2.0f, -AddV))		    / 25.0f;         //^‚ñ’†‚Ì‰E’[‚Ìã
+	color += tex2D(tex0, UV + float2(-AddU * 2.0f, -AddV))          / 25.0f;         //çœŸã‚“ä¸­ã®å·¦ç«¯ã®ä¸€ã¤ä¸Š
+	color += tex2D(tex0, UV + float2(-AddU,        -AddV))          / 25.0f;         //çœŸã‚“ä¸­ã®ä¸€ã¤ä¸Šã®å·¦
+	color += tex2D(tex0, UV + float2(0.0f, -AddV))				    / 25.0f;                 //çœŸã‚“ä¸­ã®ä¸€ã¤ä¸Š
+	color += tex2D(tex0, UV + float2(+AddU,        -AddV))          / 25.0f;         //çœŸã‚“ä¸­ã®å³ã®ä¸Š
+	color += tex2D(tex0, UV + float2(+AddU * 2.0f, -AddV))		    / 25.0f;         //çœŸã‚“ä¸­ã®å³ç«¯ã®ä¸Š
 
-	color += tex2D(tex0, UV + float2(-AddU * 2.0f,         0.0f))   / 25.0f;//^‚ñ’†‚Ì¶’[
-	color += tex2D(tex0, UV + float2(-AddU,                0.0f))   / 25.0f;//^‚ñ’†‚Ì¶
-	color += tex2D(tex0, UV + float2(+AddU,                0.0f))   / 25.0f;//^‚ñ’†‚Ì‰E
-	color += tex2D(tex0, UV + float2(+AddU * 2.0f,         0.0f))   / 25.0f;//^‚ñ’†‚Ì‰E’[
+	color += tex2D(tex0, UV + float2(-AddU * 2.0f,         0.0f))   / 25.0f;//çœŸã‚“ä¸­ã®å·¦ç«¯
+	color += tex2D(tex0, UV + float2(-AddU,                0.0f))   / 25.0f;//çœŸã‚“ä¸­ã®å·¦
+	color += tex2D(tex0, UV + float2(+AddU,                0.0f))   / 25.0f;//çœŸã‚“ä¸­ã®å³
+	color += tex2D(tex0, UV + float2(+AddU * 2.0f,         0.0f))   / 25.0f;//çœŸã‚“ä¸­ã®å³ç«¯
 
-	color += tex2D(tex0, UV + float2(-AddU * 2.0f, +AddV))          / 25.0f;//¶‰º’[‚ÌˆêŒÂã
-	color += tex2D(tex0, UV + float2(-AddU,        +AddV))          / 25.0f;//¶‰º’[‚ÌˆêŒÂã‚Ì‰E
-	color += tex2D(tex0, UV + float2(0.0f, +AddV))                  / 25.0f;//^‚ñ’†‚Ì‰º
-	color += tex2D(tex0, UV + float2(+AddU,        +AddV))          / 25.0f;//‰E‰º’[‚ÌˆêŒÂã‚Ì¶
-	color += tex2D(tex0, UV + float2(+AddU * 2.0f, +AddV))          / 25.0f;//‰E‰º’[‚ÌˆêŒÂã
+	color += tex2D(tex0, UV + float2(-AddU * 2.0f, +AddV))          / 25.0f;//å·¦ä¸‹ç«¯ã®ä¸€å€‹ä¸Š
+	color += tex2D(tex0, UV + float2(-AddU,        +AddV))          / 25.0f;//å·¦ä¸‹ç«¯ã®ä¸€å€‹ä¸Šã®å³
+	color += tex2D(tex0, UV + float2(0.0f, +AddV))                  / 25.0f;//çœŸã‚“ä¸­ã®ä¸‹
+	color += tex2D(tex0, UV + float2(+AddU,        +AddV))          / 25.0f;//å³ä¸‹ç«¯ã®ä¸€å€‹ä¸Šã®å·¦
+	color += tex2D(tex0, UV + float2(+AddU * 2.0f, +AddV))          / 25.0f;//å³ä¸‹ç«¯ã®ä¸€å€‹ä¸Š
 
-	color += tex2D(tex0, UV + float2(-AddU * 2.0f, +AddV * 2.0f))   / 25.0f;//¶‰º’[
-	color += tex2D(tex0, UV + float2(+AddU,        +AddV * 2.0f))   / 25.0f;//¶‰º’[‚©‚ç“ñ”Ô–Ú
-	color += tex2D(tex0, UV + float2(0.0f, +AddV * 2.0f))           / 25.0f;//^‚ñ’†‚Ìˆê”Ô‰º
-	color += tex2D(tex0, UV + float2(+AddU,        +AddV * 2.0f))   / 25.0f;//‰E‰º’[‚©‚ç‚Q”Ô–Ú
-	color += tex2D(tex0, UV + float2(+AddU * 2.0f, +AddV * 2.0f))   / 25.0f;//‰E‰º’[
+	color += tex2D(tex0, UV + float2(-AddU * 2.0f, +AddV * 2.0f))   / 25.0f;//å·¦ä¸‹ç«¯
+	color += tex2D(tex0, UV + float2(+AddU,        +AddV * 2.0f))   / 25.0f;//å·¦ä¸‹ç«¯ã‹ã‚‰äºŒç•ªç›®
+	color += tex2D(tex0, UV + float2(0.0f, +AddV * 2.0f))           / 25.0f;//çœŸã‚“ä¸­ã®ä¸€ç•ªä¸‹
+	color += tex2D(tex0, UV + float2(+AddU,        +AddV * 2.0f))   / 25.0f;//å³ä¸‹ç«¯ã‹ã‚‰ï¼’ç•ªç›®
+	color += tex2D(tex0, UV + float2(+AddU * 2.0f, +AddV * 2.0f))   / 25.0f;//å³ä¸‹ç«¯
 
 	/*color.rgb = (color.r + color.g + color.b) / 3.0f;*/
 	

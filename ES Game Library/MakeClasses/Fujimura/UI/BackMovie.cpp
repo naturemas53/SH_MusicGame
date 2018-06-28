@@ -5,10 +5,12 @@ BackMovie::BackMovie(){
 	
 	offscreen[0] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚P.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚Q.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚R.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/‚S.wmv")));
+	this->offscreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/ï¼‘.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/ï¼’.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/ï¼“.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/ï¼”.wmv")));
 
 	for (auto movie : this->movies_){
 
@@ -58,9 +60,15 @@ void BackMovie::Draw(){
 	int width = (*this->nowmovie_)->GetWidth();
 	int height = (*this->nowmovie_)->GetHeight();
 
-	//—á‚É‚æ‚Á‚Ä•t‚¯Än
+	//ä¾‹ã«ã‚ˆã£ã¦ä»˜ã‘ç„¼åˆƒ
 	Vector2 scale = Vector2( 1280.0f / (float)width , 720.0f / (float)height);
 
+	RENDERTARGET onShaderScreen = this->offscreen_;
+
+	GraphicsDevice.SetRenderTarget(this->offscreen_);
+	GraphicsDevice.Clear(0,0,0,0);
+
+	SpriteBatch.Begin();
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 	SpriteBatch.End();
 
@@ -84,6 +92,7 @@ void BackMovie::Draw(){
 
 
 	GraphicsDevice.RenderTargetToBackBuffer(nullptr, unko, nullptr);
+
 
 
 }

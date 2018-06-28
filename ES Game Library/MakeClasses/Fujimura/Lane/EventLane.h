@@ -22,6 +22,7 @@ public:
 
 private:
 
+	VISITORMETHOD drawJudgeVisitor_;
 	std::function<void(VISITORMETHOD)> postMethod_;
 	JudgementContext* judgement_;
 	JudgeBomb* bomb_;

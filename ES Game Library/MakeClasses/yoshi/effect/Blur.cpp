@@ -51,7 +51,6 @@ RENDERTARGET Blur::Go_Shader(RENDERTARGET srcRT)
 	GraphicsDevice.Clear(Color(0,0,0,0));
 
 
-
 	GraphicsDevice.RenderTargetToRenderTarget(offscreen, srcRT, blur_effect);
 
 	return offscreen;
