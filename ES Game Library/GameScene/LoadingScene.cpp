@@ -44,6 +44,7 @@ void LoadingScene::Finalize()
 int LoadingScene::Update()
 {
     // TODO: Add your update logic here
+
 	if (this->gameScene_.wait_for(std::chrono::seconds(0)) == std::future_status::ready){
 
 		return this->gameScene_.get();

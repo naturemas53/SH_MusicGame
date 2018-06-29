@@ -54,7 +54,7 @@ private:
 
 private:
 	// 変数宣言
-
+	FONT font_;
 
 	// 関数プロトタイプ
 

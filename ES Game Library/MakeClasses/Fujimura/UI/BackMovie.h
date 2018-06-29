@@ -25,10 +25,7 @@ private:
 
 	int noise_time;
 	
-	RENDERTARGET offscreen[2];
-
-	Noise effect_noise;
-	Scan_Line effect_scan_line;
+	RENDERTARGET offscreen_;
 	
 
 

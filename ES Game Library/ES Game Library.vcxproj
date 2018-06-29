@@ -215,6 +215,7 @@
     <ClCompile Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\DataSingleton.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\HeartBeam.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Judgement\JudgementContext.cpp" />
@@ -323,6 +324,7 @@
     <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h" />
     <ClInclude Include="MakeClasses\Fujimura\Dancer.h" />
     <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h" />
+    <ClInclude Include="MakeClasses\Fujimura\HeartBeam.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\DetectMultiMotion.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\EventNoteJudgement.h" />
     <ClInclude Include="MakeClasses\Fujimura\Judgement\JudgementContext.h" />
@@ -375,7 +377,6 @@
     <ClInclude Include="MakeClasses\yoshi\factory\Rester_Factory.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Scan_Line_Factory.h" />
     <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h" />
-
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

@@ -141,6 +141,8 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	if(m_GameProc.CreateScene(new DeviceGetScene()) == false)
 		return false;
 
+	WindowTitle(_T("musicGame"));
+
 	//マルチデバイス対応
 	m_Recv = RawInputReceiver();
 	m_Recv.initialize();

@@ -29,19 +29,19 @@ public:
 #ifdef _INC_DIRECT2D
 		Direct2D.ReleaseAllResources();
 #endif
-		MediaManager.ReleaseAllMedia();
+		//MediaManager.ReleaseAllMedia();
 
-		SoundDevice.ReleaseAllMusics();
-		SoundDevice.ReleaseAllSounds();
+		//SoundDevice.ReleaseAllMusics();
+		//SoundDevice.ReleaseAllSounds();
 
-		GraphicsDevice.ReleaseAllRenderTargets();
-		GraphicsDevice.ReleaseAllStateBlocks();
-		GraphicsDevice.ReleaseAllFonts();
-		GraphicsDevice.ReleaseAllSprites();
-		GraphicsDevice.ReleaseAllAnimationModels();
-		GraphicsDevice.ReleaseAllModels();
-		GraphicsDevice.ReleaseAllVertexBuffers();
-		GraphicsDevice.ReleaseAllEffects();
+		//GraphicsDevice.ReleaseAllRenderTargets();
+		//GraphicsDevice.ReleaseAllStateBlocks();
+		//GraphicsDevice.ReleaseAllFonts();
+		//GraphicsDevice.ReleaseAllSprites();
+		//GraphicsDevice.ReleaseAllAnimationModels();
+		//GraphicsDevice.ReleaseAllModels();
+		//GraphicsDevice.ReleaseAllVertexBuffers();
+		//GraphicsDevice.ReleaseAllEffects();
 	}
 
 	virtual bool Initialize();

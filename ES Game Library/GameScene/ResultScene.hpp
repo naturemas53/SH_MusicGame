@@ -34,14 +34,14 @@ public:
 		SoundDevice.ReleaseAllMusics();
 		SoundDevice.ReleaseAllSounds();
 
-		GraphicsDevice.ReleaseAllRenderTargets();
+		/*GraphicsDevice.ReleaseAllRenderTargets();
 		GraphicsDevice.ReleaseAllStateBlocks();
 		GraphicsDevice.ReleaseAllFonts();
 		GraphicsDevice.ReleaseAllSprites();
 		GraphicsDevice.ReleaseAllAnimationModels();
 		GraphicsDevice.ReleaseAllModels();
 		GraphicsDevice.ReleaseAllVertexBuffers();
-		GraphicsDevice.ReleaseAllEffects();
+		GraphicsDevice.ReleaseAllEffects();*/
 	}
 
 	virtual bool Initialize();

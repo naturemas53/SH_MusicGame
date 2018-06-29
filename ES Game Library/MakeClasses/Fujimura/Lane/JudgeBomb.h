@@ -19,10 +19,6 @@ private:
 	const int MAX_PAL_VALUE_;
 
 	int palValue_;
-
-	//test
-	FONT font_;
-	std::wstring judgeStr_;
-	Color color_;
+	Rect useRect_;
 
 };

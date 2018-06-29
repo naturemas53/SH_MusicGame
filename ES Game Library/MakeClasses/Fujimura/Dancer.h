@@ -1,6 +1,8 @@
 #pragma once
 #include "../../ESGLib.h"
 
+class HeartBeam;
+
 class Dancer{
 
 public:
@@ -17,6 +19,6 @@ public:
 private:
 
 	SPINE spine_;
-
+	HeartBeam* beam_;
 
 };

@@ -28,6 +28,8 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 		ui_->NoticeJudge(judge);
 	};
 
+	this->dancer_ = new Dancer();
+
 	std::vector<Lane*> laneInstances;
 
 	LANESET laneset;
@@ -45,6 +47,14 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 
 	this->eventLane_.second = new JudgementContext();
 	this->eventLane_.second->EntryJudgeMethod(notice);
+	this->eventLane_.second->EntryJudgeMethod([this](JUDGE judge){
+	
+		switch (judge){
+		case PERFECT: this->dancer_->SetPerformanceAnimation(); break;
+		case MISS: this->dancer_->SetMissAnimation(); break;
+		}
+	
+	});
 	this->eventLane_.first = new EventLane(this->eventLane_.second);
 	auto laneNotice = [this](BaseLane::VISITORMETHOD visitor){
 		for (auto lane : this->lanes_){
@@ -56,8 +66,6 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	MusicScoreIO scoreIo("musicscore.txt");
 	scoreIo.ImportScore(laneInstances, this->eventLane_.first);
 
-	this->dancer_ = new Dancer();
-
 	BgmComponent.LoadMusic(_T("music.wav"));
 	BgmComponent.SetBPM(128);
 	BgmComponent.Play();
@@ -68,7 +76,7 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
-	WindowTitle(_T("ES Game Library"));
+	
 
 	return true;
 }
@@ -80,6 +88,8 @@ bool GameMain::Initialize()
 void GameMain::Finalize()
 {
 	// TODO: Add your finalization logic here
+
+
 
 	for (auto laneset : this->lanes_){ 
 		delete laneset.first;
@@ -112,6 +122,15 @@ int GameMain::Update()
 
 	this->dancer_->Update(0);
 
+	Effect_Singleton::GetInstance().Update();
+
+	RawInputMouse mouse = MultiMouse.GetInputData(0);
+	if (mouse.IsPushed(RIGHTBUTTON)){
+
+		return GAME_SCENE(new TitleScene);
+
+	}
+
 	return 0;
 }
 
@@ -128,6 +147,7 @@ void GameMain::Draw()
 	DWORD nowTime = BgmComponent.GetNowTime();
 
 	this->ui_->Draw(nowTime);
+
 	GraphicsDevice.BeginAlphaBlend();
 	this->dancer_->Draw(0);
 	GraphicsDevice.EndAlphaBlend();
@@ -149,5 +169,6 @@ void GameMain::SpriteLoad(){
 	Data.LoadLongNoteSprite(_T("Notes\\long_notes.png"));
 	Data.LoadLongSquareSprite(_T("Notes\\long_notes_bar.png"));
 	Data.LoadHeartSprite(_T("heart_drow.png"));
+	Data.LoadJudgeSprite(_T("judges.png"));
 
 }

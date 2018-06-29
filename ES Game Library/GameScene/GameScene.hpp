@@ -73,7 +73,6 @@ public:
 
 	virtual int AdvanceUpdate(){
 		
-		Effect_Singleton::GetInstance().Update();
 		int value = Update();
 		MultiMouse.Update();
 		return value;

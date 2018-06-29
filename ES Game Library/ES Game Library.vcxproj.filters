@@ -196,6 +196,9 @@
     <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi">
       <UniqueIdentifier>{f40a29c6-86b4-438c-baeb-f47785baec48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Yoshi\Factory">
+      <UniqueIdentifier>{cc62aef5-21df-41f2-b966-767bd0e44b4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -559,7 +562,6 @@
     <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
-
     <ClCompile Include="MakeClasses\Fujimura\JukeBox.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
@@ -619,6 +621,9 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\UI\Score.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\HeartBeam.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -955,6 +960,27 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\UI\Score.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\HeartBeam.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Bloom_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Blur_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Noise_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Rester_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Scan_Line_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

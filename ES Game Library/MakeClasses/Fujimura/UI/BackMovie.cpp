@@ -3,30 +3,26 @@
 
 BackMovie::BackMovie(){
 	
-	offscreen[0] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-
 	this->offscreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/１.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/２.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/３.wmv")));
-	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/４.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/1.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/2.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/3.wmv")));
+	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/4.wmv")));
 
-	for (auto movie : this->movies_){
+	//for (auto movie : this->movies_){
 
-		movie->Replay();
-		SpriteBatch.Begin();
-		SpriteBatch.Draw(*movie, Vector3_Zero, 1.0f);
-		SpriteBatch.End();
-		movie->Stop();
-		
-	}
+	//	movie->Replay();
+	//	SpriteBatch.Begin();
+	//	SpriteBatch.Draw(*movie, Vector3_Zero, 1.0f);
+	//	SpriteBatch.End();
+	//	movie->Stop();
+	//	
+	//}
 
 	this->nowmovie_ = this->movies_.begin();
 
 	(*this->nowmovie_)->Replay();
-
-	effect_noise = Noise();
 	
 	noise_time = 0;
 
@@ -34,13 +30,13 @@ BackMovie::BackMovie(){
 
 BackMovie::~BackMovie(){
 
+	GraphicsDevice.ReleaseRenderTarget(this->offscreen_);
 
 }
 
 void BackMovie::Update(){
 
 	if ((*this->nowmovie_)->IsComplete()) (*this->nowmovie_)->Replay();
-
 
 	if (noise_time > 0)
 	{
@@ -50,50 +46,30 @@ void BackMovie::Update(){
 }
 
 void BackMovie::Draw(){
-	GraphicsDevice.SetRenderTarget(offscreen[0]);
-	GraphicsDevice.Clear(Color_Black);
 
-	SpriteBatch.Begin();
-
-
-
-	int width = (*this->nowmovie_)->GetWidth();
-	int height = (*this->nowmovie_)->GetHeight();
+	int width = 1920;
+	int height = 1080;
 
 	//例によって付け焼刃
 	Vector2 scale = Vector2( 1280.0f / (float)width , 720.0f / (float)height);
 
-	RENDERTARGET onShaderScreen = this->offscreen_;
+	//RENDERTARGET onShaderScreen = this->offscreen_;
 
-	GraphicsDevice.SetRenderTarget(this->offscreen_);
-	GraphicsDevice.Clear(0,0,0,0);
+	//GraphicsDevice.SetRenderTarget(onShaderScreen);
+	//GraphicsDevice.Clear(0,0,0,0);
 
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 	SpriteBatch.End();
 
-	std::vector<Effect_Singleton::SHADER_NAME> comands_;
-	/*comands_.push_back(Effect_Singleton::noise);
-	comands_.push_back(Effect_Singleton::scan_line);*/
-	//comands_.push_back(Effect_Singleton::rester);
-	//comands_.push_back(Effect_Singleton::blur);
-	//comands_.push_back(Effect_Singleton::bloom);
+	//std::vector<Effect_Singleton::SHADER_NAME> comands_;
+
+	//onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_, onShaderScreen);
 
 
-
-	RENDERTARGET unko = Effect_Singleton::GetInstance().Image_On_Effect(comands_, offscreen[0]);
-
-	//if (noise_time <= 0)
-	//{
-	//	unko = offscreen[0];
-	//}
-
-	GraphicsDevice.SetDefaultRenderTarget();
-
-
-	GraphicsDevice.RenderTargetToBackBuffer(nullptr, unko, nullptr);
-
-
+	//SpriteBatch.Begin();
+	//SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);
+	//SpriteBatch.End();
 
 }
 
@@ -109,7 +85,7 @@ void BackMovie::MovieChange(){
 
 void BackMovie::MovieReset(){ 
 
-	noise_time = 4000;
+	noise_time = 30;
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
 	(*this->nowmovie_)->Replay();

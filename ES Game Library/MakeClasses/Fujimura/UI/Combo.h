@@ -23,14 +23,15 @@ public:
 
 private:
 
+	void NumberDraw(Vector3 pos,int number,Vector2 size);
+
 	int combo_;
 
 	std::vector<std::pair<ISRUN,NOTICE> > comboUpMethods_;
 	std::vector<NOTICE> comboBreakMethods_;
 
-	//‚Å‚Î‚Î‚Î
-	FONT font_;
-	SPRITE combo_image;
-	RENDERTARGET offscreen[2];
+	SPRITE numberSp_;
+	SPRITE textSp_;
+	RENDERTARGET offscreen_;
 
 };

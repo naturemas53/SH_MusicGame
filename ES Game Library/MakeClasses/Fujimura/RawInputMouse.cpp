@@ -3,6 +3,8 @@
 RawInputMouse::RawInputMouse(RawInputReceiver& reciver, HRIDEV inHundle){
 
 	reciver.addMouseListener(inHundle,&(this->rawInput));
+	this->prevPushFlags_[LEFTBUTTON] = false;
+	this->prevPushFlags_[RIGHTBUTTON] = false;
 
 }
 
@@ -13,7 +15,15 @@ RawInputMouse::~RawInputMouse(){
 
 void RawInputMouse::Update(){
 
-	for (auto flag : this->prevPushFlags_) flag.second = this->rawInput.button(flag.first);
+	auto itr = this->prevPushFlags_.begin();
+	for (int i = 0; i < this->prevPushFlags_.size();i++){
+
+		{
+			(*itr).second = this->rawInput.button((*itr).first);
+		}
+
+	}
+
 	this->rawInput.reset();
 
 }

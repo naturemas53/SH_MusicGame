@@ -33,6 +33,10 @@ public:
 		this->heartSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
 	}
 
+	void LoadJudgeSprite(std::wstring path){
+		this->judgeSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
 	~DataSingleton(){};
 
 	SPRITE atlasSp_;
@@ -40,6 +44,7 @@ public:
 	SPRITE longNoteSp_;
 	SPRITE longSquareSp_;
 	SPRITE heartSp_;
+	SPRITE judgeSp_;
 	const Vector2 NOTESIZE_;
 	const Rect SINGLENOTERECT_;
 	const Rect LONGNOTERECT_;

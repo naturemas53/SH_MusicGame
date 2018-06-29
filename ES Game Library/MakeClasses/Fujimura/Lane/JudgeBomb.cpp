@@ -5,9 +5,7 @@ JudgeBomb::JudgeBomb() :
 MAX_PAL_VALUE_(Data.BOMB_MAX_PAL_VALUE_){
 
 	this->palValue_ = 0;
-
-	this->font_ = GraphicsDevice.CreateDefaultFont();
-	this->color_ = Color(255, 255, 255);
+	this->useRect_ = RectWH(0,0,0,0);
 
 }
 
@@ -27,13 +25,11 @@ void JudgeBomb::Draw(Vector3 drawPos){
 
 	if (this->palValue_ <= 0) return;
 
-	Vector2 pos = Vector2_Zero;
-	pos.x = drawPos.x;
-	pos.y = drawPos.y;
+	float alpha = ((float)this->palValue_ / (float)this->MAX_PAL_VALUE_);
 
-	this->color_.A((float)this->palValue_ / (float)this->MAX_PAL_VALUE_);
+	SPRITE sp = Data.judgeSp_;
 
-	SpriteBatch.DrawString(this->font_,pos,this->color_,_T("%s"),this->judgeStr_.c_str());
+	SpriteBatch.Draw(*sp,drawPos,this->useRect_,alpha);
 
 }
 
@@ -44,20 +40,17 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	switch (judge){
 	case PERFECT:
 	{
-		this->judgeStr_ = L"PERFECT";
-		this->color_ = Color(255,0,255);
+		this->useRect_ = RectWH(0,0,280,60);
 	}break;
 
 	case GREAT:
 	{
-		this->judgeStr_ = L"GREAT";
-		this->color_ = Color(255, 255, 255);
+		this->useRect_ = RectWH(0, 60, 280, 60);
 	}break;
 
 	case MISS:
 	{
-		this->judgeStr_ = L"MISS";
-		this->color_ = Color(0, 0, 0);
+		this->useRect_ = RectWH(0, 120, 280, 60);
 	}break;
 	
 	}

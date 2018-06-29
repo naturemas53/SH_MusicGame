@@ -36,9 +36,9 @@ int TitleScene::Update()
 {
     // TODO: Add your update logic here
 	RawInputMouse leftMouse = MultiMouse.GetInputData(0);
-	RawInputMouse righttMouse = MultiMouse.GetInputData(1);
+	RawInputMouse rightMouse = MultiMouse.GetInputData(1);
 
-	if (leftMouse.IsPushed(LEFTBUTTON) || righttMouse.IsPushed(LEFTBUTTON)){
+	if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON)){
 		return GAME_SCENE(new LoadingScene());
 	}
 
@@ -56,7 +56,7 @@ void TitleScene::Draw()
 	GraphicsDevice.BeginScene();
 
 	SpriteBatch.Begin();
-	SpriteBatch.DrawString(this->font_,Vector2_Zero,Color(0,0,0),_T("TITLE SCENE"));
+	SpriteBatch.DrawString(this->font_, Vector2_Zero, Color(0, 0, 0), _T("TITLE SCENE"));
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();

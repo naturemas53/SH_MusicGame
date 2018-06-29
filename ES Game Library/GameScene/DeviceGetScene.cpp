@@ -11,7 +11,7 @@
 bool DeviceGetScene::Initialize()
 {
 	// TODO: Add your initialization logic here
-
+	this->font_ = GraphicsDevice.CreateDefaultFont();
 
 	return true;
 }
@@ -58,9 +58,7 @@ void DeviceGetScene::Draw()
 
 	SpriteBatch.Begin();
 
-	FONT font = GraphicsDevice.CreateDefaultFont();
-
-	SpriteBatch.DrawString(font, Vector2_Zero, Color(255, 255, 255), _T("PLEASE MOUSE CLICK REMAIN %d"), 2 - MultiMouse.GetDeviceCount());
+	SpriteBatch.DrawString(this->font_, Vector2_Zero, Color(255, 255, 255), _T("PLEASE MOUSE CLICK REMAIN %d"), 2 - MultiMouse.GetDeviceCount());
 
 	SpriteBatch.End();
 
