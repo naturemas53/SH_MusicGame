@@ -1,6 +1,7 @@
 #include "UI.h"
 #include "../Judgement/JudgeCounter.h"
 #include "Combo.h"
+#include "Score.h"
 #include "BackMovie.h"
 
 UI::UI(){
@@ -15,12 +16,15 @@ UI::UI(){
 	notice = [&](){ movie_->MovieReset(); };
 	this->combo_->EntryComboBreakMethod(notice);
 
+	this->score_ = new Score(0.5f);
+
 }
 
 UI::~UI(){
 
 	delete this->movie_;
 	delete this->combo_;
+	delete this->score_;
 
 }
 
@@ -36,11 +40,16 @@ void UI::Draw(DWORD nowTime){
 
 	this->combo_->Draw();
 
+	this->score_->Draw();
+
 
 }
 
 void UI::NoticeJudge(JUDGE judge){
 
 	this->combo_->ChangeCombo(judge);
+	this->score_->NoticeJudge(judge);
 
 }
+
+void UI::NoticeNoteCount(int noteCount){ this->score_->SetNoteCount(noteCount); }

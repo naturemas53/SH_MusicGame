@@ -4,6 +4,7 @@
 
 enum JUDGE;
 class Combo;
+class Score;
 class BackMovie;
 
 class UI{
@@ -17,11 +18,11 @@ public:
 	void Draw(DWORD nowTime);
 
 	void NoticeJudge(JUDGE value);
+	void NoticeNoteCount(int noteCount);
 
 private:
 
-	int score_;
-	
+	Score* score_;
 	Combo* combo_;
 	BackMovie* movie_;
 

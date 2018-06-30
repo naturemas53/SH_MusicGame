@@ -5,7 +5,7 @@
 
 NoteDrawSingleton::NoteDrawSingleton(){
 
-	this->drawRangeTime_ = 2000;
+	this->drawRangeTime_ = 1500;
 
 	this->drawComponents_[Note::SINGLENOTE] = new SingleNoteDraw();
 	this->drawComponents_[Note::LONGNOTE] = new LongNoteDraw();

@@ -63,8 +63,11 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	};
 	this->eventLane_.first->EntryPostMethod(laneNotice);
 
+	int noteCount = 0;
 	MusicScoreIO scoreIo("musicscore.txt");
-	scoreIo.ImportScore(laneInstances, this->eventLane_.first);
+	scoreIo.ImportScore(laneInstances, this->eventLane_.first,&noteCount);
+
+	this->ui_->NoticeNoteCount(noteCount);
 
 	BgmComponent.LoadMusic(_T("music.wav"));
 	BgmComponent.SetBPM(128);

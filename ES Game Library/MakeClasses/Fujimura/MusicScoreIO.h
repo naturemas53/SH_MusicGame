@@ -16,7 +16,7 @@ public:
 	MusicScoreIO(std::string path);
 	~MusicScoreIO();
 
-	bool ImportScore(std::vector<Lane*>& writeLane,EventLane* eventLane);
+	bool ImportScore(std::vector<Lane*>& writeLane,EventLane* eventLane,int* noteCount = nullptr);
 
 	bool ImportBPM(std::vector<BpmData>& writeArray);
 

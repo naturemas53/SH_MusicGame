@@ -6,13 +6,15 @@ class Score{
 
 public:
 
-	Score(Vector3 drawPos, int noteCount_,float scale);
+	Score(float scale);
 	~Score();
 
 	void Update();
 	void Draw();
 
 	void NoticeJudge(JUDGE judge);
+
+	void SetNoteCount(int noteCount);
 
 	int GetScore(){ return this->score_; }
 	JudgeCounter GetJudgeCount(){ return this->counter_; }
@@ -21,8 +23,9 @@ private:
 
 	void NumberDraw(Vector3 pos, int number);
 
-	const Vector3 POS_;
 	const Vector2 NUMBERSIZE_;
+	const float SCALE_;
+
 	int noteCount_;
 	JudgeCounter counter_;
 

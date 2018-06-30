@@ -9,8 +9,10 @@ JUDGE SingleNoteJudgement::Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& 
 	long dirTime = (long)nowTime - (long)judgeNote->GetTiming();
 	if (dirTime > (long)JUDGE::MISS) return MISS;
 
-	if (mouse.IsButtonUp(LEFTBUTTON) && mouse.IsButtonUp(RIGHTBUTTON)) return NONE;
+	if (mouse.IsPushed(LEFTBUTTON) || mouse.IsPushed(RIGHTBUTTON)){
+		return Judgement::judgeResponsib_->Judge(labs(nowTime - judgeNote->GetTiming()));
+	}
 
-	return Judgement::judgeResponsib_->Judge(labs(nowTime - judgeNote->GetTiming()));
+	return NONE;
 
 }
