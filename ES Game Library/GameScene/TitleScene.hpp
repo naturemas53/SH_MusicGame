@@ -56,7 +56,28 @@ private:
 	// 変数宣言
 
 	FONT font_;
+	SPRITE title_image;
+	SPRITE click_image;
+	SPRITE now_load_image;
+	
+	//ナウロード関連
+	float now_load_alpa;
+	int  now_load_state;
+	bool nou_load_flag;
+
+	//クリック関連
+	float click_alpa;
+	int click_state;
+	bool click_delete;
+
+	//タイトル関連
+	int title_state;
+	float title_alpa;
+
 
 	// 関数プロトタイプ
+	//透明不透明
+
+	void Transparent();
 
 };

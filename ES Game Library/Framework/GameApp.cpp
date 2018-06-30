@@ -83,8 +83,8 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	   != 0) {
 		if((UINT)::_tstoi(string_buffer))
 			m_Windowed = false;
-//		else
-//			m_Windowed = true;
+		//else
+		//	m_Windowed = true;
 	}
 
 	// マウスカーソル表示
@@ -104,7 +104,6 @@ bool CGameApp::Initialize(const HINSTANCE hInstance)
 	   == 0) {
 		::_tcscpy_s(string_buffer, _T("Content"));
 	}
-
 	// ウィンドウ生成
 	if(m_GameFrameWindow.Create(hInstance, CGameApp::WndProc, width, height, m_Windowed) == false)
 		return false;
