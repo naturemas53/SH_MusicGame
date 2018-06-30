@@ -20,5 +20,6 @@ private:
 
 	int palValue_;
 	Rect useRect_;
+	Vector3 rivisionPos_;
 
 };

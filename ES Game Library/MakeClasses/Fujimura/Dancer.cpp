@@ -4,7 +4,7 @@
 Dancer::Dancer(){
 
 	this->spine_ = SpineSingleton.CreateSpineFromFile("usakyara2","usakyara2",0.5f);
-	this->spine_->SetPosition(Vector2(640.0f,520.0f));
+	this->spine_->SetPosition(Vector2(640.0f,480.0f));
 
 	this->spine_->FlipY();
 	this->spine_->SetAnimation(0,"animation",1);
@@ -23,9 +23,8 @@ Dancer::~Dancer(){
 
 void Dancer::Update(DWORD nowTime){
 
-	SpriteBatch.Begin();
 	this->beam_->Update();
-	SpriteBatch.End();
+	
 
 	this->spine_->Update();
 
@@ -33,9 +32,13 @@ void Dancer::Update(DWORD nowTime){
 
 void Dancer::Draw(DWORD nowTime){
 
+	SpriteBatch.Begin();
 	this->beam_->Draw();
+	SpriteBatch.End();
 	this->spine_->Draw();
 
+//	GraphicsDevice.ClearStencil();
+	GraphicsDevice.ClearZBuffer();
 }
 
 void Dancer::SetPerformanceAnimation(){

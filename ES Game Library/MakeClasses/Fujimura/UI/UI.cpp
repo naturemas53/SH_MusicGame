@@ -6,7 +6,7 @@
 
 UI::UI(){
 
-	this->combo_ = new Combo();
+	this->combo_ = new Combo(0.5f);
 	this->movie_ = new BackMovie();
 
 	ISRUN teams = [](int combo){ return combo % 5 == 0; };

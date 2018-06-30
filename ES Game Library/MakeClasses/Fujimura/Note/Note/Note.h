@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../../ESGLib.h"
+#include "../../DataSingleton.h"
 
 class Note {
 
@@ -13,7 +14,7 @@ public:
 
 	};
 
-	Note(LONG inTiming,NOTETYPE type) : SIZE_(Vector2(112.0f,32.0f)){ 
+	Note(LONG inTiming,NOTETYPE type) : SIZE_(Data.NOTESIZE_){ 
 		this->timing_ = inTiming; 
 		this->type_ = type;
 	};

@@ -11,7 +11,7 @@ class Combo{
 
 public:
 
-	Combo();
+	Combo(float scale);
 	~Combo();
 
 	void Update();
@@ -23,7 +23,13 @@ public:
 
 private:
 
-	void NumberDraw(Vector3 pos,int number,Vector2 size);
+	void NumberDraw(SPRITE sp,Vector3 pos,int number);
+
+	const float SCALE_;
+	const Vector2 NUMBERSIZE_;
+	const Vector2 NUMBER_GROW_SIZE_;
+	const Vector2 TEXTSIZE_;
+	const Vector2 TEXT_GROW_SIZE_;
 
 	int combo_;
 
@@ -31,7 +37,9 @@ private:
 	std::vector<NOTICE> comboBreakMethods_;
 
 	SPRITE numberSp_;
+	SPRITE numberGrowSp_;
 	SPRITE textSp_;
+	SPRITE textGrowSp_;
 	RENDERTARGET offscreen_;
 
 };

@@ -25,7 +25,7 @@ void EventNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD dr
 	float height = 753.0f;
 
 	width = 1280.0f - width;
-	height = 720.0f - height;
+	height = 720.0f - height - 120.0f;
 
 	note->Draw(sp, Vector3(width / 2.0f,height / 2.0f,0.0f));
 

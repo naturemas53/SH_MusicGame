@@ -6,6 +6,7 @@ MAX_PAL_VALUE_(Data.BOMB_MAX_PAL_VALUE_){
 
 	this->palValue_ = 0;
 	this->useRect_ = RectWH(0,0,0,0);
+	this->rivisionPos_ = Vector3_Zero;
 
 }
 
@@ -29,7 +30,7 @@ void JudgeBomb::Draw(Vector3 drawPos){
 
 	SPRITE sp = Data.judgeSp_;
 
-	SpriteBatch.Draw(*sp,drawPos,this->useRect_,alpha);
+	SpriteBatch.Draw(*sp,drawPos + this->rivisionPos_,this->useRect_,alpha);
 
 }
 
@@ -40,17 +41,24 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	switch (judge){
 	case PERFECT:
 	{
+		float revisionX = (280.0f - Data.NOTESIZE_.x) / 2.5f;
 		this->useRect_ = RectWH(0,0,280,60);
+		this->rivisionPos_ = Vector3(-revisionX,30.0f , 0.0f);
 	}break;
 
 	case GREAT:
 	{
+		float revisionX = (180.0f - Data.NOTESIZE_.x) / 3.0f;
 		this->useRect_ = RectWH(0, 60, 280, 60);
+		this->rivisionPos_ = Vector3(-revisionX, 30.0f, 0.0f);
+
 	}break;
 
 	case MISS:
 	{
+		float revisionX = (160.0f - Data.NOTESIZE_.x) / 3.0f;
 		this->useRect_ = RectWH(0, 120, 280, 60);
+		this->rivisionPos_ = Vector3(-revisionX, 30.0f, 0.0f);
 	}break;
 	
 	}
