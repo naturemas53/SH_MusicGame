@@ -1,7 +1,6 @@
 #include "../StdAfx.h"
 #include "LoadingScene.hpp"
-#include <thread>
-#include <chrono>
+#include "../MakeClasses/yoshi/SceneLoadSingleton.h"
 
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
@@ -12,14 +11,24 @@
 bool LoadingScene::Initialize()
 {
 	// TODO: Add your initialization logic here
-	auto scene = [](){
-		return GAME_SCENE(new GameMain());
-	};
 
-	this->gameScene_ = std::async(std::launch::async,scene);
 	this->font_ = GraphicsDevice.CreateDefaultFont();
+	this->load_image = GraphicsDevice.CreateSpriteFromFile(_T("nowloading.png"));
+	this->asynchronous_image = GraphicsDevice.CreateSpriteFromFile(_T("stage_select_haikei.png"));
+
+
+	load_alpa = 1.0f;
+	load_state = 1.0f;
+	
+
 
 	this->value_ = 0;
+	load_derite_flag = false;
+
+	nextload_alpa = 1.0f;
+	nextload_state = 0;
+	this->nextScene_ = 0;
+	this->load_state = 0;
 
 	return true;
 }
@@ -45,13 +54,31 @@ int LoadingScene::Update()
 {
     // TODO: Add your update logic here
 
-	if (this->gameScene_.wait_for(std::chrono::seconds(0)) == std::future_status::ready){
+		if (load_state == 0)
+		{
+			load_alpa -= 0.01f;
+			if (load_alpa <= 0.0f)
+			{
+				if (AsyncLoadScene.IsComplete(&this->nextScene_))
+				{
+					load_state = 1;
 
-		return this->gameScene_.get();
+				}
+			}
+		}
 
-	}
-
+		if (load_state == 1)
+		{
+			Next_Load_Fade();
+			load_derite_flag = true;
+			if (nextload_flag == true)
+			{
+				return this->nextScene_;
+			}
+		}
+		
 	this->value_++;
+	
 
 	return 0;
 }
@@ -62,15 +89,56 @@ int LoadingScene::Update()
 void LoadingScene::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_CornflowerBlue);
+	GraphicsDevice.Clear(Color_Black);
 
 	GraphicsDevice.BeginScene();
 
 	SpriteBatch.Begin();
+	if (!load_derite_flag)
+	{
+		SpriteBatch.Draw(*load_image, Vector3(350, 400, -100.0f), load_alpa);
 
-	SpriteBatch.DrawString(this->font_,Vector2_Zero,Color(0,0,0),_T("LOADING NOW... %d"),this->value_);
+	}
+
+
+
+	SpriteBatch.Draw(*asynchronous_image, Vector3(0.0f, 0.0f, 0.0f), nextload_alpa,
+		Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), 0.7f);
+
+
+	/*SpriteBatch.Draw(*this->numberSp_, Vector3(450.0f, 600.0f, 0.0f), 1.0f, Vector3(0.0f, 0.0f, 0.0f),
+		Vector3(0.0f, 0.0f, 0.0f), 0.5f);
+
+*/
+	
+	SpriteBatch.DrawString(this->font_,Vector2_Zero,Color(50,250,50),_T("LOADING NOW... %d"),this->value_);
+
 
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
+}
+
+//フェード関数
+void LoadingScene::Next_Load_Fade()
+{
+	if (nextload_state == 0)
+	{
+		nextload_alpa -= 0.01f;
+		if (nextload_alpa <= 0)
+		{
+			nextload_state = 1;
+			nextload_flag = true;
+		}
+	}
+
+	/*if (nextload_state == 1)
+	{
+		nextload_alpa += 0.01f;
+		if (nextload_alpa >= 1.0f)
+		{
+			nextload_state = 0;
+		}
+
+	}*/
 }

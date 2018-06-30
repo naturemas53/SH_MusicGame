@@ -2,6 +2,7 @@
 
 #include "GameScene.hpp"
 #include "../ESGLib.h"
+#include "../MakeClasses/Fujimura/Judgement/JudgeCounter.h"
 
 class ResultScene : public CGameScene {
 public:
@@ -54,6 +55,27 @@ private:
 
 private:
 	// 変数宣言
+	SPRITE  result_image;
+
+	FONT score_font;
+	FONT combo_font;
+	FONT perfect_font;
+	FONT great_font;
+	FONT miss_font;
+	
+	//でばばば
+	JudgeCounter counter_;
+	int score_;
+	int combo;
+	int perfect;
+	int great;
+	int miss;
+
+	//透明不透明
+	float load_alpa;
+	int load_state;
+	bool font_delete;
+	
 
 
 	// 関数プロトタイプ

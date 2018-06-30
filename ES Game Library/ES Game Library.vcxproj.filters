@@ -625,6 +625,9 @@
     <ClCompile Include="MakeClasses\Fujimura\HeartBeam.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\yoshi\SceneLoadSingleton.cpp">
+      <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -981,6 +984,9 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\yoshi\factory\Shader_Factory.h">
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\yoshi\SceneLoadSingleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

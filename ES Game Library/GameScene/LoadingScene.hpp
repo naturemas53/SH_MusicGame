@@ -60,10 +60,23 @@ private:
 
 private:
 	// 変数宣言
-	std::future<int> gameScene_;
 	FONT font_;
 	int value_;
+	//非同期画像
+	SPRITE asynchronous_image;
+
+	SPRITE load_image;
+	float load_alpa;
+	int load_state;
+	bool load_derite_flag;
+	
+	bool nextload_flag;
+	float nextload_alpa;
+	int nextload_state;
+	int nextScene_;
+
 
 	// 関数プロトタイプ
 
+	void Next_Load_Fade();
 };

@@ -71,7 +71,6 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 
 	BgmComponent.LoadMusic(_T("music.wav"));
 	BgmComponent.SetBPM(128);
-	BgmComponent.Play();
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 }
@@ -80,6 +79,7 @@ bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
 	
+	BgmComponent.Play();
 
 	return true;
 }
@@ -130,8 +130,14 @@ int GameMain::Update()
 	RawInputMouse mouse = MultiMouse.GetInputData(0);
 	if (mouse.IsPushed(RIGHTBUTTON)){
 
-		return GAME_SCENE(new TitleScene);
+		return GAME_SCENE(new ResultScene);
 
+	}
+	KeyboardState key_state = Keyboard->GetState();
+
+	if (key_state.IsKeyDown(Keys_A))
+	{
+		return GAME_SCENE(new ResultScene);
 	}
 
 	return 0;
@@ -143,7 +149,7 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_CornflowerBlue);
+	GraphicsDevice.Clear(Color_Black);
 
 	GraphicsDevice.BeginScene();
 
