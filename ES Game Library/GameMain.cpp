@@ -11,6 +11,7 @@
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include "MakeClasses\Fujimura\Dancer.h"
 #include "MakeClasses\Fujimura\JukeBox.h"
+#include "MakeClasses\yoshi\SceneLoadSingleton.h"
 #include <functional>
 
 /// <summary>
@@ -73,6 +74,18 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	BgmComponent.SetBPM(128);
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
+
+	bgm_state = 0;
+	bgm_alpa = 0.0f;
+	bgm_flag = false;
+
+	blackScreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+
+	GraphicsDevice.SetRenderTarget(blackScreen_);
+	GraphicsDevice.Clear(Color_Black);
+	GraphicsDevice.SetDefaultRenderTarget();
+	
+
 }
 
 bool GameMain::Initialize()
@@ -133,13 +146,29 @@ int GameMain::Update()
 		return GAME_SCENE(new ResultScene);
 
 	}
-	KeyboardState key_state = Keyboard->GetState();
-
-	if (key_state.IsKeyDown(Keys_A))
+	
+	//きょくおわったらリザルトへ
+	if (BgmComponent.IsPlaying() == false)
 	{
-		return GAME_SCENE(new ResultScene);
-	}
+	
+		
+		Fade();
+		if (bgm_alpa >= 1.0)
+		{
+			bgm_flag = true;
+		}
+		
 
+		if (bgm_flag == true)
+		{
+			return GAME_SCENE(new ResultScene());
+
+		}
+	
+		
+
+		
+	}
 	return 0;
 }
 
@@ -149,7 +178,8 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_Black);
+	GraphicsDevice.Clear(Color(0, 0, 0, 0));
+
 
 	GraphicsDevice.BeginScene();
 
@@ -168,6 +198,12 @@ void GameMain::Draw()
 
 	this->eventLane_.first->Draw(nowTime);
 
+	SpriteBatch.Begin();
+
+	SpriteBatch.Draw(*this->blackScreen_, Vector3_Zero, bgm_alpa);
+
+	SpriteBatch.End();
+
 	GraphicsDevice.EndScene();
 }
 
@@ -180,4 +216,25 @@ void GameMain::SpriteLoad(){
 	Data.LoadHeartSprite(_T("heart_drow.png"));
 	Data.LoadJudgeSprite(_T("judges.png"));
 
+}
+void GameMain::Fade()
+//フェード
+{
+	if (bgm_state == 0)
+	{
+		bgm_alpa += 0.01f;
+		if (bgm_alpa >= 1.0f)
+		{
+			bgm_state = 1;
+		}
+	}
+
+	/*if (bgm_state == 1)
+	{
+		bgm_alpa += 0.01f;
+		if (bgm_alpa >= 1)
+		{
+			bgm_state = 0;
+		}
+	}*/
 }

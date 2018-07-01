@@ -91,7 +91,7 @@ float4 BrightPS(
 	//color.r = 0.0f;
 	//color.b = 0.0f;
 	//color.g = 0.0f;
-	color.a = 1.0f;
+	//color.a = 1.0f;
 	return color;
 //	return float4(max(0, tex2D(InputSmp, UV) / IntScale - MinBright).rgb, 1);
 }

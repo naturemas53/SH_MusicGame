@@ -67,8 +67,13 @@ private:
 	UI* ui_;
 	SPRITE backLane_;
 	Dancer* dancer_;
+	float bgm_alpa;
+	int bgm_state;
+	bool bgm_flag;
+	RENDERTARGET blackScreen_;
 
 	// ŠÖ”éŒ¾
 	void SpriteLoad();
+	void Fade();
 
 };

@@ -62,10 +62,11 @@ void BackMovie::Draw(){
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 	SpriteBatch.End();
 
+	//if(noise_time > 0){
 	//std::vector<Effect_Singleton::SHADER_NAME> comands_;
 
 	//onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_, onShaderScreen);
-
+	//}
 
 	//SpriteBatch.Begin();
 	//SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);

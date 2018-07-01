@@ -1,4 +1,7 @@
 #include "JukeBox.h"
+#include "../yoshi/SceneLoadSingleton.h"
+
+
 
 JukeBox::JukeBox(){
 
@@ -27,6 +30,8 @@ float JukeBox::GetRhythmRate(){
 	int overbalance = (int)nowTime % this->rhythmTime_;
 
 	return (float)overbalance / (float)this->rhythmTime_;
+
+	
 
 }
 

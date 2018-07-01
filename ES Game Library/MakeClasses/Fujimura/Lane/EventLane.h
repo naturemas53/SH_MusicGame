@@ -3,6 +3,7 @@
 #include <vector>
 #include <functional>
 #include "BaseLane.h"
+#include "../../yoshi/effect/Effect_Singleton.h"
 
 class JudgementContext;
 class JudgeBomb;
@@ -26,5 +27,7 @@ private:
 	std::function<void(VISITORMETHOD)> postMethod_;
 	JudgementContext* judgement_;
 	JudgeBomb* bomb_;
+
+	RENDERTARGET offscreen;
 
 };
