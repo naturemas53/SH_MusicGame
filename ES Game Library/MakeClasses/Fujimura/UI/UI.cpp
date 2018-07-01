@@ -57,3 +57,10 @@ void UI::NoticeJudge(JUDGE judge){
 }
 
 void UI::NoticeNoteCount(int noteCount){ this->score_->SetNoteCount(noteCount); }
+
+void UI::GetScoreAndJudgeCount(int& score,JudgeCounter& counter){
+
+	score = this->score_->GetScore();
+	counter = this->score_->GetJudgeCount();
+
+}
