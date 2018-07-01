@@ -57,24 +57,13 @@ private:
 	// •Ï”éŒ¾
 	SPRITE  result_image;
 
-	FONT score_font;
-	FONT combo_font;
-	FONT perfect_font;
-	FONT great_font;
-	FONT miss_font;
-	
-	//‚Å‚Î‚Î‚Î
+	FONT font;
 	JudgeCounter counter_;
 	int score_;
-	int combo;
-	int perfect;
-	int great;
-	int miss;
 
 	//“§–¾•s“§–¾
 	float load_alpa;
 	int load_state;
-	bool font_delete;
 	
 
 

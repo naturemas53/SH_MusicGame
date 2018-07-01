@@ -153,7 +153,7 @@ int GameMain::Update()
 	}
 	
 	//‚«‚å‚­‚¨‚í‚Á‚½‚çƒŠƒUƒ‹ƒg‚Ö
-	if (BgmComponent.IsPlaying() == false)
+	if (!BgmComponent.IsPlaying() && this->waitTime_ <= 0)
 	{
 
 		Fade();
@@ -168,6 +168,7 @@ int GameMain::Update()
 			return GAME_SCENE(new ResultScene());
 
 		}
+
 	}
 	return 0;
 }
@@ -235,5 +236,14 @@ void GameMain::Fade()
 }
 
 void GameMain::DataSave(){
+
+	int score = 0;
+	JudgeCounter&& counter = JudgeCounter();
+
+	this->ui_->GetScoreAndJudgeCount(score, counter);
+
+	SceneShared().SetIntegerForKey("SCORE",score);
+	SceneShared().SetDataForKey("JUDGECOUNTER",&counter);
+
 
 }

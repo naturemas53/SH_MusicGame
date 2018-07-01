@@ -66,10 +66,7 @@ void EventLane::Update(LONG nowTime){
 
 void EventLane::Draw(LONG nowTime){
 
-
-
 	SpriteBatch.Begin();
-
 	if (this->postMethod_ != nullptr) this->postMethod_(this->drawJudgeVisitor_);
 	SpriteBatch.End();
 
@@ -79,8 +76,10 @@ void EventLane::Draw(LONG nowTime){
 	GraphicsDevice.SetRenderTarget(offscreen);
 	GraphicsDevice.Clear(Color(0,0,0,0));
 	SpriteBatch.Begin();
-	NoteDrawComponent.Draw((*itr),this,nowTime);
+	bool isDraw = NoteDrawComponent.Draw((*itr),this,nowTime);
 	SpriteBatch.End();
+
+	if (!isDraw) return;
 
 	GraphicsDevice.SetDefaultRenderTarget();
 	SpriteBatch.Begin();

@@ -11,27 +11,17 @@ bool ResultScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 	this->result_image = GraphicsDevice.CreateSpriteFromFile(_T("stage1_bg.png"));
-	this->score_font = GraphicsDevice.CreateDefaultFont();
-	this->combo_font = GraphicsDevice.CreateDefaultFont();
-	this->perfect_font = GraphicsDevice.CreateDefaultFont();
-	this->great_font = GraphicsDevice.CreateDefaultFont();
-	this->miss_font = GraphicsDevice.CreateDefaultFont();
+	this->font = GraphicsDevice.CreateDefaultFont();
 
 	//透明
 	load_alpa = 1.0f;
 	load_state = 0;
-	font_delete = false;
 
-	//でばばば
-	this->counter_.perfect = 100;
-	this->counter_.great = 10;
-	this->counter_.miss = 893;
-	
-	this->score_ = 37564;
-	this->perfect = 500000;
-	this->great = 40000;
-	this->miss = 444444;//yoshi
+	this->score_ = SceneShared().GetIntegerForKey("SCORE");
+	this->counter_ = *(JudgeCounter*)SceneShared().GetDataForKey("JUDGECOUNTER");
 
+	SceneShared().RemoveIntegerForKey("SCORE");
+	SceneShared().GetDataForKey("JUDGECOUNTER");
 
 	return true;
 }
@@ -43,6 +33,7 @@ bool ResultScene::Initialize()
 void ResultScene::Finalize()
 {
 	// TODO: Add your finalization logic here
+	GraphicsDevice.ReleaseFont(this->font);
 
 }
 
@@ -62,7 +53,6 @@ int ResultScene::Update()
 //タイトル戻るフェード
 	if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON))
 	{
-		font_delete = true;
 		load_state = 1;
 		
 	}
@@ -94,32 +84,13 @@ void ResultScene::Draw()
 	// 文字列の描画
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*result_image, Vector3(0.0f, 0.0f, 0.0f),load_alpa);
-	/*this->counter_.perfect = 100;
-	this->counter_.great = 10;
-	this->counter_.miss = 893;
-*/
-	if (!font_delete)
-	{
-		
-		SpriteBatch.DrawString(score_font, Vector2(260.0f, 100.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), score_);
-		//SpriteBatch.DrawString(combo_font, Vector2(260.0f, 200.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), combo);
-		SpriteBatch.DrawString(perfect_font, Vector2(260.0f, 300.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), perfect);
-		SpriteBatch.DrawString(great_font, Vector2(260.0f, 400.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), great);
-		SpriteBatch.DrawString(miss_font, Vector2(260.0f, 500.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), miss);
-
-
-	}
-
-
 	
-
-
-
+	SpriteBatch.DrawString(this->font, Vector2(260.0f, 100.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), score_);
+	SpriteBatch.DrawString(this->font, Vector2(260.0f, 300.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.perfect);
+	SpriteBatch.DrawString(this->font, Vector2(260.0f, 400.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.great);
+	SpriteBatch.DrawString(this->font, Vector2(260.0f, 500.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.miss);
 
 	SpriteBatch.End();
 	GraphicsDevice.EndScene();
-
-
-
 
 }

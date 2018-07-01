@@ -39,7 +39,7 @@ JUDGE EventNoteJudgement::Judge(Note* note, LONG nowTime, RawInputMouse& mouse){
 
 	long dirTime = note->GetTiming() - nowTime;
 	if (this->remainMoveLimit_ < dirTime) return JUDGE::NONE;
-	if (dirTime > MISS){
+	if (dirTime < -MISS){
 		this->DetectionInitialize();
 		return MISS;
 	}
