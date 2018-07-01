@@ -4,8 +4,6 @@
 Bloom::Bloom()
 {
 	offscreen[0] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-	offscreen[1] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-
 	bloom_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/HDR.fx"));
 	bloom_effect->SetTechnique("Bright");
 	bloom_effect->SetParameter("MinBright", -5.0f);

@@ -10,6 +10,8 @@
 
 EventLane::EventLane(JudgementContext* judgement){
 
+
+	offscreen =  GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 	this->postMethod_ = nullptr;
 
 	this->judgement_ = judgement;
@@ -64,17 +66,48 @@ void EventLane::Update(LONG nowTime){
 
 void EventLane::Draw(LONG nowTime){
 
+
+
 	SpriteBatch.Begin();
+
 	if (this->postMethod_ != nullptr) this->postMethod_(this->drawJudgeVisitor_);
 	SpriteBatch.End();
 
 	auto itr = this->notes_.begin();
 	if (itr == this->notes_.end()) return;
 
+	GraphicsDevice.SetRenderTarget(offscreen);
+	GraphicsDevice.Clear(Color(0,0,0,0));
 	SpriteBatch.Begin();
 	NoteDrawComponent.Draw((*itr),this,nowTime);
 	SpriteBatch.End();
 
+	GraphicsDevice.SetDefaultRenderTarget();
+	SpriteBatch.Begin();
+
+	SpriteBatch.InitTransform();
+
+	SpriteBatch.DrawSimple(*offscreen, Vector3_Zero);
+
+	SpriteBatch.End();
+
+	std::vector<Effect_Singleton::SHADER_NAME> comands_;
+	comands_.push_back(Effect_Singleton::blur);
+	comands_.push_back(Effect_Singleton::bloom);
+
+	RENDERTARGET onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_,offscreen);
+	
+
+
+	GraphicsDevice.SetDefaultRenderTarget();
+	SpriteBatch.Begin();
+
+	SpriteBatch.InitTransform();
+
+	//ブルームアルファ
+	SpriteBatch.DrawSimple(*onShaderScreen, Vector3_Zero,0.4f);
+
+	SpriteBatch.End();
 
 }
 

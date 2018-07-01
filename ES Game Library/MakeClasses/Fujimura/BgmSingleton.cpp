@@ -35,6 +35,8 @@ float BgmSingleton::GetRhythmRate(){
 
 	return (float)overbalance / (float)this->rhythmTime_;
 
+	
+
 }
 
 void BgmSingleton::SetBPM(int bpm){
