@@ -22,7 +22,7 @@ FadeInOut::~FadeInOut(){
 
 bool FadeInOut::Update(){
 
-
+	return false;
 
 }
 

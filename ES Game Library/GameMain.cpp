@@ -11,6 +11,7 @@
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include "MakeClasses\Fujimura\Dancer.h"
 #include "MakeClasses\Fujimura\JukeBox.h"
+#include "MakeClasses\yoshi\effect\Effect_Singleton.h"
 #include <functional>
 
 /// <summary>
@@ -73,6 +74,8 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	BgmComponent.SetBPM(180);
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
+
+	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::bloom,"MinBright",10.0f);
 }
 
 bool GameMain::Initialize()
@@ -130,14 +133,8 @@ int GameMain::Update()
 	RawInputMouse mouse = MultiMouse.GetInputData(0);
 	if (mouse.IsPushed(RIGHTBUTTON)){
 
-		return GAME_SCENE(new ResultScene);
+		return GAME_SCENE(new TitleScene);
 
-	}
-	KeyboardState key_state = Keyboard->GetState();
-
-	if (key_state.IsKeyDown(Keys_A))
-	{
-		return GAME_SCENE(new ResultScene);
 	}
 
 	return 0;

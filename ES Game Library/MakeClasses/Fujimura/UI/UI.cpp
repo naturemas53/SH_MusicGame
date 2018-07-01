@@ -6,14 +6,18 @@
 
 UI::UI(){
 
-	this->combo_ = new Combo(0.5f);
+	this->combo_ = new Combo(0.7f);
 	this->movie_ = new BackMovie();
 
 	ISRUN teams = [](int combo){ return combo % 5 == 0; };
-	NOTICE notice = [&](){ movie_->MovieChange(); };
+	NOTICE notice = [this](){ this->movie_->MovieChange(); };
+	this->combo_->EntryComboUpMethod(teams,notice);
+	notice = [this](){ this->combo_->ChengeColor(); };
 	this->combo_->EntryComboUpMethod(teams,notice);
 
-	notice = [&](){ movie_->MovieReset(); };
+	notice = [this](){ this->movie_->MovieReset(); };
+	this->combo_->EntryComboBreakMethod(notice);
+	notice = [this](){ this->combo_->ColorReset();};
 	this->combo_->EntryComboBreakMethod(notice);
 
 	this->score_ = new Score(0.5f);

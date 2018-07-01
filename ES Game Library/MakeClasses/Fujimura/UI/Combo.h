@@ -21,6 +21,9 @@ public:
 	void EntryComboUpMethod(ISRUN teams,NOTICE notice);
 	void EntryComboBreakMethod(NOTICE notice);
 
+	void ChengeColor();
+	void ColorReset();
+
 private:
 
 	void NumberDraw(SPRITE sp,Vector3 pos,int number);
@@ -32,6 +35,8 @@ private:
 	const Vector2 TEXT_GROW_SIZE_;
 
 	int combo_;
+	std::vector<Color> colors_;
+	std::vector<Color>::iterator nowColor_;
 
 	std::vector<std::pair<ISRUN,NOTICE> > comboUpMethods_;
 	std::vector<NOTICE> comboBreakMethods_;

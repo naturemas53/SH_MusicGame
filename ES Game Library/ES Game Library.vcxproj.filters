@@ -994,6 +994,9 @@
     <ClInclude Include="MakeClasses\Fujimura\FadeInOut.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\CalcUV.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico">

@@ -10,15 +10,12 @@ NUMBERSIZE_(Vector2(48.0f * scale, 67.0f * scale))
 	
 	this->numberSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_number.png"));
 	this->textSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_text.png"));
-	this->offScreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
 	this->score_ = 0;
 
 }
 
 Score::~Score(){
-
-	GraphicsDevice.ReleaseRenderTarget(this->offScreen_);
 
 }
 
@@ -29,9 +26,6 @@ void Score::Update(){
 }
 
 void Score::Draw(){
-
-	GraphicsDevice.SetRenderTarget(this->offScreen_);
-	GraphicsDevice.Clear(Color(0,0,0,0));
 
 	SpriteBatch.Begin();
 
@@ -57,16 +51,6 @@ void Score::Draw(){
 	}
 
 	SpriteBatch.End();
-
-	GraphicsDevice.SetDefaultRenderTarget();
-
-	SpriteBatch.Begin();
-
-	SpriteBatch.InitTransform();
-	SpriteBatch.DrawSimple(*this->offScreen_,Vector3_Zero);
-
-	SpriteBatch.End();
-
 
 }
 

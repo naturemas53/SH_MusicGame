@@ -324,6 +324,7 @@
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\ArrayAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\ArrayAlgorithm\DeleteNoteAlgorithm.h" />
     <ClInclude Include="MakeClasses\Fujimura\BpmDataStruct.h" />
+    <ClInclude Include="MakeClasses\Fujimura\CalcUV.h" />
     <ClInclude Include="MakeClasses\Fujimura\Dancer.h" />
     <ClInclude Include="MakeClasses\Fujimura\DataSingleton.h" />
     <ClInclude Include="MakeClasses\Fujimura\FadeInOut.h" />
