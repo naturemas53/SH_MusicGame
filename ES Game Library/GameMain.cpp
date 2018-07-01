@@ -10,8 +10,8 @@
 #include "MakeClasses\Fujimura\UI\UI.h"
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include "MakeClasses\Fujimura\Dancer.h"
-#include "MakeClasses\Fujimura\JukeBox.h"
 #include "MakeClasses\yoshi\SceneLoadSingleton.h"
+#include "MakeClasses\Fujimura\BgmSingleton.h"
 #include <functional>
 
 /// <summary>
@@ -71,7 +71,7 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	this->ui_->NoticeNoteCount(noteCount);
 
 	BgmComponent.LoadMusic(_T("music.wav"));
-	BgmComponent.SetBPM(128);
+	BgmComponent.SetBPM(180);
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 
@@ -84,15 +84,13 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	GraphicsDevice.SetRenderTarget(blackScreen_);
 	GraphicsDevice.Clear(Color_Black);
 	GraphicsDevice.SetDefaultRenderTarget();
-	
+	this->waitTime_ = 2000;
 
 }
 
 bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
-	
-	BgmComponent.Play();
 
 	return true;
 }
@@ -130,7 +128,14 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	DWORD nowTime = nowTime = BgmComponent.GetNowTime();
+	LONG nowTime = nowTime = BgmComponent.GetNowTime();
+	if(this->waitTime_ > 0){
+	
+		this->waitTime_ -= GameTimer.GetElapsedMilliSecond();
+		if(this->waitTime_ <= 0){BgmComponent.Play(-this->waitTime_);}
+		nowTime = -this->waitTime_;
+
+	}
 
 	this->eventLane_.first->Update(nowTime);
 	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
@@ -143,31 +148,26 @@ int GameMain::Update()
 	RawInputMouse mouse = MultiMouse.GetInputData(0);
 	if (mouse.IsPushed(RIGHTBUTTON)){
 
-		return GAME_SCENE(new ResultScene);
+		return GAME_SCENE(new TitleScene);
 
 	}
 	
 	//きょくおわったらリザルトへ
 	if (BgmComponent.IsPlaying() == false)
 	{
-	
-		
+
 		Fade();
 		if (bgm_alpa >= 1.0)
 		{
 			bgm_flag = true;
 		}
-		
 
 		if (bgm_flag == true)
 		{
+			this->DataSave();
 			return GAME_SCENE(new ResultScene());
 
 		}
-	
-		
-
-		
 	}
 	return 0;
 }
@@ -183,7 +183,8 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	DWORD nowTime = BgmComponent.GetNowTime();
+	LONG nowTime = BgmComponent.GetNowTime();
+	if(this->waitTime_ > 0) nowTime = -this->waitTime_;
 
 	this->ui_->Draw(nowTime);
 
@@ -217,8 +218,10 @@ void GameMain::SpriteLoad(){
 	Data.LoadJudgeSprite(_T("judges.png"));
 
 }
-void GameMain::Fade()
+
 //フェード
+void GameMain::Fade()
+	
 {
 	if (bgm_state == 0)
 	{
@@ -229,12 +232,8 @@ void GameMain::Fade()
 		}
 	}
 
-	/*if (bgm_state == 1)
-	{
-		bgm_alpa += 0.01f;
-		if (bgm_alpa >= 1)
-		{
-			bgm_state = 0;
-		}
-	}*/
+}
+
+void GameMain::DataSave(){
+
 }

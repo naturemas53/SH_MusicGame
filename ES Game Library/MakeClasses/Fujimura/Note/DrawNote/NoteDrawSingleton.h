@@ -18,15 +18,15 @@ public:
 
 	~NoteDrawSingleton();
 
-	bool Draw(Note* note, BaseLane* lane, DWORD nowTime);
-	void SetDrawRangeTime(DWORD inTime);
+	bool Draw(Note* note, BaseLane* lane, LONG nowTime);
+	void SetDrawRangeTime(LONG inTime);
 
 private:
 
 	NoteDrawSingleton();
 
 	std::map<Note::NOTETYPE,DrawNote*> drawComponents_;
-	DWORD drawRangeTime_;
+	LONG drawRangeTime_;
 
 };
 

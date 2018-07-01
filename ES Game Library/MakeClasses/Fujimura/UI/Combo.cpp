@@ -1,6 +1,16 @@
 #include "Combo.h"
 #include "../../yoshi/effect/Effect_Singleton.h"
+#include "../../Fujimura/BgmSingleton.h"
+#include "../CalcUV.h"
+#include "../BgmSingleton.h"
 
+
+/*
+1 ‰©F
+2 —Î
+3 Â
+4 Ô
+*/
 
 Combo::Combo(float scale) : SCALE_(scale),
 NUMBERSIZE_(Vector2(87.0f  *scale, 124.0f * scale)),
@@ -17,6 +27,13 @@ TEXT_GROW_SIZE_(Vector2(310.0f * scale, 118.0f * scale))
 	this->textGrowSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/conbo_glow.png"));
 	this->offscreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
+	this->colors_.push_back(Color(255,255,0));
+	this->colors_.push_back(Color(0,0,255));
+	this->colors_.push_back(Color(0,255,0));
+	this->colors_.push_back(Color(255,0,0));
+
+	this->nowColor_ = this->colors_.begin();
+
 }
 
 Combo::~Combo(){
@@ -31,11 +48,7 @@ void Combo::Update(){
 
 void Combo::Draw(){
 
-	//if (this->combo_ <= 0) return;
-
-	Color color = Color(255, 255, 0);
-	if (this->combo_ >= 50) color = Color(255, 0, 0);
-	if (this->combo_ >= 100) color = Color(255, 255, 0);
+	if (this->combo_ <= 0) return;
 
 	GraphicsDevice.SetRenderTarget(this->offscreen_);
 	GraphicsDevice.Clear(Color(0,0,0,0));
@@ -43,9 +56,9 @@ void Combo::Draw(){
 	float numberWidth = this->NUMBER_GROW_SIZE_.x * 3.0f;
 	float textWidth = this->TEXT_GROW_SIZE_.x;
 
-	Vector2 textRivision = (this->TEXT_GROW_SIZE_ - this->TEXTSIZE_) / 2.0f;
+	Vector2 textRivision = (this->TEXT_GROW_SIZE_ - this->TEXTSIZE_) / 2.0f - (Vector2_One * 0.5f);
 
-	Vector3 basePos = Vector3(0.0f,570.0f,0.0f);
+	Vector3 basePos = Vector3(0.0f,555.0f,0.0f);
 
 	SpriteBatch.Begin();
 
@@ -61,22 +74,26 @@ void Combo::Draw(){
 			j++;
 		}
 	}
-
-	pos = basePos + Vector3((1280.0f - textWidth) / 2.0f, this->NUMBER_GROW_SIZE_.y - 15.0f, 0.0f);
-	SpriteBatch.Draw(*this->textGrowSp_, pos, color, Vector3_Zero, Vector3_Zero, this->SCALE_);
-
-	pos += Vector3(textRivision.x,textRivision.y,0.0f);
-	SpriteBatch.Draw(*this->textSp_, pos ,1.0f,Vector3_Zero,Vector3_Zero,this->SCALE_);
-
-
-
-
 	SpriteBatch.End();
 
+
 	RENDERTARGET onShaderScreen = this->offscreen_;
-	//std::vector<Effect_Singleton::SHADER_NAME> comand;
-	//comand.push_back(Effect_Singleton::blur);
-	//onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comand,onShaderScreen);
+
+	CalcUV calcUV;
+	float rhythmRate = BgmComponent.GetRhythmRate();
+	if(rhythmRate / 0.5f >= 1.0f){
+	
+		rhythmRate = 1.0f - rhythmRate;
+
+	}
+	rhythmRate *= 2.0f;
+
+	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddU",calcUV.CalcU(1.0f * rhythmRate));
+	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddV",calcUV.CalcV(1.0f * rhythmRate));
+	std::vector<Effect_Singleton::SHADER_NAME> comand;
+	//comand.push_back(Effect_Singleton::bloom);
+	comand.push_back(Effect_Singleton::blur);
+	onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comand,onShaderScreen);
 
 	GraphicsDevice.SetDefaultRenderTarget();
 
@@ -84,6 +101,9 @@ void Combo::Draw(){
 
 	SpriteBatch.InitTransform();
 	SpriteBatch.DrawSimple(*onShaderScreen,Vector3_Zero);
+	pos = basePos + Vector3((1280.0f - textWidth) / 2.0f, this->NUMBER_GROW_SIZE_.y - (this->TEXT_GROW_SIZE_.y / 3.0f), 0.0f);
+	SpriteBatch.Draw(*this->textSp_, pos + Vector3(textRivision.x,textRivision.y,0.0f) ,1.0f,Vector3_Zero,Vector3_Zero,this->SCALE_);
+	SpriteBatch.Draw(*this->textGrowSp_, pos, *(this->nowColor_), Vector3_Zero, Vector3_Zero, this->SCALE_);
 
 	SpriteBatch.End();
 
@@ -125,3 +145,13 @@ void Combo::EntryComboUpMethod(ISRUN teams, NOTICE notice){
 void Combo::EntryComboBreakMethod(NOTICE notice){
 	this->comboBreakMethods_.push_back(notice);
 }
+
+void Combo::ChengeColor(){
+
+	auto itr = this->colors_.end();
+	itr--;
+	if(this->nowColor_ != itr) this->nowColor_++;
+
+}
+
+void Combo::ColorReset(){	this->nowColor_ = this->colors_.begin(); }

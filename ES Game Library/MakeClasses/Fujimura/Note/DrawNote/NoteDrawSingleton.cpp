@@ -19,7 +19,7 @@ NoteDrawSingleton::~NoteDrawSingleton(){
 
 }
 
-bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, DWORD nowTime){
+bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, LONG nowTime){
 
 	if (nowTime > 1500){
 

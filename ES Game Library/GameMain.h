@@ -72,8 +72,11 @@ private:
 	bool bgm_flag;
 	RENDERTARGET blackScreen_;
 
+	int waitTime_;
+
 	// ŠÖ”éŒ¾
 	void SpriteLoad();
 	void Fade();
+	void DataSave();
 
 };

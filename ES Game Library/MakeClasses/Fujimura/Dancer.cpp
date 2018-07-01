@@ -4,7 +4,7 @@
 Dancer::Dancer(){
 
 	this->spine_ = SpineSingleton.CreateSpineFromFile("usakyara2","usakyara2",0.5f);
-	this->spine_->SetPosition(Vector2(640.0f,480.0f));
+	this->spine_->SetPosition(Vector2(660.0f,480.0f));
 
 	this->spine_->FlipY();
 	this->spine_->SetAnimation(0,"animation",1);

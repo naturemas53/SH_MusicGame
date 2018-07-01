@@ -18,7 +18,7 @@ public:
 
 	};
 
-	virtual JUDGE Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse) = 0;
+	virtual JUDGE Judge(Note* judgeNote, LONG nowTime, RawInputMouse& mouse) = 0;
 
 protected:
 

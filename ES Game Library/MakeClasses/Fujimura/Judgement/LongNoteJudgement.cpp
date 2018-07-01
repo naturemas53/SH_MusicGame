@@ -17,7 +17,7 @@ LongNoteJudgement::~LongNoteJudgement(){
 
 }
 
-JUDGE LongNoteJudgement::Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse){
+JUDGE LongNoteJudgement::Judge(Note* judgeNote, LONG nowTime, RawInputMouse& mouse){
 
 	if (judgeNote->GetType() != Note::LONGNOTE)  return MISS;
 

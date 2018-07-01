@@ -15,8 +15,8 @@ public:
 	EventLane(JudgementContext* judgment);
 	~EventLane();
 
-	void Update(DWORD nowTime);
-	void Draw(DWORD nowTime);
+	void Update(LONG nowTime);
+	void Draw(LONG nowTime);
 
 	void Accept(VISITORMETHOD visitorMethod);
 	void EntryPostMethod(std::function<void(VISITORMETHOD)> postMethod);

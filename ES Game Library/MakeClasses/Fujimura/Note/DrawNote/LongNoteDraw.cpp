@@ -17,7 +17,7 @@ LongNoteDraw::~LongNoteDraw(){
 
 }
 
-void LongNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime){
+void LongNoteDraw::NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG drawRangeTime){
 
 	if (typeid(*lane) != typeid(Lane)) return;
 

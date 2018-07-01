@@ -41,6 +41,9 @@ void Effect_Singleton::SetParameter(SHADER_NAME shaderName, std::string paramete
 {
 	auto itr = this->shader_aggregation.find(shaderName);
 	if (itr == this->shader_aggregation.end()) return;
+	if ((*itr).second == nullptr){
+		(*itr).second = this->create_shader(shaderName);
+	}
 
 	(*itr).second->SetParameter(parameterName,value);
 

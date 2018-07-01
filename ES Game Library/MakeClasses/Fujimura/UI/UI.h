@@ -1,6 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include <vector>
+#include "../Judgement/JudgeCounter.h"
 
 enum JUDGE;
 class Combo;
@@ -19,6 +20,8 @@ public:
 
 	void NoticeJudge(JUDGE value);
 	void NoticeNoteCount(int noteCount);
+
+	void GetScoreAndJudgeCount(int& score,JudgeCounter& counter);
 
 private:
 

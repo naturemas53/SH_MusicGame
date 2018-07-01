@@ -14,7 +14,7 @@ SingleNoteDraw::~SingleNoteDraw(){
 
 }
 
-void SingleNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime){
+void SingleNoteDraw::NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG drawRangeTime){
 
 	if (typeid(*lane) != typeid(Lane)) return;
 

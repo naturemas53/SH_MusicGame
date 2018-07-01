@@ -10,15 +10,12 @@ NUMBERSIZE_(Vector2(48.0f * scale, 67.0f * scale))
 	
 	this->numberSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_number.png"));
 	this->textSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_text.png"));
-	this->offScreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
 
 	this->score_ = 0;
 
 }
 
 Score::~Score(){
-
-	GraphicsDevice.ReleaseRenderTarget(this->offScreen_);
 
 }
 
@@ -30,42 +27,30 @@ void Score::Update(){
 
 void Score::Draw(){
 
-	GraphicsDevice.SetRenderTarget(this->offScreen_);
-	GraphicsDevice.Clear(Color(0,0,0,0));
-
 	SpriteBatch.Begin();
 
 	float numberWidth = this->NUMBERSIZE_.x * 6.0f;
 	float textWidth = 199.0f * this->SCALE_;
-	SpriteBatch.Draw(*this->textSp_,Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,this->SCALE_);
 
+	float space = 1280.0f - (numberWidth + textWidth + 20.0f);
+	Vector3 basePos = Vector3(space / 2.0f, 720.0f - this->NUMBERSIZE_.y - 5.0f, 0.0f);
+
+	SpriteBatch.Draw(*this->textSp_, basePos, 1.0f, Vector3_Zero, Vector3_Zero, this->SCALE_);
+
+	basePos.x += 20.0f + textWidth;
 	int j = 0;
 	for (int i = 100000; i > 0 ;i /= 10){
 		{
-
+			Vector3 drawPos = basePos;
+			drawPos.x += j * this->NUMBERSIZE_.x;
 			int number = (this->score_ / i) % 10;
-			this->NumberDraw(Vector3(this->NUMBERSIZE_.x * j + (textWidth + 20.0f),0.0f,0.0f),number);
+			this->NumberDraw(drawPos,number);
 			j++;
 
 		}
 	}
 
 	SpriteBatch.End();
-
-	GraphicsDevice.SetDefaultRenderTarget();
-
-	SpriteBatch.Begin();
-
-	Vector3 drawPos = Vector3_Zero;
-	drawPos.x = 1280.0f - (textWidth + numberWidth + 20.0f);
-	drawPos.x /= 2.0f;
-	drawPos.y = 720.0f - this->NUMBERSIZE_.y;
-
-	SpriteBatch.Draw(*this->offScreen_, drawPos,
-		 RectWH(0, 0, textWidth + numberWidth + 20,this->NUMBERSIZE_.y), Color(0,0,0));
-
-	SpriteBatch.End();
-
 
 }
 

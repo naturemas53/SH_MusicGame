@@ -33,6 +33,4 @@ private:
 
 	SPRITE textSp_;
 	SPRITE numberSp_;
-	RENDERTARGET offScreen_;
-
 };

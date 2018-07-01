@@ -17,8 +17,8 @@ public:
 
 	typedef std::function<void(BaseLane*)> VISITORMETHOD;
 
-	virtual void Update(DWORD nowTime) = 0;
-	virtual void Draw(DWORD nowTime) = 0;
+	virtual void Update(LONG nowTime) = 0;
+	virtual void Draw(LONG nowTime) = 0;
 
 	virtual void Accept(VISITORMETHOD visitorMethod) = 0;
 

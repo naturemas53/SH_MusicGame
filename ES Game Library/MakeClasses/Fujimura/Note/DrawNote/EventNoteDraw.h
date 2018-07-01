@@ -8,6 +8,6 @@ public:
 	EventNoteDraw();
 	~EventNoteDraw();
 
-	virtual void NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime);
+	virtual void NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG drawRangeTime);
 
 };

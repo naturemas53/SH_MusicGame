@@ -21,28 +21,6 @@ bool Blur::Initialize()
 }
 void Blur::Update()
 {
-	if (blur_state == 0)
-	{
-		AddU += 0.00019f;
-		/*AddV += 0.001f;*/
-		if (AddU >= 0.008)
-		{
-			blur_state = 1;
-		}
-	}
-
-	if (blur_state == 1)
-	{
-		AddU -= 0.0009f;
-		//AddV -= 0.001f;
-		if (AddU <= 0)
-		{
-			blur_state = 0;
-		}
-	}
-
-	blur_effect->SetParameter("AddU",AddU);
-	blur_effect->SetParameter("AddV",AddU);
 }
 
 RENDERTARGET Blur::Go_Shader(RENDERTARGET srcRT)

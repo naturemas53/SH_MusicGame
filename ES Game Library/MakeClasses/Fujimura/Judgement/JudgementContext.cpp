@@ -18,7 +18,7 @@ JudgementContext::~JudgementContext(){
 
 }
 
-void JudgementContext::judgeNote(Note* note, DWORD nowTime, RawInputMouse& mouse){
+void JudgementContext::judgeNote(Note* note, LONG nowTime, RawInputMouse& mouse){
 
 	Note::NOTETYPE type = note->GetType();
 	JUDGE judge = this->judgements_[type]->Judge(note,nowTime,mouse);

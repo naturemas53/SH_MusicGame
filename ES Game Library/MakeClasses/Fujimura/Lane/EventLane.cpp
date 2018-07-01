@@ -43,6 +43,8 @@ EventLane::EventLane(JudgementContext* judgement){
 
 	};
 
+
+
 }
 
 EventLane::~EventLane(){
@@ -50,7 +52,7 @@ EventLane::~EventLane(){
 	delete this->bomb_;
 }
 
-void EventLane::Update(DWORD nowTime){
+void EventLane::Update(LONG nowTime){
 
 	this->bomb_->Update();
 
@@ -62,7 +64,7 @@ void EventLane::Update(DWORD nowTime){
 
 }
 
-void EventLane::Draw(DWORD nowTime){
+void EventLane::Draw(LONG nowTime){
 
 
 

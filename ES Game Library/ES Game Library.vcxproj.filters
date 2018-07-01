@@ -562,9 +562,6 @@
     <ClCompile Include="MakeClasses\Fujimura\Dancer.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\JukeBox.cpp">
-      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
-    </ClCompile>
     <ClCompile Include="MakeClasses\yoshi\effect\Bloom.cpp">
       <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
     </ClCompile>
@@ -627,6 +624,12 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\yoshi\SceneLoadSingleton.cpp">
       <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\FadeInOut.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\BgmSingleton.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -925,9 +928,6 @@
     <ClInclude Include="MakeClasses\Fujimura\Dancer.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\JukeBox.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
-    </ClInclude>
     <ClInclude Include="MakeClasses\yoshi\effect\Bloom.h">
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
     </ClInclude>
@@ -987,6 +987,15 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\yoshi\SceneLoadSingleton.h">
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\FadeInOut.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\CalcUV.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\BgmSingleton.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
