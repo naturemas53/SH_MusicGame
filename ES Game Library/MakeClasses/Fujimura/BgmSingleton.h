@@ -1,31 +1,32 @@
 #pragma once
 #include "../../ESGLib.h"
 
-class JukeBox{
+class BgmSingleton{
 
 public:
 
-	~JukeBox();
+	~BgmSingleton();
 
-	static JukeBox& GetInstance(){
+	static BgmSingleton& GetInstance(){
 
-		static JukeBox instance;
+		static BgmSingleton instance;
 		return instance;
 
 	}
 
 	void LoadMusic(std::wstring path);
 
-	void Play();
+	void Play(int startTime = 0);
 
 	void SetBPM(int bpm);
+
 	float GetRhythmRate();
 	DWORD GetNowTime(){ return this->bgm_->GetCurrentMilliSec(); }
 	bool IsPlaying(){ return this->bgm_->IsPlaying(); }
 
 private:
 
-	JukeBox();
+	BgmSingleton();
 
 	SOUND bgm_;
 	int bpm_;
@@ -33,4 +34,4 @@ private:
 
 };
 
-#define BgmComponent JukeBox::GetInstance()
+#define BgmComponent BgmSingleton::GetInstance()

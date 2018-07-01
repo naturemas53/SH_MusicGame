@@ -1,5 +1,5 @@
 #include "EventNote.h"
-#include "../../JukeBox.h"
+#include "../../BgmSingleton.h"
 
 EventNote::EventNote(LONG inTiming) : Note(inTiming,EVENTNOTE){
 

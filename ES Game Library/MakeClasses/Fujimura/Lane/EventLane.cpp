@@ -50,7 +50,7 @@ EventLane::~EventLane(){
 	delete this->bomb_;
 }
 
-void EventLane::Update(DWORD nowTime){
+void EventLane::Update(LONG nowTime){
 
 	this->bomb_->Update();
 
@@ -62,7 +62,7 @@ void EventLane::Update(DWORD nowTime){
 
 }
 
-void EventLane::Draw(DWORD nowTime){
+void EventLane::Draw(LONG nowTime){
 
 	SpriteBatch.Begin();
 	if (this->postMethod_ != nullptr) this->postMethod_(this->drawJudgeVisitor_);

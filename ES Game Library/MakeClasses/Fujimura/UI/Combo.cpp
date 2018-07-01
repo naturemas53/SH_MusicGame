@@ -1,8 +1,8 @@
 #include "Combo.h"
 #include "../../yoshi/effect/Effect_Singleton.h"
-#include "../../Fujimura/JukeBox.h"
+#include "../../Fujimura/BgmSingleton.h"
 #include "../CalcUV.h"
-#include "../JukeBox.h"
+#include "../BgmSingleton.h"
 
 
 /*
@@ -58,7 +58,7 @@ void Combo::Draw(){
 
 	Vector2 textRivision = (this->TEXT_GROW_SIZE_ - this->TEXTSIZE_) / 2.0f - (Vector2_One * 0.5f);
 
-	Vector3 basePos = Vector3(0.0f,560.0f,0.0f);
+	Vector3 basePos = Vector3(0.0f,555.0f,0.0f);
 
 	SpriteBatch.Begin();
 

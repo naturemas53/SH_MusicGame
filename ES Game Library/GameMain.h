@@ -68,7 +68,10 @@ private:
 	SPRITE backLane_;
 	Dancer* dancer_;
 
+	int waitTime_;
+
 	// ŠÖ”éŒ¾
 	void SpriteLoad();
+	void DataSave();
 
 };

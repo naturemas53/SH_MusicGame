@@ -15,8 +15,8 @@ public:
 	Lane(Vector3 inPos, JudgementContext* inJudge, int mouseNum);
 	~Lane();
 
-	virtual void Update(DWORD nowTime);
-	virtual void Draw(DWORD nowTime);
+	virtual void Update(LONG nowTime);
+	virtual void Draw(LONG nowTime);
 
 	virtual void Accept(VISITORMETHOD visitorMethod);
 

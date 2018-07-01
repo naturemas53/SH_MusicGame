@@ -1,6 +1,6 @@
-#include "JukeBox.h"
+#include "BgmSingleton.h"
 
-JukeBox::JukeBox(){
+BgmSingleton::BgmSingleton(){
 
 	this->bgm_ = nullptr;
 	this->bpm_ = 0;
@@ -8,18 +8,25 @@ JukeBox::JukeBox(){
 
 }
 
-JukeBox::~JukeBox(){
+BgmSingleton::~BgmSingleton(){
 
 
 }
 
-void JukeBox::LoadMusic(std::wstring path){
+void BgmSingleton::LoadMusic(std::wstring path){
 	this->bgm_ = SoundDevice.CreateSoundFromFile(const_cast<LPTSTR>(path.c_str()));
 }
 
-void JukeBox::Play(){ this->bgm_->Play(); }
+void BgmSingleton::Play(int startTime){ 
+	
+	if(startTime > 0){
+		this->bgm_->SetPlayPositionMilliSec(startTime);
+	}
+	this->bgm_->Play(); 
 
-float JukeBox::GetRhythmRate(){
+}
+
+float BgmSingleton::GetRhythmRate(){
 
 	if (this->bpm_ <= 0) return 0.0f;
 
@@ -30,7 +37,7 @@ float JukeBox::GetRhythmRate(){
 
 }
 
-void JukeBox::SetBPM(int bpm){
+void BgmSingleton::SetBPM(int bpm){
 
 	this->bpm_ = bpm;
 	this->rhythmTime_ = (int)(60000.0f / (float)bpm);

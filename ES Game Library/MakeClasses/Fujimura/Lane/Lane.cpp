@@ -37,7 +37,7 @@ Lane::~Lane(){
 
 }
 
-void Lane::Update(DWORD nowTime){
+void Lane::Update(LONG nowTime){
 
 	this->bomb_->Update();
 
@@ -49,7 +49,7 @@ void Lane::Update(DWORD nowTime){
 
 }
 
-void Lane::Draw(DWORD nowTime){
+void Lane::Draw(LONG nowTime){
 
 	//Rect userect = RectWH(0, 0, 512, 80);
 	//SPRITE sp = Data.atlasSp_;

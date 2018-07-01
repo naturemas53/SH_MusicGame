@@ -23,7 +23,7 @@ EventNoteJudgement::EventNoteJudgement(){
 
 	this->DetectionInitialize();
 
-	this->remainMoveLimit_ = 2000;
+	this->remainMoveLimit_ = 1000;
 
 }
 
@@ -39,7 +39,7 @@ JUDGE EventNoteJudgement::Judge(Note* note, LONG nowTime, RawInputMouse& mouse){
 
 	long dirTime = note->GetTiming() - nowTime;
 	if (this->remainMoveLimit_ < dirTime) return JUDGE::NONE;
-	if ( -this->remainMoveLimit_ > dirTime){
+	if (dirTime > MISS){
 		this->DetectionInitialize();
 		return MISS;
 	}

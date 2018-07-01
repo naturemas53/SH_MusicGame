@@ -10,7 +10,7 @@
 #include "MakeClasses\Fujimura\UI\UI.h"
 #include "MakeClasses/Fujimura/MultiMouseDevice.h"
 #include "MakeClasses\Fujimura\Dancer.h"
-#include "MakeClasses\Fujimura\JukeBox.h"
+#include "MakeClasses\Fujimura\BgmSingleton.h"
 #include "MakeClasses\yoshi\effect\Effect_Singleton.h"
 #include <functional>
 
@@ -76,13 +76,13 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 
 	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::bloom,"MinBright",10.0f);
+	this->waitTime_ = 2000;
+
 }
 
 bool GameMain::Initialize()
 {
 	// TODO: Add your initialization logic here
-	
-	BgmComponent.Play();
 
 	return true;
 }
@@ -120,7 +120,14 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
-	DWORD nowTime = nowTime = BgmComponent.GetNowTime();
+	LONG nowTime = nowTime = BgmComponent.GetNowTime();
+	if(this->waitTime_ > 0){
+	
+		this->waitTime_ -= GameTimer.GetElapsedMilliSecond();
+		if(this->waitTime_ <= 0){BgmComponent.Play(-this->waitTime_);}
+		nowTime = -this->waitTime_;
+
+	}
 
 	this->eventLane_.first->Update(nowTime);
 	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
@@ -137,6 +144,13 @@ int GameMain::Update()
 
 	}
 
+	if(this->waitTime_ <= 0 && !BgmComponent.IsPlaying()){
+	
+		this->DataSave();
+		return GAME_SCENE (new ResultScene);
+
+	}
+
 	return 0;
 }
 
@@ -150,7 +164,8 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	DWORD nowTime = BgmComponent.GetNowTime();
+	LONG nowTime = BgmComponent.GetNowTime();
+	if(this->waitTime_ > 0) nowTime = -this->waitTime_;
 
 	this->ui_->Draw(nowTime);
 
@@ -176,5 +191,11 @@ void GameMain::SpriteLoad(){
 	Data.LoadLongSquareSprite(_T("Notes\\long_notes_bar.png"));
 	Data.LoadHeartSprite(_T("heart_drow.png"));
 	Data.LoadJudgeSprite(_T("judges.png"));
+
+}
+
+void GameMain::DataSave(){
+
+
 
 }
