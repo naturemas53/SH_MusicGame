@@ -14,7 +14,7 @@ EventNoteDraw::~EventNoteDraw(){
 
 }
 
-void EventNoteDraw::NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime){
+void EventNoteDraw::NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG drawRangeTime){
 
 	if (typeid(*lane) != typeid(EventLane)) return;
 

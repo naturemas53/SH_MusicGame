@@ -628,6 +628,9 @@
     <ClCompile Include="MakeClasses\yoshi\SceneLoadSingleton.cpp">
       <Filter>ソース ファイル\MakeClasses\Yoshi</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\FadeInOut.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -987,6 +990,9 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\yoshi\SceneLoadSingleton.h">
       <Filter>ヘッダー ファイル\MakeClasses\Yoshi</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\FadeInOut.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

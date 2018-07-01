@@ -16,7 +16,7 @@ public:
 	JudgementContext();
 	~JudgementContext();
 
-	void judgeNote(Note* note, DWORD nowtime, RawInputMouse& mouse);
+	void judgeNote(Note* note, LONG nowtime, RawInputMouse& mouse);
 
 	void EntryJudgeMethod(JUDGENOTICE judgenotice);
 

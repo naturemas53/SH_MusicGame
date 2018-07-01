@@ -10,16 +10,6 @@ BackMovie::BackMovie(){
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/3.wmv")));
 	this->movies_.push_back(MediaManager.CreateMediaFromFile(_T("Movies/4.wmv")));
 
-	//for (auto movie : this->movies_){
-
-	//	movie->Replay();
-	//	SpriteBatch.Begin();
-	//	SpriteBatch.Draw(*movie, Vector3_Zero, 1.0f);
-	//	SpriteBatch.End();
-	//	movie->Stop();
-	//	
-	//}
-
 	this->nowmovie_ = this->movies_.begin();
 
 	(*this->nowmovie_)->Replay();
@@ -53,23 +43,28 @@ void BackMovie::Draw(){
 	//例によって付け焼刃
 	Vector2 scale = Vector2( 1280.0f / (float)width , 720.0f / (float)height);
 
-	//RENDERTARGET onShaderScreen = this->offscreen_;
+	RENDERTARGET onShaderScreen = this->offscreen_;
 
-	//GraphicsDevice.SetRenderTarget(onShaderScreen);
-	//GraphicsDevice.Clear(0,0,0,0);
+	GraphicsDevice.SetRenderTarget(onShaderScreen);
+	GraphicsDevice.Clear(0,0,0,0);
 
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*(*this->nowmovie_),Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,scale);
 	SpriteBatch.End();
 
-	//std::vector<Effect_Singleton::SHADER_NAME> comands_;
+	if (this->noise_time > 0){
 
-	//onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_, onShaderScreen);
+		std::vector<Effect_Singleton::SHADER_NAME> comands_;
+		comands_.push_back(Effect_Singleton::noise);
+		comands_.push_back(Effect_Singleton::scan_line);
 
+		onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_, onShaderScreen);
 
-	//SpriteBatch.Begin();
-	//SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);
-	//SpriteBatch.End();
+	}
+	GraphicsDevice.SetDefaultRenderTarget();
+	SpriteBatch.Begin();
+	SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);
+	SpriteBatch.End();
 
 }
 
@@ -85,7 +80,7 @@ void BackMovie::MovieChange(){
 
 void BackMovie::MovieReset(){ 
 
-	noise_time = 30;
+	this->noise_time = 30;
 	if (this->nowmovie_ == this->movies_.begin()) return;
 	this->nowmovie_ = this->movies_.begin();
 	(*this->nowmovie_)->Replay();

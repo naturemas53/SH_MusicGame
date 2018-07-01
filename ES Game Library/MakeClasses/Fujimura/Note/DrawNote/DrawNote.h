@@ -11,6 +11,6 @@ public:
 	DrawNote(){};
 	virtual ~DrawNote(){};
 
-	virtual void NoteDraw(Note* note, BaseLane* lane, DWORD nowTime, DWORD drawRangeTime) = 0;
+	virtual void NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG drawRangeTime) = 0;
 
 };

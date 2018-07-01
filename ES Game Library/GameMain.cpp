@@ -70,7 +70,7 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	this->ui_->NoticeNoteCount(noteCount);
 
 	BgmComponent.LoadMusic(_T("music.wav"));
-	BgmComponent.SetBPM(128);
+	BgmComponent.SetBPM(180);
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 }

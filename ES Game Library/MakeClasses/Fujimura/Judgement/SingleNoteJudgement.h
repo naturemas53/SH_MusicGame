@@ -7,7 +7,7 @@ public:
 	SingleNoteJudgement(){};
 	virtual ~SingleNoteJudgement(){};
 
-	virtual JUDGE Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse);
+	virtual JUDGE Judge(Note* judgeNote, LONG nowTime, RawInputMouse& mouse);
 
 
 };

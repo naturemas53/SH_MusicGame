@@ -1,5 +1,6 @@
 #include "Combo.h"
 #include "../../yoshi/effect/Effect_Singleton.h"
+#include "../../Fujimura/JukeBox.h"
 
 
 Combo::Combo(float scale) : SCALE_(scale),
@@ -68,15 +69,15 @@ void Combo::Draw(){
 	pos += Vector3(textRivision.x,textRivision.y,0.0f);
 	SpriteBatch.Draw(*this->textSp_, pos ,1.0f,Vector3_Zero,Vector3_Zero,this->SCALE_);
 
-
-
-
 	SpriteBatch.End();
 
+
 	RENDERTARGET onShaderScreen = this->offscreen_;
-	//std::vector<Effect_Singleton::SHADER_NAME> comand;
-	//comand.push_back(Effect_Singleton::blur);
-	//onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comand,onShaderScreen);
+
+	std::vector<Effect_Singleton::SHADER_NAME> comand;
+	//comand.push_back(Effect_Singleton::bloom);
+	comand.push_back(Effect_Singleton::blur);
+	onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comand,onShaderScreen);
 
 	GraphicsDevice.SetDefaultRenderTarget();
 

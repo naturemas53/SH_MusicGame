@@ -33,7 +33,7 @@ EventNoteJudgement::~EventNoteJudgement(){
 
 }
 
-JUDGE EventNoteJudgement::Judge(Note* note, DWORD nowTime, RawInputMouse& mouse){
+JUDGE EventNoteJudgement::Judge(Note* note, LONG nowTime, RawInputMouse& mouse){
 
 	if (note->GetType() != Note::EVENTNOTE) return MISS;
 

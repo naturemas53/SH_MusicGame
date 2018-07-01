@@ -2,7 +2,7 @@
 #include "../Note/Note/SingleNote.h"
 #include <math.h>
 
-JUDGE SingleNoteJudgement::Judge(Note* judgeNote, DWORD nowTime, RawInputMouse& mouse){
+JUDGE SingleNoteJudgement::Judge(Note* judgeNote, LONG nowTime, RawInputMouse& mouse){
 
 	if (judgeNote->GetType() != Note::SINGLENOTE) return MISS;
 
