@@ -2,6 +2,7 @@
 
 #include "GameScene.hpp"
 #include "../ESGLib.h"
+#include "../MakeClasses/Fujimura/FadeInOut.h"
 
 class DeviceGetScene : public CGameScene {
 public:
@@ -29,15 +30,15 @@ public:
 #ifdef _INC_DIRECT2D
 		Direct2D.ReleaseAllResources();
 #endif
-		MediaManager.ReleaseAllMedia();
+		//MediaManager.ReleaseAllMedia();
 
 		SoundDevice.ReleaseAllMusics();
 		SoundDevice.ReleaseAllSounds();
 
-		GraphicsDevice.ReleaseAllRenderTargets();
+		//GraphicsDevice.ReleaseAllRenderTargets();
 		GraphicsDevice.ReleaseAllStateBlocks();
 		//GraphicsDevice.ReleaseAllFonts();
-		GraphicsDevice.ReleaseAllSprites();
+		//GraphicsDevice.ReleaseAllSprites();
 		GraphicsDevice.ReleaseAllAnimationModels();
 		GraphicsDevice.ReleaseAllModels();
 		GraphicsDevice.ReleaseAllVertexBuffers();
@@ -55,6 +56,8 @@ private:
 private:
 	// 変数宣言
 	FONT font_;
+
+	FadeInOut fade_;
 
 	// 関数プロトタイプ
 

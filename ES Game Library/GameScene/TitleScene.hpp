@@ -2,6 +2,8 @@
 
 #include "GameScene.hpp"
 #include "../ESGLib.h"
+#include "../MakeClasses/Fujimura/FadeInOut.h"
+#include "../MakeClasses/Fujimura/TitleScene/TitleDisplayContext.h"
 
 class TitleScene : public CGameScene {
 public:
@@ -55,29 +57,21 @@ private:
 private:
 	// 変数宣言
 
-	FONT font_;
-	SPRITE title_image;
-	SPRITE click_image;
-	SPRITE now_load_image;
-	
-	//ナウロード関連
-	float now_load_alpa;
-	int  now_load_state;
-	bool nou_load_flag;
+	enum ALPHA_STATE{
 
-	//クリック関連
-	float click_alpa;
-	int click_state;
-	bool click_delete;
+		UP,
+		DOWN
 
-	//タイトル関連
-	int title_state;
-	float title_alpa;
+	}alpha_state_;
 
+	SPRITE stringSp_;
+	float stringAlpha_;
+
+	TitleDisplayContext context_;
+	FadeInOut fade_;
 
 	// 関数プロトタイプ
 	//透明不透明
-
-	void Transparent();
+	void AlphaChange();
 
 };

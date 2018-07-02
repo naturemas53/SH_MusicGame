@@ -1,6 +1,6 @@
 #include "HeartBeam.h"
 
-HeartBeam::HeartBeam() : DRAW_RANGE_TIME_(500){
+HeartBeam::HeartBeam() : DRAW_RANGE_TIME_(700){
 
 	this->sp_ = GraphicsDevice.CreateSpriteFromFile(_T("heart_line.png"));
 	this->pos_ = Vector3( (1280.0f - 426.0f) / 2.0f,(720.0f - 426.0f) / 2.0f - 60.0f,0.0f);

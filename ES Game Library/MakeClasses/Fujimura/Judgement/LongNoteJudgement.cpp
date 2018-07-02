@@ -2,6 +2,7 @@
 #include "SingleNoteJudgement.h"
 #include "../Note/Note/LongNote.h"
 #include "../DataSingleton.h"
+#include "../ClapSingleton.h"
 
 LongNoteJudgement::LongNoteJudgement() :
 OK_RELEASE_TIME_(Data.LONG_OK_RELEASE_TIME_)
@@ -33,6 +34,7 @@ JUDGE LongNoteJudgement::Judge(Note* judgeNote, LONG nowTime, RawInputMouse& mou
 		if (result == MISS) return MISS;
 		if (result != NONE) {
 
+			ClapManager.PlayClap(result);
 			longNote->Push();
 			this->releaseTime_ = 0;
 

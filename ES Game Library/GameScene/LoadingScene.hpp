@@ -2,6 +2,7 @@
 
 #include "GameScene.hpp"
 #include "../ESGLib.h"
+#include "../MakeClasses/Fujimura/FadeInOut.h"
 #include <future>
 
 class LoadingScene : public CGameScene {
@@ -60,23 +61,21 @@ private:
 
 private:
 	// 変数宣言
-	FONT font_;
-	int value_;
 	//非同期画像
-	SPRITE asynchronous_image;
 
 	SPRITE load_image;
-	float load_alpa;
-	int load_state;
-	bool load_derite_flag;
-	
-	bool nextload_flag;
-	float nextload_alpa;
-	int nextload_state;
+	float load_alpha_;
+
+	enum ALPHA_STATE{
+
+		UP,
+		DOWN
+
+	}alpha_state_;
 	int nextScene_;
+
+	FadeInOut fade_;
 
 
 	// 関数プロトタイプ
-
-	void Next_Load_Fade();
 };

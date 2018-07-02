@@ -43,7 +43,7 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	{
 		float revisionX = (280.0f - Data.NOTESIZE_.x) / 2.5f;
 		this->useRect_ = RectWH(0,0,280,60);
-		this->rivisionPos_ = Vector3(-revisionX,30.0f , 0.0f);
+		this->rivisionPos_ = Vector3(-revisionX,60.0f , 0.0f);
 
 	}break;
 
@@ -51,7 +51,7 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	{
 		float revisionX = (180.0f - Data.NOTESIZE_.x) / 3.0f;
 		this->useRect_ = RectWH(0, 60, 280, 60);
-		this->rivisionPos_ = Vector3(-revisionX, 30.0f, 0.0f);
+		this->rivisionPos_ = Vector3(-revisionX, 60.0f, 0.0f);
 
 	}break;
 
@@ -59,7 +59,7 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	{
 		float revisionX = (160.0f - Data.NOTESIZE_.x) / 3.0f;
 		this->useRect_ = RectWH(0, 120, 280, 60);
-		this->rivisionPos_ = Vector3(-revisionX, 30.0f, 0.0f);
+		this->rivisionPos_ = Vector3(-revisionX, 60.0f, 0.0f);
 	}break;
 	
 	}

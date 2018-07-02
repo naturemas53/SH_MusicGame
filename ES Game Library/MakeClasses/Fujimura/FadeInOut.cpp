@@ -16,18 +16,39 @@ FadeInOut::FadeInOut(){
 
 FadeInOut::~FadeInOut(){
 
+}
+
+void FadeInOut::ReleaseRenderTarget(){
+
 	GraphicsDevice.ReleaseRenderTarget(this->offScreen_);
 
 }
 
 bool FadeInOut::Update(){
 
-	return false;
+	int elapsedTime = GameTimer.GetElapsedMilliSecond();
+
+	this->elapsedTime_ += elapsedTime;
+	float timeRate = (float)this->elapsedTime_ / (float)this->fadeTime_;
+	if (timeRate > 1.0f) timeRate = 1.0f;
+
+	this->alpha_ = timeRate;
+	if (this->fadetype_ == FADETYPE::FADE_IN) this->alpha_ = 1.0f - timeRate;
+
+	return timeRate >= 1.0f;
 
 }
 
 void FadeInOut::Draw(){
 
 	SpriteBatch.Draw(*this->offScreen_,Vector3_Zero,this->alpha_);
+
+}
+
+void FadeInOut::ChangeFade(FADETYPE type,int fadeTime){
+
+	this->elapsedTime_ = 0;
+	this->fadeTime_ = fadeTime;
+	this->fadetype_ = type;
 
 }

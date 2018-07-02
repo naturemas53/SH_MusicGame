@@ -18,7 +18,10 @@ public:
 	bool Update();
 	void Draw();
 
+	void ReleaseRenderTarget();
+
 	void ChangeFade(FADETYPE nextFade,int fadeTime);
+	FADETYPE GetType(){ return this->fadetype_; }
 
 private:
 

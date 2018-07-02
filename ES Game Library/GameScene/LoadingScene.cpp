@@ -12,23 +12,10 @@ bool LoadingScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 
-	this->font_ = GraphicsDevice.CreateDefaultFont();
 	this->load_image = GraphicsDevice.CreateSpriteFromFile(_T("nowloading.png"));
-	this->asynchronous_image = GraphicsDevice.CreateSpriteFromFile(_T("stage_select_haikei.png"));
-
-
-	load_alpa = 1.0f;
-	load_state = 1.0f;
-	
-
-
-	this->value_ = 0;
-	load_derite_flag = false;
-
-	nextload_alpa = 1.0f;
-	nextload_state = 0;
-	this->nextScene_ = 0;
-	this->load_state = 0;
+	this->load_alpha_ = 0.0f;
+	this->alpha_state_ = UP;
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
 
 	return true;
 }
@@ -40,7 +27,8 @@ bool LoadingScene::Initialize()
 void LoadingScene::Finalize()
 {
 	// TODO: Add your finalization logic here
-	GraphicsDevice.ReleaseFont(this->font_);
+	GraphicsDevice.ReleaseSprite(this->load_image);
+	this->fade_.ReleaseRenderTarget();
 }
 
 /// <summary>
@@ -54,31 +42,33 @@ int LoadingScene::Update()
 {
     // TODO: Add your update logic here
 
-		if (load_state == 0)
-		{
-			load_alpa -= 0.01f;
-			if (load_alpa <= 0.0f)
-			{
-				if (AsyncLoadScene.IsComplete(&this->nextScene_))
-				{
-					load_state = 1;
-
-				}
-			}
+	switch (this->alpha_state_){
+	case ALPHA_STATE::UP:
+		this->load_alpha_ += 0.03f;
+		if (this->load_alpha_ >= 1.0f){
+			this->load_alpha_ = 1.0f;
+			this->alpha_state_ = DOWN;
 		}
 
-		if (load_state == 1)
-		{
-			Next_Load_Fade();
-			load_derite_flag = true;
-			if (nextload_flag == true)
-			{
-				return this->nextScene_;
-			}
+		break;
+	case ALPHA_STATE::DOWN:
+		this->load_alpha_ -= 0.03f;
+		if (this->load_alpha_ <= 0.0f){
+			this->load_alpha_ = 0.0f;
+			this->alpha_state_ = UP;
 		}
-		
-	this->value_++;
+
+		break;
+	}
+
+	if (AsyncLoadScene.IsComplete(&this->nextScene_) && this->fade_.GetType() == FadeInOut::FADE_IN)
+	{
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,800);
+	}
 	
+	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
+		return this->nextScene_;
+	}
 
 	return 0;
 }
@@ -94,51 +84,11 @@ void LoadingScene::Draw()
 	GraphicsDevice.BeginScene();
 
 	SpriteBatch.Begin();
-	if (!load_derite_flag)
-	{
-		SpriteBatch.Draw(*load_image, Vector3(350, 400, -100.0f), load_alpa);
 
-	}
-
-
-
-	SpriteBatch.Draw(*asynchronous_image, Vector3(0.0f, 0.0f, 0.0f), nextload_alpa,
-		Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), 0.7f);
-
-
-	/*SpriteBatch.Draw(*this->numberSp_, Vector3(450.0f, 600.0f, 0.0f), 1.0f, Vector3(0.0f, 0.0f, 0.0f),
-		Vector3(0.0f, 0.0f, 0.0f), 0.5f);
-
-*/
-	
-	SpriteBatch.DrawString(this->font_,Vector2_Zero,Color(50,250,50),_T("LOADING NOW... %d"),this->value_);
-
+	SpriteBatch.Draw(*load_image, Vector3(350, 400, 0.0f), this->load_alpha_);
+	this->fade_.Draw();
 
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
-}
-
-//フェード関数
-void LoadingScene::Next_Load_Fade()
-{
-	if (nextload_state == 0)
-	{
-		nextload_alpa -= 0.01f;
-		if (nextload_alpa <= 0)
-		{
-			nextload_state = 1;
-			nextload_flag = true;
-		}
-	}
-
-	/*if (nextload_state == 1)
-	{
-		nextload_alpa += 0.01f;
-		if (nextload_alpa >= 1.0f)
-		{
-			nextload_state = 0;
-		}
-
-	}*/
 }

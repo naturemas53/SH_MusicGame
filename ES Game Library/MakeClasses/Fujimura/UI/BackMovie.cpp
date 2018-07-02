@@ -15,6 +15,7 @@ BackMovie::BackMovie(){
 	(*this->nowmovie_)->Replay();
 	
 	noise_time = 0;
+	this->white_.Reset();
 
 }
 
@@ -25,6 +26,11 @@ BackMovie::~BackMovie(){
 }
 
 void BackMovie::Update(){
+
+	this->white_.Update();
+
+	if (this->white_.GetState() == WhiteMap::ALPHA_DOWN && this->white_.IsChangedState())
+		this->MovieUp();
 
 	if ((*this->nowmovie_)->IsComplete()) (*this->nowmovie_)->Replay();
 
@@ -64,11 +70,31 @@ void BackMovie::Draw(){
 	GraphicsDevice.SetDefaultRenderTarget();
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);
+	this->white_.Draw();
 	SpriteBatch.End();
 
 }
 
 void BackMovie::MovieChange(){
+
+	auto itr = this->movies_.end();
+	itr--;
+	if (this->nowmovie_ == itr)return;
+	this->white_.Start();
+
+}
+
+void BackMovie::MovieReset(){ 
+
+	this->white_.Reset();
+	this->noise_time = 30;
+	if (this->nowmovie_ == this->movies_.begin()) return;
+	this->nowmovie_ = this->movies_.begin();
+	(*this->nowmovie_)->Replay();
+
+}
+
+void BackMovie::MovieUp(){
 
 	this->nowmovie_++;
 	if (this->nowmovie_ == this->movies_.end()) {
@@ -76,12 +102,5 @@ void BackMovie::MovieChange(){
 		return;
 	}
 	(*this->nowmovie_)->Replay();
-}
 
-void BackMovie::MovieReset(){ 
-
-	this->noise_time = 30;
-	if (this->nowmovie_ == this->movies_.begin()) return;
-	this->nowmovie_ = this->movies_.begin();
-	(*this->nowmovie_)->Replay();
 }

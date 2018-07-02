@@ -11,17 +11,23 @@ bool ResultScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 	this->result_image = GraphicsDevice.CreateSpriteFromFile(_T("stage1_bg.png"));
-	this->font = GraphicsDevice.CreateDefaultFont();
-
-	//透明
-	load_alpa = 1.0f;
-	load_state = 0;
+	this->judgeSp_ = GraphicsDevice.CreateSpriteFromFile(_T("judges.png"));
+	this->numberSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/conbo_number_01.png"));
+	this->growSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/conbo_number_02.png"));
+	this->scoreSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_text.png"));
 
 	this->score_ = SceneShared().GetIntegerForKey("SCORE");
-	this->counter_ = *(JudgeCounter*)SceneShared().GetDataForKey("JUDGECOUNTER");
+	JudgeCounter* counter = (JudgeCounter*)SceneShared().GetDataForKey("JUDGECOUNTER");
+	this->counter_ = *counter;
+
+	delete counter;
 
 	SceneShared().RemoveIntegerForKey("SCORE");
 	SceneShared().GetDataForKey("JUDGECOUNTER");
+
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
+
+	this->elapsedTime_ = 0;
 
 	return true;
 }
@@ -33,7 +39,10 @@ bool ResultScene::Initialize()
 void ResultScene::Finalize()
 {
 	// TODO: Add your finalization logic here
-	GraphicsDevice.ReleaseFont(this->font);
+	GraphicsDevice.ReleaseSprite(this->judgeSp_);
+	GraphicsDevice.ReleaseSprite(this->numberSp_);
+	GraphicsDevice.ReleaseSprite(this->growSp_);
+	this->fade_.ReleaseRenderTarget();
 
 }
 
@@ -48,25 +57,23 @@ int ResultScene::Update()
 {
     // TODO: Add your update logic here
 
+	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT)
+		return GAME_SCENE(new TitleScene);
+
+	if (this->fade_.GetType() == FadeInOut::FADE_OUT) return 0;
+
 	RawInputMouse leftMouse = MultiMouse.GetInputData(0);
 	RawInputMouse rightMouse = MultiMouse.GetInputData(1);
-//タイトル戻るフェード
+
+	//タイトル戻るフェード
+
 	if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON))
 	{
-		load_state = 1;
-		
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,1000);
 	}
-	if (load_state == 1)
-	{
-		load_alpa -= 0.01f;
-		if (load_alpa <= 0)
-		{
-			return GAME_SCENE(new TitleScene());
-
-		}
-
-	}
-
+	this->elapsedTime_ += GameTimer.GetElapsedMilliSecond();
+	
+	if (this->elapsedTime_ > 10000) this->fade_.ChangeFade(FadeInOut::FADE_OUT, 1000);
 
 
 	return 0;
@@ -83,12 +90,29 @@ void ResultScene::Draw()
 	GraphicsDevice.BeginScene();
 	// 文字列の描画
 	SpriteBatch.Begin();
-	SpriteBatch.Draw(*result_image, Vector3(0.0f, 0.0f, 0.0f),load_alpa);
-	
-	SpriteBatch.DrawString(this->font, Vector2(260.0f, 100.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), score_);
-	SpriteBatch.DrawString(this->font, Vector2(260.0f, 300.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.perfect);
-	SpriteBatch.DrawString(this->font, Vector2(260.0f, 400.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.great);
-	SpriteBatch.DrawString(this->font, Vector2(260.0f, 500.0f), Color(0.0f, 200.0f, 0.0f), _T("%d "), this->counter_.miss);
+	SpriteBatch.Draw(*result_image, Vector3(0.0f, 0.0f, 0.0f),1.0f);
+
+	for (int i = 0; i < 3;i++){
+		{
+			Rect useRect = RectWH(0,60 * i,280,60);
+			Vector3 drawPos = Vector3(100.0f, 300.0f + 144.0f * i, 0.0f);
+			SpriteBatch.Draw(*this->judgeSp_,drawPos,useRect,1.0f);
+			drawPos.x += 280.0f + 30.0f;
+			drawPos.y -= 64.0f;
+			int value = this->counter_.perfect;
+			if (i == 1) value = this->counter_.great;
+			if (i == 2) value = this->counter_.miss;
+			this->drawNumber_.Draw(this->numberSp_, drawPos, Vector2(87.0f, 124.0f), 1.0f, value);
+			this->drawNumber_.Draw(this->growSp_, drawPos, Vector2(87.0f, 124.0f), 1.0f, value);
+		}
+	}
+
+	SpriteBatch.Draw(*this->scoreSp_,Vector3(640.0f + (640.0f - 200.0f) / 2.0f,500.0f,0.0f));
+	this->drawNumber_.Draw(this->numberSp_,Vector3(840.0f,560.0f,0.0f), Vector2(87.0f, 124.0f), 0.5f, this->score_);
+
+
+	GraphicsDevice.ClearZBuffer();
+	this->fade_.Draw();
 
 	SpriteBatch.End();
 	GraphicsDevice.EndScene();

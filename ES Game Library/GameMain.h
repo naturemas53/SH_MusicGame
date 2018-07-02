@@ -2,6 +2,7 @@
 
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
+#include "MakeClasses\Fujimura\FadeInOut.h"
 
 class Lane;
 class EventLane;
@@ -67,16 +68,13 @@ private:
 	UI* ui_;
 	SPRITE backLane_;
 	Dancer* dancer_;
-	float bgm_alpa;
-	int bgm_state;
-	bool bgm_flag;
-	RENDERTARGET blackScreen_;
 
 	int waitTime_;
 
+	FadeInOut fade_;
+
 	// ä÷êîêÈåæ
 	void SpriteLoad();
-	void Fade();
 	void DataSave();
 
 };

@@ -12,25 +12,10 @@
 bool TitleScene::Initialize()
 {
 	// TODO: Add your initialization logic here
-	this->font_ = GraphicsDevice.CreateDefaultFont();
-	this->title_image = GraphicsDevice.CreateSpriteFromFile(_T("title.png"));
-	this->click_image = GraphicsDevice.CreateSpriteFromFile(_T("game_start_ward.png"));
-	this->now_load_image = GraphicsDevice.CreateSpriteFromFile(_T("nowloading.png"));
-
-	//ナウロード関連
-	now_load_alpa = 1.0f;
-	now_load_state = 0;
-	nou_load_flag = false;
-
-
-	//クリック関連
-	click_alpa = 1.0f;
-	click_state = 0;
-	click_delete = false;
-
-	//タイトルの関連
-	title_state = 0;
-	title_alpa = 1.0f;
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
+	this->stringSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/GameStart_Str.png"));
+	this->stringAlpha_ = 0.0f;
+	this->alpha_state_ = ALPHA_STATE::UP;
 
 	return true;
 }
@@ -42,8 +27,8 @@ bool TitleScene::Initialize()
 void TitleScene::Finalize()
 {
 	// TODO: Add your finalization logic here
-
-	
+	GraphicsDevice.ReleaseSprite(this->stringSp_);
+	this->fade_.ReleaseRenderTarget();
 
 }
 
@@ -57,57 +42,24 @@ void TitleScene::Finalize()
 int TitleScene::Update()
 {
     // TODO: Add your update logic here
+
+	this->AlphaChange();
+	this->context_.Update();
+
+	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
+
+		return GAME_SCENE(new LoadingScene());
+
+	}
+	if (this->fade_.GetType() == FadeInOut::FADE_OUT) return 0;
+
 	RawInputMouse leftMouse = MultiMouse.GetInputData(0);
 	RawInputMouse rightMouse = MultiMouse.GetInputData(1);
-	
-		
 
-	//タイトルアルファ減らす　０なったら非同期へ
-		if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON))
-		{
-			click_delete = true;
-			title_state = 1;
-			nou_load_flag = true;
-			AsyncLoadScene.SetAsyncLoad(std::async(std::launch::async, [](){ return GAME_SCENE(new GameMain()); }));
-
-
-		}
-		if (nou_load_flag == true)
-		{
-			Transparent();
-		}
-
-			if (title_state == 1)
-			{
-				title_alpa -= 0.01f;
-			}
-
-			if (title_state == 1 && title_alpa <= 0)
-				{
-					return GAME_SCENE(new LoadingScene());
-					title_state = 0;
-				}
-
-			//クリックしてね透明不透明
-			if (click_state == 0)
-			{
-				click_alpa -= 0.01f;
-
-				if (click_alpa <= 0)
-				{
-					click_state = 1;
-				}
-				
-			}
-			if (click_state == 1)
-			{
-				click_alpa += 0.01f;
-				if (click_alpa >= 1)
-				{
-					click_state = 0;
-				}
-			}
-		
+	if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON)){
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,700);
+		AsyncLoadScene.SetAsyncLoad(std::async(std::launch::async, [](){ return GAME_SCENE(new GameMain); }));
+	}
 
 	return 0;
 }
@@ -123,45 +75,41 @@ void TitleScene::Draw()
 	GraphicsDevice.BeginScene();
 
 	SpriteBatch.Begin();
-	SpriteBatch.DrawString(this->font_, Vector2_Zero, Color(0, 200, 0), _T("TITLE SCENE"));
-	SpriteBatch.Draw(*title_image, Vector3(0,0,0), title_alpa);
-	if (nou_load_flag == true)
-	{
-		SpriteBatch.Draw(*now_load_image, Vector3(350, 400, -100.0f), now_load_alpa);
 
-	}
+	this->context_.Draw();
 
+	SpriteBatch.Draw(*this->stringSp_,Vector3((1280.0f - 428.0f) / 2.0f, 720.0f - 160.0f,0.0f),this->stringAlpha_);
 
-	//
-	////クリックしたら描画しない
-	if (!click_delete)
-	{
-		SpriteBatch.Draw(*click_image, Vector3(480.0f, 360.0f, 0), click_alpa);
-
-	}
+	this->fade_.Draw();
 
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
 }
 
-void TitleScene::Transparent()
-{
-	if (now_load_state == 0)
-	{
-		now_load_alpa -= 0.01f;
-		if (now_load_alpa <= 0.0f)
-		{
-			now_load_state = 1;
+void TitleScene::AlphaChange(){
+
+	float movement = 0.02f;
+	if (this->fade_.GetType() == FadeInOut::FADE_OUT) movement = 0.5f;
+
+	switch (this->alpha_state_){
+	case ALPHA_STATE::UP:
+
+		this->stringAlpha_ += movement;
+		if (this->stringAlpha_ >= 1.0f){
+			this->stringAlpha_ = 1.0f;
+			this->alpha_state_ = DOWN;
 		}
+
+		break;
+	case ALPHA_STATE::DOWN:
+		this->stringAlpha_ -= movement;
+		if (this->stringAlpha_ <= 0.0f){
+			this->stringAlpha_ = 0.0f;
+			this->alpha_state_ = UP;
+		}
+
+		break;
 	}
 
-	if (now_load_state == 1)
-	{
-		now_load_alpa += 0.01f;
-		if (click_alpa >= 1)
-		{
-			click_state = 0;
-		}
-	}
 }

@@ -12,6 +12,7 @@
 #include "MakeClasses\Fujimura\Dancer.h"
 #include "MakeClasses\yoshi\SceneLoadSingleton.h"
 #include "MakeClasses\Fujimura\BgmSingleton.h"
+#include "MakeClasses\Fujimura\ClapSingleton.h"
 #include <functional>
 
 /// <summary>
@@ -23,31 +24,42 @@
 GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 {
 	this->SpriteLoad();
+	ClapManager.LoadClap();
 
 	this->ui_ = new UI();
 	JUDGENOTICE notice = [this](JUDGE judge){
-		ui_->NoticeJudge(judge);
+		this->ui_->NoticeJudge(judge);
 	};
 
 	this->dancer_ = new Dancer();
+
+	JUDGENOTICE clapNotice = [this](JUDGE judge){
+		ClapManager.PlayClap(judge);
+	};
 
 	std::vector<Lane*> laneInstances;
 
 	LANESET laneset;
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
+	laneset.second->EntryJudgeMethod(clapNotice);
 	laneset.first = new Lane(Vector3(320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 0);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
+	laneset.second->EntryJudgeMethod(clapNotice);
 	laneset.first = new Lane(Vector3(1280.0f - 320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 1);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
+	clapNotice = [this](JUDGE judge){
+		ClapManager.PlayEventClap(judge);
+	};
 	this->eventLane_.second = new JudgementContext();
 	this->eventLane_.second->EntryJudgeMethod(notice);
+	this->eventLane_.second->EntryJudgeMethod(clapNotice);
 	this->eventLane_.second->EntryJudgeMethod([this](JUDGE judge){
 	
 		switch (judge){
@@ -75,16 +87,9 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
 
-	bgm_state = 0;
-	bgm_alpa = 0.0f;
-	bgm_flag = false;
-
-	blackScreen_ = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-
-	GraphicsDevice.SetRenderTarget(blackScreen_);
-	GraphicsDevice.Clear(Color_Black);
-	GraphicsDevice.SetDefaultRenderTarget();
 	this->waitTime_ = 2000;
+
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,1000);
 
 }
 
@@ -103,8 +108,6 @@ void GameMain::Finalize()
 {
 	// TODO: Add your finalization logic here
 
-
-
 	for (auto laneset : this->lanes_){ 
 		delete laneset.first;
 		delete laneset.second;
@@ -116,6 +119,9 @@ void GameMain::Finalize()
 	delete this->ui_;
 
 	delete this->dancer_;
+
+	this->fade_.ReleaseRenderTarget();
+
 }
 
 /// <summary>
@@ -144,32 +150,19 @@ int GameMain::Update()
 	this->dancer_->Update(0);
 
 	Effect_Singleton::GetInstance().Update();
-
-	RawInputMouse mouse = MultiMouse.GetInputData(0);
-	if (mouse.IsPushed(RIGHTBUTTON)){
-
-		return GAME_SCENE(new TitleScene);
-
-	}
 	
-	//きょくおわったらリザルトへ
-	if (!BgmComponent.IsPlaying() && this->waitTime_ <= 0)
-	{
+	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
 
-		Fade();
-		if (bgm_alpa >= 1.0)
-		{
-			bgm_flag = true;
-		}
-
-		if (bgm_flag == true)
-		{
-			this->DataSave();
-			return GAME_SCENE(new ResultScene());
-
-		}
+		this->DataSave();
+		return GAME_SCENE(new ResultScene());
 
 	}
+
+	//きょくおわったらリザルトへ
+	if (!BgmComponent.IsPlaying() && this->waitTime_ <= 0
+		&& this->fade_.GetType() == FadeInOut::FADE_IN)
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,1000);
+
 	return 0;
 }
 
@@ -200,10 +193,9 @@ void GameMain::Draw()
 
 	this->eventLane_.first->Draw(nowTime);
 
+	GraphicsDevice.SetDefaultRenderTarget();
 	SpriteBatch.Begin();
-
-	SpriteBatch.Draw(*this->blackScreen_, Vector3_Zero, bgm_alpa);
-
+	this->fade_.Draw();
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
@@ -220,30 +212,15 @@ void GameMain::SpriteLoad(){
 
 }
 
-//フェード
-void GameMain::Fade()
-	
-{
-	if (bgm_state == 0)
-	{
-		bgm_alpa += 0.01f;
-		if (bgm_alpa >= 1.0f)
-		{
-			bgm_state = 1;
-		}
-	}
-
-}
-
 void GameMain::DataSave(){
 
 	int score = 0;
-	JudgeCounter&& counter = JudgeCounter();
+	JudgeCounter* counter = new JudgeCounter();
 
-	this->ui_->GetScoreAndJudgeCount(score, counter);
+	this->ui_->GetScoreAndJudgeCount(score, *counter);
 
 	SceneShared().SetIntegerForKey("SCORE",score);
-	SceneShared().SetDataForKey("JUDGECOUNTER",&counter);
+	SceneShared().SetDataForKey("JUDGECOUNTER",counter);
 
 
 }

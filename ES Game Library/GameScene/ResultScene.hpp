@@ -3,6 +3,8 @@
 #include "GameScene.hpp"
 #include "../ESGLib.h"
 #include "../MakeClasses/Fujimura/Judgement/JudgeCounter.h"
+#include "../MakeClasses/Fujimura/FadeInOut.h"
+#include "../MakeClasses/Fujimura/ResultScene/DrawNumber.h"
 
 class ResultScene : public CGameScene {
 public:
@@ -56,14 +58,19 @@ private:
 private:
 	// •Ï”éŒ¾
 	SPRITE  result_image;
+	SPRITE judgeSp_;
+	SPRITE numberSp_;
+	SPRITE growSp_;
+	SPRITE scoreSp_;
 
-	FONT font;
 	JudgeCounter counter_;
 	int score_;
+	DrawNumber drawNumber_;
+
+	int elapsedTime_;
 
 	//“§–¾•s“§–¾
-	float load_alpa;
-	int load_state;
+	FadeInOut fade_;
 	
 
 

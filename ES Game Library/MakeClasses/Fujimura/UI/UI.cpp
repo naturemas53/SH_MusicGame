@@ -9,7 +9,7 @@ UI::UI(){
 	this->combo_ = new Combo(0.7f);
 	this->movie_ = new BackMovie();
 
-	ISRUN teams = [](int combo){ return combo % 5 == 0; };
+	ISRUN teams = [](int combo){ return combo % 30 == 0; };
 	NOTICE notice = [this](){ this->movie_->MovieChange(); };
 	this->combo_->EntryComboUpMethod(teams,notice);
 	notice = [this](){ this->combo_->ChengeColor(); };

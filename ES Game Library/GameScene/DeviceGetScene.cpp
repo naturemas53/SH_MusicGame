@@ -12,7 +12,7 @@ bool DeviceGetScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 	this->font_ = GraphicsDevice.CreateDefaultFont();
-
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,1);
 	return true;
 }
 
@@ -23,7 +23,7 @@ bool DeviceGetScene::Initialize()
 void DeviceGetScene::Finalize()
 {
 	// TODO: Add your finalization logic here
-
+	this->fade_.ReleaseRenderTarget();
 }
 
 /// <summary>
@@ -39,9 +39,13 @@ int DeviceGetScene::Update()
 	if (MultiMouse.GetDeviceCount() >= 2){
 
 		MultiMouse.StartListening();
-		return GAME_SCENE(new TitleScene());
+		if (this->fade_.GetType() == FadeInOut::FADE_IN)
+			this->fade_.ChangeFade(FadeInOut::FADE_OUT,1000);
 
 	}
+
+	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT)
+		return GAME_SCENE(new TitleScene);
 
 	return 0;
 }
@@ -59,6 +63,8 @@ void DeviceGetScene::Draw()
 	SpriteBatch.Begin();
 
 	SpriteBatch.DrawString(this->font_, Vector2_Zero, Color(255, 255, 255), _T("PLEASE MOUSE CLICK REMAIN %d"), 2 - MultiMouse.GetDeviceCount());
+	GraphicsDevice.ClearZBuffer();
+	this->fade_.Draw();
 
 	SpriteBatch.End();
 
