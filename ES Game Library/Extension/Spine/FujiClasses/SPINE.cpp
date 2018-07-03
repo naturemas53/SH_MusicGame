@@ -1,12 +1,35 @@
 #include "SPINE.h"
 #include "../../../ESGLib.h"
 
+void Listener(spAnimationState* state, spEventType type, spTrackEntry* entry, spEvent* event){
+
+	ISpine* esSpine = (ISpine*)state->userData;
+
+	if(!esSpine) return;
+
+	switch (type) {
+   // 
+   case SP_ANIMATION_START:
+	  esSpine->NoticeAnimationStart();
+      break;
+   case SP_ANIMATION_END:
+   case SP_ANIMATION_COMPLETE:
+	   esSpine->NoticeAnimationEnd();
+      break;
+   default:
+	   break;
+   }
+
+}
+
 CSpine::CSpine(spSkeletonData* skeletonData, spAnimationStateData* animationStateData){
 
 	this->skeleton_ = spSkeleton_create(skeletonData);
 	this->animasionstate_ = spAnimationState_create(animationStateData);
+	this->animasionstate_->listener = Listener;
+	this->animasionstate_->userData = this;
 
-	this->bone = NULL;
+	this->bone = nullptr;
 
 }
 
@@ -239,27 +262,25 @@ void CSpine::MeshDraw(spSlot* slot, spAttachment* attachment, spColor* col, int 
 
 void CSpine::SetAnimation(int playtrack, const char* animename, int isloop, float mixDulation){
 
-	if (animename == NULL){
+	if (!animename){
 		spAnimationState_setEmptyAnimation(this->animasionstate_,playtrack,mixDulation);
-		return;
 	}
 	else{
 		spAnimation* anime = spSkeletonData_findAnimation(this->skeleton_->data, animename);
-		if (anime == NULL) return;
+		if (!anime) return;
 		spAnimationState_setAnimation(this->animasionstate_, playtrack, anime, isloop);
 	}
-
 }
 
 void CSpine::AddAnimation(int playtrack, const char* animename, float delay, int isloop, float mixDulation){
 
-	if (animename == NULL){
+	if (!animename){
 		spAnimationState_addEmptyAnimation(this->animasionstate_, playtrack, mixDulation, delay);
 		return;
 	}
 	else{
 		spAnimation* anime = spSkeletonData_findAnimation(this->skeleton_->data, animename);
-		if (anime == NULL) return;
+		if (!anime) return;
 		spAnimationState_addAnimation(this->animasionstate_,playtrack,anime,isloop,delay);
 	}
 

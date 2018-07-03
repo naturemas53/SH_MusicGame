@@ -18,7 +18,10 @@ public:
 
 private:
 
-	SPINE spine_;
+	SPINE sideStepSpine_;
+	SPINE heartSpine_;
+	SPINE drawSpine_;
+
 	HeartBeam* beam_;
 
 };

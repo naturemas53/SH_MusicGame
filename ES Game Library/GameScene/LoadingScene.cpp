@@ -12,10 +12,8 @@ bool LoadingScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 
-	this->load_image = GraphicsDevice.CreateSpriteFromFile(_T("nowloading.png"));
-	this->load_alpha_ = 0.0f;
-	this->alpha_state_ = UP;
-	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
+	this->load_image = GraphicsDevice.CreateSpriteFromFile(_T("LoadingScene/manyuaru_game.png"));
+	this->fade_.ChangeFade(FadeInOut::FADE_IN,200);
 
 	return true;
 }
@@ -40,30 +38,11 @@ void LoadingScene::Finalize()
 /// </returns>
 int LoadingScene::Update()
 {
-    // TODO: Add your update logic here
-
-	switch (this->alpha_state_){
-	case ALPHA_STATE::UP:
-		this->load_alpha_ += 0.03f;
-		if (this->load_alpha_ >= 1.0f){
-			this->load_alpha_ = 1.0f;
-			this->alpha_state_ = DOWN;
-		}
-
-		break;
-	case ALPHA_STATE::DOWN:
-		this->load_alpha_ -= 0.03f;
-		if (this->load_alpha_ <= 0.0f){
-			this->load_alpha_ = 0.0f;
-			this->alpha_state_ = UP;
-		}
-
-		break;
-	}
+    // TODO: Add your update logic heres
 
 	if (AsyncLoadScene.IsComplete(&this->nextScene_) && this->fade_.GetType() == FadeInOut::FADE_IN)
 	{
-		this->fade_.ChangeFade(FadeInOut::FADE_OUT,800);
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,500);
 	}
 	
 	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
@@ -85,7 +64,7 @@ void LoadingScene::Draw()
 
 	SpriteBatch.Begin();
 
-	SpriteBatch.Draw(*load_image, Vector3(350, 400, 0.0f), this->load_alpha_);
+	//SpriteBatch.Draw(*load_image, Vector3_Zero, 1.0f);
 	this->fade_.Draw();
 
 	SpriteBatch.End();

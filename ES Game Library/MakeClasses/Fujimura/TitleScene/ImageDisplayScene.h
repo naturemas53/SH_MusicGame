@@ -25,6 +25,18 @@ public:
 
 private:
 
+	void AlphaChange();
+
+	enum ALPHA_STATE{
+
+		UP,
+		DOWN
+
+	}alpha_state_;
+
+	float stringAlpha_;
+
+	SPRITE clickStrSp_;
 	SPRITE titleSp_;
 	FadeInOut fade_;
 	int time_;

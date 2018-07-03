@@ -96,11 +96,12 @@ void BackMovie::MovieReset(){
 
 void BackMovie::MovieUp(){
 
+	auto itr = this->movies_.end();
+	itr--;
+	if (this->nowmovie_ == itr)return;
+	
+	(*this->nowmovie_)->Stop();
 	this->nowmovie_++;
-	if (this->nowmovie_ == this->movies_.end()) {
-		this->nowmovie_--;
-		return;
-	}
 	(*this->nowmovie_)->Replay();
 
 }

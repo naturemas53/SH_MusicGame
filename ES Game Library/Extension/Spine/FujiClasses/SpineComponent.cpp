@@ -65,7 +65,7 @@ ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string 
 		std::string atlaspath = basepath + charactorname;
 		atlaspath += ".atlas";
 		spAtlas* atlas = spAtlas_createFromFile(atlaspath.c_str(), 0);
-		if (atlas == NULL) throw("atlas load failed");
+		if (!atlas) throw("atlas load failed\n");
 
 		spSkeletonJson* json = spSkeletonJson_create(atlas);
 		json->scale = scale;
@@ -73,10 +73,10 @@ ISpine* SpineComponent::CreateSpineFromFile(std::string folderpath, std::string 
 		jsonpath +=".json";
 		spSkeletonData* skeletonData = spSkeletonJson_readSkeletonDataFile(json,jsonpath.c_str());
 		spSkeletonJson_dispose(json);
-		if (skeletonData == NULL) throw("json load failed");
+		if (!skeletonData) throw("json load failed\n");
 
 		spAnimationStateData* animeStateData = spAnimationStateData_create(skeletonData);
-		if (animeStateData == NULL) throw("animeStateData load failed");
+		if (!animeStateData) throw("animeStateData load failed\n");
 
 		this->ressouses_[charactorname].atlas = atlas;
 		this->ressouses_[charactorname].skeletonData = skeletonData;

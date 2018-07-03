@@ -98,12 +98,12 @@ void ResultScene::Draw()
 			Vector3 drawPos = Vector3(100.0f, 300.0f + 144.0f * i, 0.0f);
 			SpriteBatch.Draw(*this->judgeSp_,drawPos,useRect,1.0f);
 			drawPos.x += 280.0f + 30.0f;
-			drawPos.y -= 64.0f;
+			drawPos.y -= 2.0f;
 			int value = this->counter_.perfect;
 			if (i == 1) value = this->counter_.great;
 			if (i == 2) value = this->counter_.miss;
-			this->drawNumber_.Draw(this->numberSp_, drawPos, Vector2(87.0f, 124.0f), 1.0f, value);
-			this->drawNumber_.Draw(this->growSp_, drawPos, Vector2(87.0f, 124.0f), 1.0f, value);
+			this->drawNumber_.Draw(this->numberSp_, drawPos, Vector2(87.0f, 124.0f), 0.5f, value);
+			this->drawNumber_.Draw(this->growSp_, drawPos, Vector2(87.0f, 124.0f), 0.5f, value);
 		}
 	}
 

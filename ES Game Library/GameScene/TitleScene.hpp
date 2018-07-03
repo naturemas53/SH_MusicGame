@@ -57,21 +57,10 @@ private:
 private:
 	// 変数宣言
 
-	enum ALPHA_STATE{
-
-		UP,
-		DOWN
-
-	}alpha_state_;
-
-	SPRITE stringSp_;
-	float stringAlpha_;
 
 	TitleDisplayContext context_;
 	FadeInOut fade_;
 
 	// 関数プロトタイプ
 	//透明不透明
-	void AlphaChange();
-
 };

@@ -25,6 +25,19 @@ public:
 
 private:
 
+	void AlphaChange();
+
+	enum ALPHA_STATE{
+
+		UP,
+		DOWN
+
+	}alpha_state_;
+
+	float stringAlpha_;
+
+	SPRITE clickStrSp_;
+
 	MEDIA movie_;
 	FadeInOut fade_;
 

@@ -64,14 +64,6 @@ private:
 	//”ñ“¯Šú‰æ‘œ
 
 	SPRITE load_image;
-	float load_alpha_;
-
-	enum ALPHA_STATE{
-
-		UP,
-		DOWN
-
-	}alpha_state_;
 	int nextScene_;
 
 	FadeInOut fade_;

@@ -5,7 +5,7 @@
 
 NoteDrawSingleton::NoteDrawSingleton(){
 
-	this->drawRangeTime_ = 1500;
+	this->drawRangeTime_ = 2000;
 
 	this->drawComponents_[Note::SINGLENOTE] = new SingleNoteDraw();
 	this->drawComponents_[Note::LONGNOTE] = new LongNoteDraw();
@@ -21,14 +21,8 @@ NoteDrawSingleton::~NoteDrawSingleton(){
 
 bool NoteDrawSingleton::Draw(Note* note, BaseLane* lane, LONG nowTime){
 
-	if (nowTime > 1500){
-
-		int a = 19419;
-
-	}
-
 	long dirTime = note->GetTiming() - (long)nowTime;
-	if (dirTime > (long)this->drawRangeTime_ ) return false;
+	if (dirTime > (long) (this->drawRangeTime_ + 500) )return false;
 
 	Note::NOTETYPE type = note->GetType();
 	this->drawComponents_[type]->NoteDraw(note,lane,nowTime,this->drawRangeTime_);

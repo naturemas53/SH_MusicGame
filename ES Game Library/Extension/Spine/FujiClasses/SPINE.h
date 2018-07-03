@@ -2,10 +2,35 @@
 
 #include <spine\spine.h>
 #include <d3dx9.h>
+#include <functional>
 
 typedef D3DXVECTOR2 Vector2;
 
-class ISpine{
+class SpineEventNotice{
+
+public:
+	SpineEventNotice(){
+		this->startMethod_ = [](){};
+		this->endMethod_ = [](){};
+	}
+	~SpineEventNotice(){
+	
+	}
+
+	void NoticeAnimationStart(){this->startMethod_();}
+	void NoticeAnimationEnd(){this->endMethod_();}
+
+	void EntryAnimationStartMethod( std::function<void()> method ){ this->startMethod_ = method; }
+	void EntryAnimationEndMethod( std::function<void()> method ){ this->endMethod_ = method; }
+
+private:
+
+	std::function<void()> startMethod_;
+	std::function<void()> endMethod_;
+
+};
+
+class ISpine : public SpineEventNotice{
 public:
 	virtual ~ISpine(){};
 
@@ -80,5 +105,8 @@ public:
 	virtual void AddAnimation(int playtrack, const char* animename, float delay, int isloop, float mixDulation = 1.0f){}
 
 	virtual void SetTimeScale(float timescale){}
+
+	virtual void NoticeAnimationStart(){}
+	virtual void NoticeAnimationEnd(){}
 
 };

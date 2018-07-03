@@ -13,9 +13,6 @@ bool TitleScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
-	this->stringSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/GameStart_Str.png"));
-	this->stringAlpha_ = 0.0f;
-	this->alpha_state_ = ALPHA_STATE::UP;
 
 	return true;
 }
@@ -27,7 +24,6 @@ bool TitleScene::Initialize()
 void TitleScene::Finalize()
 {
 	// TODO: Add your finalization logic here
-	GraphicsDevice.ReleaseSprite(this->stringSp_);
 	this->fade_.ReleaseRenderTarget();
 
 }
@@ -43,7 +39,6 @@ int TitleScene::Update()
 {
     // TODO: Add your update logic here
 
-	this->AlphaChange();
 	this->context_.Update();
 
 	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
@@ -78,38 +73,9 @@ void TitleScene::Draw()
 
 	this->context_.Draw();
 
-	SpriteBatch.Draw(*this->stringSp_,Vector3((1280.0f - 428.0f) / 2.0f, 720.0f - 160.0f,0.0f),this->stringAlpha_);
-
 	this->fade_.Draw();
 
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
-}
-
-void TitleScene::AlphaChange(){
-
-	float movement = 0.02f;
-	if (this->fade_.GetType() == FadeInOut::FADE_OUT) movement = 0.5f;
-
-	switch (this->alpha_state_){
-	case ALPHA_STATE::UP:
-
-		this->stringAlpha_ += movement;
-		if (this->stringAlpha_ >= 1.0f){
-			this->stringAlpha_ = 1.0f;
-			this->alpha_state_ = DOWN;
-		}
-
-		break;
-	case ALPHA_STATE::DOWN:
-		this->stringAlpha_ -= movement;
-		if (this->stringAlpha_ <= 0.0f){
-			this->stringAlpha_ = 0.0f;
-			this->alpha_state_ = UP;
-		}
-
-		break;
-	}
-
 }
