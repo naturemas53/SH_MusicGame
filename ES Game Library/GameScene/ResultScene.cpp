@@ -23,7 +23,7 @@ bool ResultScene::Initialize()
 	delete counter;
 
 	SceneShared().RemoveIntegerForKey("SCORE");
-	SceneShared().GetDataForKey("JUDGECOUNTER");
+	SceneShared().RemoveDataForKey("JUDGECOUNTER");
 
 	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
 
@@ -95,7 +95,7 @@ void ResultScene::Draw()
 	for (int i = 0; i < 3;i++){
 		{
 			Rect useRect = RectWH(0,60 * i,280,60);
-			Vector3 drawPos = Vector3(100.0f, 300.0f + 144.0f * i, 0.0f);
+			Vector3 drawPos = Vector3(100.0f, 450.0f + 80.0f * i, 0.0f);
 			SpriteBatch.Draw(*this->judgeSp_,drawPos,useRect,1.0f);
 			drawPos.x += 280.0f + 30.0f;
 			drawPos.y -= 2.0f;
@@ -107,8 +107,8 @@ void ResultScene::Draw()
 		}
 	}
 
-	SpriteBatch.Draw(*this->scoreSp_,Vector3(640.0f + (640.0f - 200.0f) / 2.0f,500.0f,0.0f));
-	this->drawNumber_.Draw(this->numberSp_,Vector3(840.0f,560.0f,0.0f), Vector2(87.0f, 124.0f), 0.5f, this->score_);
+	SpriteBatch.Draw(*this->scoreSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,460.0f,0.0f));
+	this->drawNumber_.Draw(this->numberSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,545.0f,0.0f), Vector2(87.0f, 124.0f), 1.0f, this->score_);
 
 
 	GraphicsDevice.ClearZBuffer();

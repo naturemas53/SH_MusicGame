@@ -7,7 +7,7 @@ void DrawNumber::Draw(SPRITE sp, Vector3 pos, Vector2 oneCellSize, float scale, 
 	Vector2 drawCellSize = oneCellSize * scale;
 	Vector3 basePos = pos;
 
-	for (; i < value; i *= 10);
+	for (; i <= value; i *= 10);
 
 	//ã‚Ì”z—ñI‚í‚Á‚½Žž“_‚Å‚Í
 	// value = 12345  i = 100000
