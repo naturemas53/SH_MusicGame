@@ -226,8 +226,11 @@
     <ClCompile Include="MakeClasses\Fujimura\Judgement\SingleNoteJudgement.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\BgmSingleton.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\EventLane.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Lane\GreatBomb.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\JudgeBomb.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Lane\Lane.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Lane\MissBomb.cpp" />
+    <ClCompile Include="MakeClasses\Fujimura\Lane\PerfectBomb.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\MultiMouseDevice.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\MusicScoreIO.cpp" />
     <ClCompile Include="MakeClasses\Fujimura\Note\DrawNote\EventNoteDraw.cpp" />
@@ -350,8 +353,12 @@
     <ClInclude Include="MakeClasses\Fujimura\BgmSingleton.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\BaseLane.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\EventLane.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Lane\GreatBomb.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\JudgeBomb.h" />
     <ClInclude Include="MakeClasses\Fujimura\Lane\Lane.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Lane\MissBomb.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Lane\NoteBomb.h" />
+    <ClInclude Include="MakeClasses\Fujimura\Lane\PerfectBomb.h" />
     <ClInclude Include="MakeClasses\Fujimura\MultiMouseDevice.h" />
     <ClInclude Include="MakeClasses\Fujimura\MusicScoreIO.h" />
     <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\EventNoteDraw.h" />

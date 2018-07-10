@@ -11,10 +11,13 @@ bool ResultScene::Initialize()
 {
 	// TODO: Add your initialization logic here
 	this->result_image = GraphicsDevice.CreateSpriteFromFile(_T("stage1_bg.png"));
+
 	this->judgeSp_ = GraphicsDevice.CreateSpriteFromFile(_T("judges.png"));
 	this->numberSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/conbo_number_01.png"));
 	this->growSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/conbo_number_02.png"));
 	this->scoreSp_ = GraphicsDevice.CreateSpriteFromFile(_T("NumberTexts/score_text.png"));
+	this->thankStrSp_ = GraphicsDevice.CreateSpriteFromFile(_T("ResultScene/result_text.png"));
+	this->thankGrowSp_ = GraphicsDevice.CreateSpriteFromFile(_T("ResultScene/result_text_grow.png"));
 
 	this->score_ = SceneShared().GetIntegerForKey("SCORE");
 	JudgeCounter* counter = (JudgeCounter*)SceneShared().GetDataForKey("JUDGECOUNTER");
@@ -29,6 +32,8 @@ bool ResultScene::Initialize()
 
 	this->elapsedTime_ = 0;
 
+	this->alpha_state_ = DOWN;
+
 	return true;
 }
 
@@ -39,9 +44,12 @@ bool ResultScene::Initialize()
 void ResultScene::Finalize()
 {
 	// TODO: Add your finalization logic here
+	GraphicsDevice.ReleaseSprite(this->result_image);
 	GraphicsDevice.ReleaseSprite(this->judgeSp_);
 	GraphicsDevice.ReleaseSprite(this->numberSp_);
 	GraphicsDevice.ReleaseSprite(this->growSp_);
+	GraphicsDevice.ReleaseSprite(this->thankStrSp_);
+	GraphicsDevice.ReleaseSprite(this->thankGrowSp_);
 	this->fade_.ReleaseRenderTarget();
 
 }
@@ -56,6 +64,8 @@ void ResultScene::Finalize()
 int ResultScene::Update()
 {
     // TODO: Add your update logic here
+
+	this->AlphaChange();
 
 	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT)
 		return GAME_SCENE(new TitleScene);
@@ -110,11 +120,40 @@ void ResultScene::Draw()
 	SpriteBatch.Draw(*this->scoreSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,460.0f,0.0f));
 	this->drawNumber_.Draw(this->numberSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,545.0f,0.0f), Vector2(87.0f, 124.0f), 1.0f, this->score_);
 
+	SpriteBatch.Draw(*this->thankStrSp_,Vector3_Up * 50.0f);
+	SpriteBatch.Draw(*this->thankGrowSp_,Vector3_Up * 50.0f,this->stringAlpha_);
+
 
 	GraphicsDevice.ClearZBuffer();
 	this->fade_.Draw();
 
 	SpriteBatch.End();
 	GraphicsDevice.EndScene();
+
+}
+
+void ResultScene::AlphaChange(){
+
+	float movement = 0.02f;
+
+	switch (this->alpha_state_){
+	case ALPHA_STATE::UP:
+
+		this->stringAlpha_ += movement;
+		if (this->stringAlpha_ >= 1.0f){
+			this->stringAlpha_ = 1.0f;
+			this->alpha_state_ = DOWN;
+		}
+
+		break;
+	case ALPHA_STATE::DOWN:
+		this->stringAlpha_ -= movement;
+		if (this->stringAlpha_ <= 0.5f){
+			this->stringAlpha_ = 0.5f;
+			this->alpha_state_ = UP;
+		}
+
+		break;
+	}
 
 }

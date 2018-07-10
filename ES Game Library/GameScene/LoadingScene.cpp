@@ -64,7 +64,7 @@ void LoadingScene::Draw()
 
 	SpriteBatch.Begin();
 
-	//SpriteBatch.Draw(*load_image, Vector3_Zero, 1.0f);
+	SpriteBatch.Draw(*load_image, Vector3_Zero, 1.0f);
 	this->fade_.Draw();
 
 	SpriteBatch.End();

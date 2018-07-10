@@ -5,12 +5,26 @@
 TitleDisplayContext::TitleDisplayContext(){
 
 	this->scene_ = &ImageDisplayScene::GetInstance();
-	this->scene_->Initialize();
+
 }
 
 TitleDisplayContext::~TitleDisplayContext(){
 
 	this->scene_->Finalize();
+}
+
+void TitleDisplayContext::Initialize(){
+
+	ImageDisplayScene::GetInstance().LoadResource();
+	MovieDisplayScene::GetInstance().LoadResource();
+
+}
+
+void TitleDisplayContext::Finalize(){
+
+	ImageDisplayScene::GetInstance().ReleaseResource();
+	MovieDisplayScene::GetInstance().ReleaseResource();
+
 }
 
 void TitleDisplayContext::Update(){

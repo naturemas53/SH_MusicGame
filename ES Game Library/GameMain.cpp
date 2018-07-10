@@ -209,6 +209,8 @@ void GameMain::SpriteLoad(){
 	Data.LoadLongSquareSprite(_T("Notes\\long_notes_bar.png"));
 	Data.LoadHeartSprite(_T("heart_drow.png"));
 	Data.LoadJudgeSprite(_T("judges.png"));
+	Data.LoadPerfectSprite(_T("Kira/perfect_kira.png"));
+	Data.LoadGreatSprite(_T("Kira/great_kira.png"));
 
 }
 
@@ -221,6 +223,5 @@ void GameMain::DataSave(){
 
 	SceneShared().SetIntegerForKey("SCORE",score);
 	SceneShared().SetDataForKey("JUDGECOUNTER",counter);
-
 
 }

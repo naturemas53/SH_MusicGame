@@ -23,7 +23,7 @@ EventNoteJudgement::EventNoteJudgement(){
 
 	this->DetectionInitialize();
 
-	this->remainMoveLimit_ = 1000;
+	this->remainMoveLimit_ = 2000;
 
 }
 

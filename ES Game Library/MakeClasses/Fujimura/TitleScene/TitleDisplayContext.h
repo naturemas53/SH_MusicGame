@@ -9,6 +9,8 @@ public:
 	TitleDisplayContext();
 	~TitleDisplayContext();
 
+	void Initialize();
+	void Finalize();
 	void Update();
 	void Draw();
 

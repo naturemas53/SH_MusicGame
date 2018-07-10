@@ -16,6 +16,8 @@ public:
 
 	virtual ~GameMain()
 	{
+		Finalize();
+
 #ifdef _INC_SQUIRREL
 		Squirrel.ReleaseAllScripts();
 #endif
@@ -45,7 +47,6 @@ public:
 		GraphicsDevice.ReleaseAllVertexBuffers();
 		//GraphicsDevice.ReleaseAllEffects();
 
-		Finalize();
 	}
 
 public:

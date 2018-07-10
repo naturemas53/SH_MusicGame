@@ -661,6 +661,15 @@
     <ClCompile Include="MakeClasses\Fujimura\ClapSingleton.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura</Filter>
     </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\PerfectBomb.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\GreatBomb.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Lane\MissBomb.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -1047,6 +1056,18 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\ClapSingleton.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\NoteBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\PerfectBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\GreatBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Lane\MissBomb.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

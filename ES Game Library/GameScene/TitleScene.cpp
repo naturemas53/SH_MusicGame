@@ -12,6 +12,7 @@
 bool TitleScene::Initialize()
 {
 	// TODO: Add your initialization logic here
+	this->context_.Initialize();
 	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
 
 	return true;
@@ -24,6 +25,7 @@ bool TitleScene::Initialize()
 void TitleScene::Finalize()
 {
 	// TODO: Add your finalization logic here
+	this->context_.Finalize();
 	this->fade_.ReleaseRenderTarget();
 
 }

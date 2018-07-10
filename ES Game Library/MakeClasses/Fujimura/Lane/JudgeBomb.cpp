@@ -1,5 +1,8 @@
 #include "JudgeBomb.h"
 #include "../DataSingleton.h"
+#include "PerfectBomb.h"
+#include "GreatBomb.h"
+#include "MissBomb.h"
 
 JudgeBomb::JudgeBomb() :
 MAX_PAL_VALUE_(Data.BOMB_MAX_PAL_VALUE_){
@@ -8,17 +11,27 @@ MAX_PAL_VALUE_(Data.BOMB_MAX_PAL_VALUE_){
 	this->useRect_ = RectWH(0,0,0,0);
 	this->rivisionPos_ = Vector3_Zero;
 
+	this->noteBombs_[PERFECT] = new PerfectBomb();
+	this->noteBombs_[GREAT] = new GreatBomb();
+	this->noteBombs_[MISS] = new MissBomb();
+	this->nowBomb_ = this->noteBombs_[PERFECT];
+
 }
 
 JudgeBomb::~JudgeBomb(){
 
+	for(auto data : this->noteBombs_){
+	
+		delete data.second;
 
+	}
 
 }
 
 void JudgeBomb::Update(){
 
 	if (this->palValue_ >= 0) this->palValue_--;
+	this->nowBomb_->Update();
 
 }
 
@@ -29,7 +42,9 @@ void JudgeBomb::Draw(Vector3 drawPos){
 	float alpha = ((float)this->palValue_ / (float)this->MAX_PAL_VALUE_);
 
 	SPRITE sp = Data.judgeSp_;
-
+	Vector2 noteSize = Data.NOTESIZE_;
+	Vector3 bombPos = drawPos + Vector3(noteSize.x / 2.0f,0.0f,0.0f);
+	this->nowBomb_->Draw(bombPos);
 	SpriteBatch.Draw(*sp,drawPos + this->rivisionPos_,this->useRect_,alpha);
 
 }
@@ -63,7 +78,12 @@ void JudgeBomb::NoticeJudge(JUDGE judge){
 	}break;
 	
 	}
-
 	this->palValue_ = this->MAX_PAL_VALUE_;
+
+	auto itr = this->noteBombs_.find(judge);
+	if(itr == this->noteBombs_.end()) return;
+
+	this->nowBomb_ = itr->second;
+	this->nowBomb_->ReadyBomb();
 
 }

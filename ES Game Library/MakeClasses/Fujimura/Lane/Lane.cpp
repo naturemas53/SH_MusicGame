@@ -51,11 +51,6 @@ void Lane::Update(LONG nowTime){
 
 void Lane::Draw(LONG nowTime){
 
-	//Rect userect = RectWH(0, 0, 512, 80);
-	//SPRITE sp = Data.atlasSp_;
-
-	//SpriteBatch.Draw(*sp, this->POS_,userect);
-
 	this->bomb_->Draw(this->POS_);
 	for (auto note : this->notes_){
 		if (!(NoteDrawComponent.Draw(note, this, nowTime)) )break;

@@ -2,17 +2,20 @@
 #include "MovieDisplayScene.h"
 
 void ImageDisplayScene::LoadResource(){
-	
-}
-
-void ImageDisplayScene::ReleaseResource(){
-	
-}
-
-void ImageDisplayScene::Initialize(){
 
 	this->titleSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/back_ground.png"));
 	this->clickStrSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/cleck_to_start.png"));
+
+}
+void ImageDisplayScene::ReleaseResource(){
+	
+	GraphicsDevice.ReleaseSprite(this->titleSp_);
+	GraphicsDevice.ReleaseSprite(this->clickStrSp_);
+
+}
+
+void ImageDisplayScene::Initialize(){
+	
 	this->time_ = 0;
 	this->fade_.ChangeFade(FadeInOut::FADE_IN,500);
 	this->stringAlpha_ = 0.0f;
@@ -22,8 +25,7 @@ void ImageDisplayScene::Initialize(){
 
 void ImageDisplayScene::Finalize(){
 
-	GraphicsDevice.ReleaseSprite(this->titleSp_);
-	GraphicsDevice.ReleaseSprite(this->clickStrSp_);
+	
 }
 
 TitleDisplayScene* ImageDisplayScene::Update(){

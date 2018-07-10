@@ -3,16 +3,21 @@
 
 void MovieDisplayScene::LoadResource(){
 	
+	this->movie_ = MediaManager.CreateMediaFromFile(_T("TitleScene/demo_movie.wmv"));
+	this->clickStrSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/cleck_to_start.png"));
+
 }
 
 void MovieDisplayScene::ReleaseResource(){
 	
+	MediaManager.ReleaseMedia(this->movie_);
+	GraphicsDevice.ReleaseSprite(this->clickStrSp_);
+
 }
 
 void MovieDisplayScene::Initialize(){
 
-	this->movie_ = MediaManager.CreateMediaFromFile(_T("TitleScene/demo_movie.wmv"));
-	this->clickStrSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/cleck_to_start.png"));
+
 	this->movie_->Replay();
 	this->fade_.ChangeFade(FadeInOut::FADE_IN, 500);
 
@@ -22,8 +27,7 @@ void MovieDisplayScene::Initialize(){
 }
 
 void MovieDisplayScene::Finalize(){
-	MediaManager.ReleaseMedia(this->movie_);
-	GraphicsDevice.ReleaseSprite(this->clickStrSp_);
+
 }
 
 TitleDisplayScene* MovieDisplayScene::Update(){

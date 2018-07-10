@@ -19,7 +19,6 @@ void EventNoteDraw::NoteDraw(Note* note, BaseLane* lane, LONG nowTime, LONG draw
 	if (typeid(*lane) != typeid(EventLane)) return;
 	if (note->GetType() != Note::EVENTNOTE) return;
 	long dirTime = note->GetTiming() - nowTime;
-	if (dirTime > 1000) return;
 
 	SPRITE sp = Data.heartSp_;
 

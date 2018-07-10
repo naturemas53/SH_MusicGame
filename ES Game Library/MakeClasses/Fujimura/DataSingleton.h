@@ -37,6 +37,14 @@ public:
 		this->judgeSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
 	}
 
+	void LoadPerfectSprite(std::wstring path){
+		this->perfectSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
+	void LoadGreatSprite(std::wstring path){
+		this->greatSp_ = GraphicsDevice.CreateSpriteFromFile(path.c_str());
+	}
+
 	~DataSingleton(){};
 
 	SPRITE atlasSp_;
@@ -45,6 +53,8 @@ public:
 	SPRITE longSquareSp_;
 	SPRITE heartSp_;
 	SPRITE judgeSp_;
+	SPRITE perfectSp_;
+	SPRITE greatSp_;
 	const Vector2 NOTESIZE_;
 	const Rect SINGLENOTERECT_;
 	const Rect LONGNOTERECT_;

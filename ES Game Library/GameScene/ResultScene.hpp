@@ -63,6 +63,9 @@ private:
 	SPRITE growSp_;
 	SPRITE scoreSp_;
 
+	SPRITE thankStrSp_;
+	SPRITE thankGrowSp_;
+
 	JudgeCounter counter_;
 	int score_;
 	DrawNumber drawNumber_;
@@ -71,9 +74,19 @@ private:
 
 	//透明不透明
 	FadeInOut fade_;
-	
+
+	enum ALPHA_STATE{
+
+		UP,
+		DOWN
+
+	}alpha_state_;
+
+	float stringAlpha_;
 
 
 	// 関数プロトタイプ
+	void AlphaChange();
+
 
 };
