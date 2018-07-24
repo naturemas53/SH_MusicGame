@@ -4,7 +4,7 @@
 #include "../ESGLib.h"
 #include "../MakeClasses/Fujimura/Judgement/JudgeCounter.h"
 #include "../MakeClasses/Fujimura/FadeInOut.h"
-#include "../MakeClasses/Fujimura/ResultScene/DrawNumber.h"
+#include "../MakeClasses/Fujimura/ResultScene/IntValueSimpleDraw.h"
 
 class ResultScene : public CGameScene {
 public:
@@ -68,7 +68,8 @@ private:
 
 	JudgeCounter counter_;
 	int score_;
-	DrawNumber drawNumber_;
+	IntValueSimpleDraw* drawJudgeValue_;
+	IntValueSimpleDraw* drawScoreValue_;
 
 	int elapsedTime_;
 

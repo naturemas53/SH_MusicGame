@@ -1,6 +1,5 @@
 #pragma once
 #include "../../../ESGLib.h"
-#include "../effect/Noise.h"
 #include "..\effect\Shader.h"
 #include "Shader_Factory.h"
 

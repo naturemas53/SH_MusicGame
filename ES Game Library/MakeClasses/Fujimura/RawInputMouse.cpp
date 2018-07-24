@@ -1,5 +1,11 @@
 #include "RawInputMouse.h"
 
+/**
+* @file RawInputMouse.cpp
+* @brief RawInputの海外サンプルを使いやすいよう改良
+* @author So Fujimura
+* @date 2018/06/05
+*/
 RawInputMouse::RawInputMouse(RawInputReceiver& reciver, HRIDEV inHundle){
 
 	reciver.addMouseListener(inHundle,&(this->rawInput));
@@ -20,6 +26,7 @@ void RawInputMouse::Update(){
 
 		{
 			(*itr).second = this->rawInput.button((*itr).first);
+			itr++;
 		}
 
 	}

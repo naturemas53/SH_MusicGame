@@ -4,8 +4,6 @@
 
 TitleDisplayContext::TitleDisplayContext(){
 
-	this->scene_ = &ImageDisplayScene::GetInstance();
-
 }
 
 TitleDisplayContext::~TitleDisplayContext(){
@@ -17,6 +15,9 @@ void TitleDisplayContext::Initialize(){
 
 	ImageDisplayScene::GetInstance().LoadResource();
 	MovieDisplayScene::GetInstance().LoadResource();
+
+	this->scene_ = &ImageDisplayScene::GetInstance();
+	this->scene_->Initialize();
 
 }
 

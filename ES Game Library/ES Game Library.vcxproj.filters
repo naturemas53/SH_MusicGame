@@ -211,6 +211,12 @@
     <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\ResultScene">
       <UniqueIdentifier>{c953db97-6e85-4594-8410-1be6263d85b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MakeClasses\Fujimura\Shader">
+      <UniqueIdentifier>{d4fd2614-5b05-4007-9871-531275a54b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\MakeClasses\Fujimura\Shader">
+      <UniqueIdentifier>{83d56b1a-e2da-4291-83f4-dd3534847407}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -652,9 +658,6 @@
     <ClCompile Include="MakeClasses\Fujimura\TitleScene\TitleDisplayContext.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="MakeClasses\Fujimura\ResultScene\DrawNumber.cpp">
-      <Filter>ソース ファイル\MakeClasses\Fujimura\ResultScene</Filter>
-    </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\UI\WhiteMap.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
     </ClCompile>
@@ -669,6 +672,21 @@
     </ClCompile>
     <ClCompile Include="MakeClasses\Fujimura\Lane\MissBomb.cpp">
       <Filter>ソース ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\Shader\WidthNoise.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\ResultScene\IntValueSimpleDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\DinamicScaleCalculation.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\IntValueDinamicScaleDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeClasses\Fujimura\UI\NumberDinamicScaleDraw.cpp">
+      <Filter>ソース ファイル\MakeClasses\Fujimura\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1048,9 +1066,6 @@
     <ClInclude Include="MakeClasses\Fujimura\TitleScene\MovieDisplayScene.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\TitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="MakeClasses\Fujimura\ResultScene\DrawNumber.h">
-      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ResultScene</Filter>
-    </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\UI\WhiteMap.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
     </ClInclude>
@@ -1068,6 +1083,33 @@
     </ClInclude>
     <ClInclude Include="MakeClasses\Fujimura\Lane\MissBomb.h">
       <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Lane</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Shader\WidthNoise.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\Note\DrawNote\SameTimingNoteDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\Note\DrawNote</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\IntValueDrawInterface.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\ResultScene\IntValueSimpleDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\NumberDrawInterface.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\NumberDinamicScaleDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\DinamicScaleInterface.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\DinamicScaleCalculation.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeClasses\Fujimura\UI\IntValueDinamicScaleDraw.h">
+      <Filter>ヘッダー ファイル\MakeClasses\Fujimura\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

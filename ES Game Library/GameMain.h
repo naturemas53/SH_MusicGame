@@ -12,7 +12,10 @@ class Dancer;
 
 class GameMain : public CGameScene {
 public:
-	GameMain();
+	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
+	{
+		this->hasObjectInitialized_ = false;
+	};
 
 	virtual ~GameMain()
 	{
@@ -51,6 +54,7 @@ public:
 
 public:
 	virtual bool Initialize();
+	virtual bool ObjectInitialize();
 
 	virtual int  Update();
 	virtual void Draw();
@@ -62,12 +66,15 @@ private:
 private:
 
 	// •Ï”éŒ¾
+	bool hasObjectInitialized_;
+
 	typedef std::pair<Lane*, JudgementContext*> LANESET;
 
 	std::vector<LANESET> lanes_;
 	std::pair<EventLane*, JudgementContext*> eventLane_;
 	UI* ui_;
 	SPRITE backLane_;
+	SPRITE backLine_;
 	Dancer* dancer_;
 
 	int waitTime_;

@@ -386,6 +386,7 @@ void CSpriteBatch::Draw(IDirect3DTexture9* pTexture, const RECT* pSrc,
 	// •`‰æ
 	m_pD3DXSprite->SetTransform(&transform);
 	m_pD3DXSprite->Draw(pTexture, pSrc, pCenter, NULL, inColorMask);
+
 }
 
 //------------------------------------------------------------------------------

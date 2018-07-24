@@ -5,8 +5,6 @@ Scan_Line::Scan_Line()
 {
 	////ëñç∏ê¸èâä˙âª
 	//scan_parameter = 1000;
-	offscreen_scan = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-	scan_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Scan_line.Fx"));
 	Time = 500;
 
 	
@@ -17,6 +15,8 @@ Scan_Line::~Scan_Line()
 
 bool Scan_Line::Initialize()
 {
+	offscreen_scan = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+	scan_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Scan_line.Fx"));
 	return true;
 }
 void Scan_Line::Update()

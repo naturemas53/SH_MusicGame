@@ -24,12 +24,14 @@ public:
 		return instance;
 
 	}
+
 	void Update();
 	RENDERTARGET Image_On_Effect(std::vector<SHADER_NAME>&, RENDERTARGET);
 	void SetParameter(SHADER_NAME shaderName,std::string parameterName,float value);
 	
 	~Effect_Singleton();
 private:
+
 	Effect_Singleton();
 	Shader* create_shader(SHADER_NAME);
 	//shader_aggregation=シェーダー集合体

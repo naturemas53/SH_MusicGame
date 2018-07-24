@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+* @file SpineComponent.h
+* @brief Spineインスタンスのリソース管理
+* @author So Fujimura
+* @date 2018/06/01
+*/
+
 #include "SPINE.h"
 
 #include <spine\spine.h>
@@ -11,6 +18,12 @@
 #define _INC_SPINE
 #endif
 
+/**
+* ClassName SpineComponent
+* Spineインスタンスのリソース管理
+* 複数あったらこんがらがりそうなので
+* シングルトンにしました。
+*/
 class SpineComponent{
 
 public:
@@ -28,7 +41,7 @@ public:
 	ISpine* CreateSpineFromFile(std::string folderpath,std::string charactorname,float scale = 1.0f);
 	ISpine* CreateSpineToCharactorName(std::string charactorname);
 
-	void ReleaseSpine(ISpine* self);
+	void ReleaseSpine(ISpine* instance);
 	void ReleaseSpineResouse(std::string charactorname);
 	void ReleaseAllSpines();
 	void ReleaseAllSpineResouses();

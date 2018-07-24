@@ -3,10 +3,9 @@
 
 Noise::Noise()
 {
-	//ノイズ初期化
-	offscreen = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+
 	noise_intensity = 0.7f;
-	noise_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Noise.fx"));
+	
 
 }
 
@@ -18,21 +17,18 @@ Noise::~Noise()
 
 bool Noise::Initialize()
 {
-
+	//ノイズ初期化
+	offscreen = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+	noise_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Noise.fx"));
 	return true;
 }
 void Noise::Update()
 {
-	/*noise_time -= 10;
-	if (noise_time <= 900)
-	{*/
 
-		noise_intensity = 0.7f;
-		noise_effect->SetParameter("noise_intensity", noise_intensity);
-		noise_effect->SetParameter("Time", Math_Random());
-	//}
+	noise_intensity = 0.7f;
+	noise_effect->SetParameter("noise_intensity", noise_intensity);
+	noise_effect->SetParameter("Time", Math_Random());
 
-	
 }
 RENDERTARGET Noise::Go_Shader(RENDERTARGET srcRT)
 {

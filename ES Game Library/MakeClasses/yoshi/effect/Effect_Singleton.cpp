@@ -85,6 +85,7 @@ Shader* Effect_Singleton::create_shader(SHADER_NAME name)
 
 	}
 
+	shader->Initialize();
 	return shader;
 }
 

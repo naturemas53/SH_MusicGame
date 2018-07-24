@@ -21,8 +21,35 @@
 /// Initialize will enumerate through any components and initialize them as well.
 /// </summary>
 
-GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
+/**
+* @file GameMain.cpp
+* @brief ゲームプレイシーン
+* @author So Fujimura(関数の中身のみ)
+* @date 2018/06/05
+*/
+
+bool GameMain::Initialize()
 {
+	// TODO: Add your initialization logic here
+	bool isSucess = true;
+	if (!this->hasObjectInitialized_){
+		isSucess = this->ObjectInitialize();
+	}
+
+	BgmComponent.SetBPM(180);
+	this->waitTime_ = 2000;
+	this->fade_.ChangeFade(FadeInOut::FADE_IN, 1000);
+
+	return isSucess;
+}
+
+bool GameMain::ObjectInitialize(){
+
+	if (this->hasObjectInitialized_){
+		return true;
+	}
+	this->hasObjectInitialized_ = true;
+
 	this->SpriteLoad();
 	ClapManager.LoadClap();
 
@@ -43,14 +70,14 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
 	laneset.second->EntryJudgeMethod(clapNotice);
-	laneset.first = new Lane(Vector3(320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 0);
+	laneset.first = new Lane(Vector3(320.0f - 75.0f, 720.0f - 190.0f, 0.0f), laneset.second, 0);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
 	laneset.second = new JudgementContext();
 	laneset.second->EntryJudgeMethod(notice);
 	laneset.second->EntryJudgeMethod(clapNotice);
-	laneset.first = new Lane(Vector3(1280.0f - 320.0f - 72.0f, 720.0f - 190.0f, 0.0f), laneset.second, 1);
+	laneset.first = new Lane(Vector3(1280.0f - 320.0f - 82.0f, 720.0f - 190.0f, 0.0f), laneset.second, 1);
 	laneInstances.push_back(laneset.first);
 	this->lanes_.push_back(laneset);
 
@@ -61,12 +88,12 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	this->eventLane_.second->EntryJudgeMethod(notice);
 	this->eventLane_.second->EntryJudgeMethod(clapNotice);
 	this->eventLane_.second->EntryJudgeMethod([this](JUDGE judge){
-	
+
 		switch (judge){
 		case PERFECT: this->dancer_->SetPerformanceAnimation(); break;
 		case MISS: this->dancer_->SetMissAnimation(); break;
 		}
-	
+
 	});
 	this->eventLane_.first = new EventLane(this->eventLane_.second);
 	auto laneNotice = [this](BaseLane::VISITORMETHOD visitor){
@@ -78,26 +105,17 @@ GameMain :: GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 
 	int noteCount = 0;
 	MusicScoreIO scoreIo("musicscore.txt");
-	scoreIo.ImportScore(laneInstances, this->eventLane_.first,&noteCount);
+	scoreIo.ImportScore(laneInstances, this->eventLane_.first, &noteCount);
 
 	this->ui_->NoticeNoteCount(noteCount);
 
 	BgmComponent.LoadMusic(_T("music.wav"));
-	BgmComponent.SetBPM(180);
 
 	this->backLane_ = GraphicsDevice.CreateSpriteFromFile(_T("timing_bar.png"));
-
-	this->waitTime_ = 2000;
-
-	this->fade_.ChangeFade(FadeInOut::FADE_IN,1000);
-
-}
-
-bool GameMain::Initialize()
-{
-	// TODO: Add your initialization logic here
+	this->backLine_ = GraphicsDevice.CreateSpriteFromFile(_T("back_ground_line.png"));
 
 	return true;
+
 }
 
 /// <summary>
@@ -134,6 +152,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
+
 	LONG nowTime = nowTime = BgmComponent.GetNowTime();
 	if(this->waitTime_ > 0){
 	
@@ -144,7 +163,10 @@ int GameMain::Update()
 	}
 
 	this->eventLane_.first->Update(nowTime);
-	for (auto laneset : this->lanes_) laneset.first->Update(nowTime);
+	for (auto laneset : this->lanes_){
+		laneset.first->Update(nowTime);
+	}
+
 	this->ui_->Update(nowTime);
 
 	this->dancer_->Update(0);
@@ -160,8 +182,11 @@ int GameMain::Update()
 
 	//きょくおわったらリザルトへ
 	if (!BgmComponent.IsPlaying() && this->waitTime_ <= 0
-		&& this->fade_.GetType() == FadeInOut::FADE_IN)
-		this->fade_.ChangeFade(FadeInOut::FADE_OUT,1000);
+		&& this->fade_.GetType() == FadeInOut::FADE_IN){
+
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT, 1000);
+	
+	}
 
 	return 0;
 }
@@ -187,6 +212,7 @@ void GameMain::Draw()
 	GraphicsDevice.EndAlphaBlend();
 
 	SpriteBatch.Begin();
+	SpriteBatch.Draw(*this->backLine_,Vector3_Zero,1.0f,Vector3_Zero,Vector3_Zero,0.66f);
 	SpriteBatch.Draw(*this->backLane_, Vector3_Zero, 1.0f);
 	for (auto laneset : this->lanes_) laneset.first->Draw(nowTime);
 	SpriteBatch.End();

@@ -52,8 +52,8 @@ void Dancer::Draw(DWORD nowTime){
 	SpriteBatch.End();
 	this->drawSpine_->Draw();
 
-//	GraphicsDevice.ClearStencil();
 	GraphicsDevice.ClearZBuffer();
+
 }
 
 void Dancer::SetPerformanceAnimation(){

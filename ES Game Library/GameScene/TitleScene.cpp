@@ -48,14 +48,24 @@ int TitleScene::Update()
 		return GAME_SCENE(new LoadingScene());
 
 	}
-	if (this->fade_.GetType() == FadeInOut::FADE_OUT) return 0;
 
+	if (this->fade_.GetType() == FadeInOut::FADE_OUT){
+		return 0;
+	}
+		
 	RawInputMouse leftMouse = MultiMouse.GetInputData(0);
 	RawInputMouse rightMouse = MultiMouse.GetInputData(1);
 
 	if (leftMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(LEFTBUTTON)){
+
 		this->fade_.ChangeFade(FadeInOut::FADE_OUT,700);
-		AsyncLoadScene.SetAsyncLoad(std::async(std::launch::async, [](){ return GAME_SCENE(new GameMain); }));
+
+		AsyncLoadScene.SetAsyncLoad(std::async(std::launch::async, [](){ 
+			int scene = GAME_SCENE(new GameMain); 
+			reinterpret_cast<GameMain*>(scene)->ObjectInitialize();
+			return scene;
+		}));
+
 	}
 
 	return 0;

@@ -19,6 +19,8 @@ void EventNote::Draw(SPRITE sp,Vector3 pos){
 	float sin = MathHelper_Sin(angle);
 	scale += (1.0f - sin) * 0.1f;
 
-	SpriteBatch.Draw(*sp,pos,1.0f,Vector3_Zero,Vector3(867.0f / 2.0f,753.0f / 2.0f,0.0f),scale);
+	Color color = Color(255, 255, 255);
+
+	SpriteBatch.Draw(*sp, pos, color, Vector3_Zero, Vector3(867.0f / 2.0f, 753.0f / 2.0f, 0.0f), scale);
 
 }

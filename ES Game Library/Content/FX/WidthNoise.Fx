@@ -1,48 +1,35 @@
 //----------------------------------------------------------------------------
-// File: Noise.fx 
+// File: WidthNoise.fx 
 // 
 // The effect file for the Mosaic HLSL sample. 
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 // Global variables 
 //----------------------------------------------------------------------------
-sampler tex0 : register(s0);
+sampler tex0 : register(s0) = sampler_state {
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	AddressU = WRAP;
+	AddressV = WRAP;
+};
 
-float Time = 1.0;
-float noise_intensity = 0.4f;
-
-
-float rand(float2 noise_roughness)
-{
-	//return frac(sin(dot(noise_roughness.xy, float2(12.9898, 78.233))) * 43758.5453);
-	return frac(sin(dot(noise_roughness.xy, float2(200, 4000))) * 10000);
-}
+float time = 1.0f;
+float random = 0.0f;
 
 //----------------------------------------------------------------------------
 // pass0 PixelShader Main Function 
 //----------------------------------------------------------------------------
 float4 PS_P0_Main(float2 UV : TEXCOORD0) : COLOR0
 {
-	float4 color = tex2D(tex0, UV);
-
-	float2 pos = UV;
-	pos *= sin(Time);
-	float r = rand(pos);
-	float4 noise = float4(0,0,0, color.a);
-	if (r >= 0.1f)
-	
-
-	//ここでのノイズはhlsl関数　パーリンノイズ（ランダムな値を生成)
-	color = lerp(color, noise, noise_intensity);
-	//if (color.r >= 0.1f)
-	//	color.a = 1.0f;
+	UV.x += sin(UV.y * time * random);
 
 	return color;
 }
 //----------------------------------------------------------------------------
 // Techniques 
 //----------------------------------------------------------------------------
-technique Noise {
+technique WidthNoise {
 	pass P0
 	{
 		VertexShader = NULL;

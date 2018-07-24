@@ -1,4 +1,10 @@
 #pragma once
+/**
+* @file ArrayAlgorithm.h
+* @brief ノート配列ソート関連インターフェイス
+* @author So Fujimura
+* @date 2018/07/05
+*/
 #include <vector>
 
 class Note;

@@ -4,8 +4,19 @@
 #include <d3dx9.h>
 #include <functional>
 
+/**
+* @file SPINE.h
+* @brief スパインを手ごろに使えるように
+* @author So Fujimura
+* @date 2018/06/01
+*/
 typedef D3DXVECTOR2 Vector2;
 
+/**
+* ClassName SpineEventNotice
+* アニメーションの開始、終了、破棄などの
+* イベントを受け取れるようにするためのクラス。
+*/
 class SpineEventNotice{
 
 public:
@@ -30,6 +41,11 @@ private:
 
 };
 
+/**
+* ClassName ISpine
+* オブジェクトの座標設定、アニメーションの更新など
+* Spineでの必要な動作をまとめたクラス。
+*/
 class ISpine : public SpineEventNotice{
 public:
 	virtual ~ISpine(){};
@@ -50,6 +66,11 @@ public:
 
 };
 
+/**
+* ClassName CSpine
+* オブジェクトの座標設定、アニメーションの更新など
+* Spineでの必要な動作をまとめたクラス。
+*/
 class CSpine : public ISpine{
 
 public:
@@ -86,6 +107,10 @@ private:
 
 };
 
+/**
+* ClassName CNullSpine
+* 生成失敗時用のNULLクラス。
+*/
 class CNullSpine : public ISpine{
 
 public:

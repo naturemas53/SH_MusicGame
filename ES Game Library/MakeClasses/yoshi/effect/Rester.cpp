@@ -3,10 +3,6 @@
 
 Rester::Rester()
 {
-	
-	offscreen[0] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
-	
-	rester_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Rester.fx"));
 
 	//ラスタースクロール
 	amplitude = 0.0f;
@@ -26,6 +22,8 @@ Rester::~Rester()
 }
 bool Rester::Initialize()
 {
+	offscreen[0] = GraphicsDevice.CreateRenderTarget(1280, 720, PixelFormat_RGBA8888, DepthFormat_Unknown);
+	rester_effect = GraphicsDevice.CreateEffectFromFile(_T("FX/Rester.fx"));
 	return true;
 }
 void Rester::Update()

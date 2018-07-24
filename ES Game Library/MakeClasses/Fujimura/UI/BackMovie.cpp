@@ -14,8 +14,11 @@ BackMovie::BackMovie(){
 
 	(*this->nowmovie_)->Replay();
 	
+	this->effectMovie_ = MediaManager.CreateMediaFromFile(_T("Movies/MovieChangeEffect.wmv"));
+
 	noise_time = 0;
-	this->white_.Reset();
+
+	this->changeState_ = NONE;
 
 }
 
@@ -27,10 +30,15 @@ BackMovie::~BackMovie(){
 
 void BackMovie::Update(){
 
-	this->white_.Update();
+	if (this->effectMovie_->IsComplete()){
+		this->changeState_ = NONE;
+	}
 
-	if (this->white_.GetState() == WhiteMap::ALPHA_DOWN && this->white_.IsChangedState())
+	LONGLONG oneSec = UNITS;
+	if (this->effectMovie_->GetPosition() >= oneSec && this->changeState_ == CHANGEING){
 		this->MovieUp();
+		this->changeState_ = CHANGED;
+	}
 
 	if ((*this->nowmovie_)->IsComplete()) (*this->nowmovie_)->Replay();
 
@@ -68,10 +76,17 @@ void BackMovie::Draw(){
 
 	}
 	GraphicsDevice.SetDefaultRenderTarget();
+
 	SpriteBatch.Begin();
 	SpriteBatch.Draw(*onShaderScreen,Vector3_Zero);
-	this->white_.Draw();
-	SpriteBatch.End();
+	if (this->changeState_ != NONE){
+
+		GraphicsDevice.SetBlendMode(DXGBLEND_ADD);
+		SpriteBatch.Draw(*this->effectMovie_, Vector3_Zero,1.0f, Vector3_Zero, Vector3_Zero, scale);
+		GraphicsDevice.SetBlendMode(DXGBLEND_NONE);
+
+	}
+	SpriteBatch.End();	
 
 }
 
@@ -79,16 +94,25 @@ void BackMovie::MovieChange(){
 
 	auto itr = this->movies_.end();
 	itr--;
-	if (this->nowmovie_ == itr)return;
-	this->white_.Start();
+	if (this->nowmovie_ == itr){
+		return;
+	}
+
+	this->changeState_ = CHANGEING;
+	this->effectMovie_->Replay();
 
 }
 
 void BackMovie::MovieReset(){ 
 
-	this->white_.Reset();
 	this->noise_time = 30;
-	if (this->nowmovie_ == this->movies_.begin()) return;
+	this->effectMovie_->Stop();
+	this->effectMovie_->SetPosition(0);
+	this->changeState_ = NONE;
+
+	if (this->nowmovie_ == this->movies_.begin()) {
+		return;
+	}
 	this->nowmovie_ = this->movies_.begin();
 	(*this->nowmovie_)->Replay();
 
@@ -98,8 +122,9 @@ void BackMovie::MovieUp(){
 
 	auto itr = this->movies_.end();
 	itr--;
-	if (this->nowmovie_ == itr)return;
-	
+	if (this->nowmovie_ == itr){
+		return;
+	}
 	(*this->nowmovie_)->Stop();
 	this->nowmovie_++;
 	(*this->nowmovie_)->Replay();

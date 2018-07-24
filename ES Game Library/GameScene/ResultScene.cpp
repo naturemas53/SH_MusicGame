@@ -33,6 +33,8 @@ bool ResultScene::Initialize()
 	this->elapsedTime_ = 0;
 
 	this->alpha_state_ = DOWN;
+	this->drawJudgeValue_ = new IntValueSimpleDraw(Vector2(87.0f, 124.0f) / 2.0f);
+	this->drawScoreValue_ = new IntValueSimpleDraw();
 
 	return true;
 }
@@ -44,6 +46,8 @@ bool ResultScene::Initialize()
 void ResultScene::Finalize()
 {
 	// TODO: Add your finalization logic here
+	delete this->drawJudgeValue_;
+	delete this->drawScoreValue_;
 	GraphicsDevice.ReleaseSprite(this->result_image);
 	GraphicsDevice.ReleaseSprite(this->judgeSp_);
 	GraphicsDevice.ReleaseSprite(this->numberSp_);
@@ -112,13 +116,17 @@ void ResultScene::Draw()
 			int value = this->counter_.perfect;
 			if (i == 1) value = this->counter_.great;
 			if (i == 2) value = this->counter_.miss;
-			this->drawNumber_.Draw(this->numberSp_, drawPos, Vector2(87.0f, 124.0f), 0.5f, value);
-			this->drawNumber_.Draw(this->growSp_, drawPos, Vector2(87.0f, 124.0f), 0.5f, value);
+			this->drawJudgeValue_->SetValue(value);
+			this->drawJudgeValue_->Draw(this->numberSp_, drawPos, Color(255,255,255),Vector2(87.0f, 124.0f));
+			this->drawJudgeValue_->SetValue(value);
+			this->drawJudgeValue_->Draw(this->growSp_, drawPos,Color(255,255,255), Vector2(87.0f, 124.0f));
 		}
 	}
 
 	SpriteBatch.Draw(*this->scoreSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,460.0f,0.0f));
-	this->drawNumber_.Draw(this->numberSp_,Vector3(440.0f + (640.0f - 200.0f) / 2.0f,545.0f,0.0f), Vector2(87.0f, 124.0f), 1.0f, this->score_);
+	this->drawScoreValue_->SetValue(this->score_);
+	this->drawScoreValue_->Draw(this->numberSp_, Vector3(440.0f + (640.0f - 200.0f) / 2.0f, 545.0f, 0.0f),
+		Color(255,255,255),Vector2(87.0f, 124.0f));
 
 	SpriteBatch.Draw(*this->thankStrSp_,Vector3_Up * 50.0f);
 	SpriteBatch.Draw(*this->thankGrowSp_,Vector3_Up * 50.0f,this->stringAlpha_);

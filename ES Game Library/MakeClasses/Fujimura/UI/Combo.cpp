@@ -92,7 +92,7 @@ void Combo::Draw(){
 	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddV",calcUV.CalcV(1.0f * rhythmRate));
 	std::vector<Effect_Singleton::SHADER_NAME> comand;
 	//comand.push_back(Effect_Singleton::bloom);
-	comand.push_back(Effect_Singleton::blur);
+	//comand.push_back(Effect_Singleton::blur);
 	onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comand,onShaderScreen);
 
 	GraphicsDevice.SetDefaultRenderTarget();

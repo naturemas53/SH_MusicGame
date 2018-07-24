@@ -21,15 +21,24 @@ private:
 
 	void MovieUp();
 
+	int noise_time;
+	
 	std::vector<MEDIA> movies_;
 	typedef std::vector<MEDIA>::iterator MovieItr;
 	MovieItr nowmovie_;
 
-
-	int noise_time;
-	
 	RENDERTARGET offscreen_;
-	WhiteMap white_;
+
+	enum CHANGE_STATE{
+
+		NONE,
+		CHANGEING,
+		CHANGED
+
+	}changeState_;
+	MEDIA effectMovie_;
+
+	//WhiteMap white_;
 	
 
 
