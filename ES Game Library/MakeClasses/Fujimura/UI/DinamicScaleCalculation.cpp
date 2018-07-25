@@ -29,43 +29,39 @@ Vector3 DinamicScaleCalculation::UpdateScale(int elapsedMilliSecond){
 	
 	}
 
-	if (this->nowPoint_ == this->scalePoints_.end()) {
+	auto backItr = this->scalePoints_.end();
+	backItr--;
 
-		ScalePoint scalePoint = *(this->nowPoint_ - 1);
+	if (this->nowPoint_ == backItr) {
+
+		ScalePoint scalePoint = *(this->nowPoint_);
 		return scalePoint.scale;
 
 	}
 
-	ScalePoint nowScalePoint = *(this->nowPoint_);
-	
-	this->totalElapsedMilliSecond_ = elapsedMilliSecond;
-	if (this->totalElapsedMilliSecond_ >= nowScalePoint.delayMilliSecond){
+	ScalePoint nowScalePoint  = *(this->nowPoint_);
+	ScalePoint nextScalePoint = *(this->nowPoint_ + 1);
 
-		this->totalElapsedMilliSecond_ -= nowScalePoint.delayMilliSecond;
+	this->totalElapsedMilliSecond_ += elapsedMilliSecond;
+	if (this->totalElapsedMilliSecond_ >= nextScalePoint.milliSecond){
 
 		this->nowPoint_++;
-		if (this->nowPoint_ == this->scalePoints_.end()){
+		if (this->nowPoint_ == backItr){
 
-			return nowScalePoint.scale;
+			return nextScalePoint.scale;
 
 		}
 
-		nowScalePoint = *(this->nowPoint_);
-
-	}
-	
-	ScalePoint prevScalePoint = ScalePoint(0, this->START_SCALE_);
-	if (this->nowPoint_ != this->scalePoints_.begin()){
-
-		prevScalePoint = *(this->nowPoint_ - 1);
+		nowScalePoint  = *(this->nowPoint_);
+		nextScalePoint = *(this->nowPoint_ + 1);
 
 	}
 
-	Vector3 dirScale			= nowScalePoint.scale - prevScalePoint.scale;
-	int		dirDelayMilliSecond = nowScalePoint.delayMilliSecond;
-	
-	float	timeRate  = (float)this->totalElapsedMilliSecond_ / (float)dirDelayMilliSecond;
-	Vector3 baseScale = prevScalePoint.scale;
+	Vector3 dirScale	   = nextScalePoint.scale		- nowScalePoint.scale;
+	int		dirMilliSecond = nextScalePoint.milliSecond - nowScalePoint.milliSecond;
+
+	float	timeRate  = (float)(this->totalElapsedMilliSecond_ - nowScalePoint.milliSecond) / (float)dirMilliSecond;
+	Vector3 baseScale = nowScalePoint.scale;
 
 	return baseScale + (dirScale * timeRate);
 
@@ -84,6 +80,7 @@ void DinamicScaleCalculation::AddScalePoint(int milliSecond, Vector3 scale){
 
 		//‚P‚Â‚à‚È‚¢‚È‚ç“ü‚ê‚é
 		this->scalePoints_.push_back(scalePoint);
+		return;
 
 	}
 
@@ -95,6 +92,8 @@ void DinamicScaleCalculation::AddScalePoint(int milliSecond, Vector3 scale){
 			this->scalePoints_.insert(itr,scalePoint);
 			return;
 		}
+
+		itr++;
 
 	}
 

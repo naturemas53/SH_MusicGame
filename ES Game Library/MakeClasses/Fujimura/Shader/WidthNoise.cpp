@@ -23,8 +23,8 @@ bool WidthNoise::Initialize(){
 	std::random_device seed;
 	this->random_ = std::mt19937(seed());
 	this->widthDist_ = std::uniform_real_distribution<float>(0.0f, view.Width);
-	this->topHeightDist_ = std::uniform_real_distribution<float>(view.Height / 4, view.Height / 2);
-	this->bottomHeightDist_ = std::uniform_real_distribution<float>(view.Height / 2, view.Height * 0.75f);
+	this->topHeightDist_ = std::uniform_real_distribution<float>(0.0f, view.Height / 2);
+	this->bottomHeightDist_ = std::uniform_real_distribution<float>(view.Height / 2, view.Height);
 	this->persentDist_ = std::uniform_real_distribution<float>(0.0f,100.0f);
 
 	return true;
@@ -54,7 +54,7 @@ RENDERTARGET WidthNoise::Go_Shader(RENDERTARGET srcRT){
 	for (int i = 0; i < this->offScreen_->GetHeight(); i += noiseLine){
 
 		float XPos = 0.0f;
-		if (this->persentDist_(random_) <= 20.0f){
+		if (i >= top && i <= bottom){
 			XPos = this->widthDist_(this->random_);
 		}
 		Rect userect = RectWH(0, i, this->offScreen_->GetWidth(), noiseLine);

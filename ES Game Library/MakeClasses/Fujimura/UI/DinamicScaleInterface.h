@@ -12,8 +12,8 @@ public:
 
 	virtual void Replay() = 0;
 
-	virtual void SetScalePoint(int ms,Vector3 Scale) = 0;
-	virtual bool IsAddedScalePoint(int ms, Vector3 Scale) = 0;
+	virtual void AddScalePoint(int ms,Vector3 Scale) = 0;
+	virtual bool HasAddScalePoint(int ms, Vector3 Scale) = 0;
 	virtual void RemoveScalePoint(int ms, Vector3 Scale) = 0;
 
 };

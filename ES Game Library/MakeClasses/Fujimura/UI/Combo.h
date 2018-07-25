@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../ESGLib.h"
 #include "../Judgement/JudgeEnum.h"
+#include "IntValueDinamicScaleDraw.h"
 #include <functional>
 #include <vector>
 
@@ -11,7 +12,7 @@ class Combo{
 
 public:
 
-	Combo(float scale);
+	Combo(float scale = 1.0f);
 	~Combo();
 
 	void Update();
@@ -46,5 +47,7 @@ private:
 	SPRITE textSp_;
 	SPRITE textGrowSp_;
 	RENDERTARGET offscreen_;
+
+	IntValueDinamicScaleDraw* valueDraw_;
 
 };

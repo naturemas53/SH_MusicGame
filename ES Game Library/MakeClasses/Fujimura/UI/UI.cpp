@@ -3,6 +3,7 @@
 #include "Combo.h"
 #include "Score.h"
 #include "BackMovie.h"
+#include "IntValueDinamicScaleDraw.h"
 
 UI::UI(){
 
@@ -34,7 +35,9 @@ UI::~UI(){
 
 void UI::Update(DWORD nowTime){
 
+	this->combo_->Update();
 	this->movie_->Update();
+
 }
 
 void UI::Draw(DWORD nowTime){

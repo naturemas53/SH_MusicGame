@@ -21,9 +21,9 @@ public:
 
 	virtual void Replay();
 
-	virtual void SetScalePoint(int delayMilliSecond, Vector3 Scale);
-	virtual bool IsAddedScalePoint(int delayMilliSecond, Vector3 Scale);
-	virtual void RemoveScalePoint(int delayMilliSecond, Vector3 Scale);
+	virtual void AddScalePoint(int milliSecond, Vector3 Scale);
+	virtual bool HasAddScalePoint(int milliSecond, Vector3 Scale);
+	virtual void RemoveScalePoint(int milliSecond, Vector3 Scale);
 
 private:
 
