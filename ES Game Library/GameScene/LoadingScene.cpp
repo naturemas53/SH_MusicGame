@@ -13,7 +13,10 @@ bool LoadingScene::Initialize()
 	// TODO: Add your initialization logic here
 
 	this->load_image = GraphicsDevice.CreateSpriteFromFile(_T("LoadingScene/manyuaru_game.png"));
+	this->clickStrSp_ = GraphicsDevice.CreateSpriteFromFile(_T("TitleScene/cleck_to_start.png"));
 	this->fade_.ChangeFade(FadeInOut::FADE_IN,200);
+	this->strAlpha_ = 0.0f;
+	this->alpha_state_ = ALPHA_STATE::UP;
 
 	return true;
 }
@@ -26,6 +29,7 @@ void LoadingScene::Finalize()
 {
 	// TODO: Add your finalization logic here
 	GraphicsDevice.ReleaseSprite(this->load_image);
+	GraphicsDevice.ReleaseSprite(this->clickStrSp_);
 	this->fade_.ReleaseRenderTarget();
 }
 
@@ -40,13 +44,32 @@ int LoadingScene::Update()
 {
     // TODO: Add your update logic heres
 
-	if (AsyncLoadScene.IsComplete(&this->nextScene_) && this->fade_.GetType() == FadeInOut::FADE_IN)
-	{
-		this->fade_.ChangeFade(FadeInOut::FADE_OUT,500);
-	}
-	
 	if (this->fade_.Update() && this->fade_.GetType() == FadeInOut::FADE_OUT){
 		return this->nextScene_;
+	}
+
+	if(this->fade_.GetType() == FadeInOut::FADE_OUT){
+	
+		return 0;
+	
+	}
+
+	RawInputMouse leftMouse = MultiMouse.GetInputData(0);
+	RawInputMouse rightMouse = MultiMouse.GetInputData(1);
+
+	if(AsyncLoadScene.IsComplete(&this->nextScene_)){
+	
+		this->AlphaUpdate();
+
+	}
+
+	if ( (leftMouse.IsPushed(LEFTBUTTON) || leftMouse.IsPushed(RIGHTBUTTON) ||
+		rightMouse.IsPushed(LEFTBUTTON) || rightMouse.IsPushed(RIGHTBUTTON))&&
+		AsyncLoadScene.IsComplete(&this->nextScene_) && 
+		this->fade_.GetType() == FadeInOut::FADE_IN)
+	{
+		this->fade_.ChangeFade(FadeInOut::FADE_OUT,500);
+		this->strAlpha_ = 0.0f;
 	}
 
 	return 0;
@@ -65,9 +88,40 @@ void LoadingScene::Draw()
 	SpriteBatch.Begin();
 
 	SpriteBatch.Draw(*load_image, Vector3_Zero, 1.0f);
+
+	float clickStrWidth = 369.0f;
+	float posX = (1280.0f - clickStrWidth) / 2.0f;
+	SpriteBatch.Draw(*this->clickStrSp_, Vector3(posX,140.0f,0.0f), this->strAlpha_);
+
 	this->fade_.Draw();
 
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
+}
+
+void LoadingScene::AlphaUpdate(){
+
+		float movement = 0.02f;
+
+	switch (this->alpha_state_){
+	case ALPHA_STATE::UP:
+
+		this->strAlpha_ += movement;
+		if (this->strAlpha_ >= 1.0f){
+			this->strAlpha_ = 1.0f;
+			this->alpha_state_ = DOWN;
+		}
+
+		break;
+	case ALPHA_STATE::DOWN:
+		this->strAlpha_ -= movement;
+		if (this->strAlpha_ <= 0.0f){
+			this->strAlpha_ = 0.0f;
+			this->alpha_state_ = UP;
+		}
+
+		break;
+	}
+
 }

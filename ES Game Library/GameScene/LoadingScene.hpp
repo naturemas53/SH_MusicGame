@@ -64,10 +64,23 @@ private:
 	//非同期画像
 
 	SPRITE load_image;
+	SPRITE clickStrSp_;
+
 	int nextScene_;
+
+	float strAlpha_;
 
 	FadeInOut fade_;
 
+	enum ALPHA_STATE{
+
+		UP,
+		DOWN
+
+	}alpha_state_;
 
 	// 関数プロトタイプ
+
+	void AlphaUpdate();
+
 };
