@@ -91,8 +91,8 @@ void Combo::Draw(){
 	}
 	rhythmRate *= 2.0f;
 
-	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddU",calcUV.CalcU(1.0f * rhythmRate));
-	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddV",calcUV.CalcV(1.0f * rhythmRate));
+	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddU",calcUV.CalcU(0.8f * rhythmRate + 0.2f));
+	Effect_Singleton::GetInstance().SetParameter(Effect_Singleton::blur,"AddV",calcUV.CalcV(0.8f * rhythmRate + 0.2f));
 	std::vector<Effect_Singleton::SHADER_NAME> comand;
 	comand.push_back(Effect_Singleton::bloom);
 	comand.push_back(Effect_Singleton::blur);

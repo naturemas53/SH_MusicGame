@@ -70,7 +70,7 @@ void BackMovie::Draw(){
 
 		std::vector<Effect_Singleton::SHADER_NAME> comands_;
 		comands_.push_back(Effect_Singleton::noise);
-		//comands_.push_back(Effect_Singleton::scan_line);
+		comands_.push_back(Effect_Singleton::scan_line);
 
 		onShaderScreen = Effect_Singleton::GetInstance().Image_On_Effect(comands_, onShaderScreen);
 
